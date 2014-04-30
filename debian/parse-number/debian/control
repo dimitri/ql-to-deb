@@ -1,0 +1,18 @@
+Source: cl-parse-number
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: http://www.cliki.net/parse-number
+Vcs-Git: https://github.com/sharplispers/parse-number.git
+Vcs-Browser: http://github.com/sharplispers/parse-number
+
+Package: cl-parse-number
+Architecture: all
+Depends: ${misc:Depends}
+Description: parse a string into one of the standard Common Lisp number types
+ parse-number accepts an arbitrary string and attempts to parse the string
+ into one of the standard Common Lisp number types, if possible, or else
+ parse-number signals an error of type invalid-number.

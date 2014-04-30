@@ -1,0 +1,24 @@
+Source: cl-containers
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: http://common-lisp.net/project/cl-containers/
+Vcs-Git: git://github.com/gwkkwg/cl-containers
+Vcs-Browser: https://github.com/gwkkwg/cl-containers
+
+Package: cl-containers
+Architecture: all
+Depends: ${misc:Depends}, cl-metatilities-base
+Description: Common Lisp containers data structures
+ Common Lisp ships with a set of powerful built in data structures including
+ the venerable list, full featured arrays, and hash-tables. CL-containers
+ enhances and builds on these structures in two ways:
+ .
+ By adding containers that are not available in native Lisp (for example:
+ binary search trees, red-black trees, sparse arrays and so on).
+ .
+ By providing a standard interface so that they are simpler to use and so
+ that changing design decisions becomes significantly easier.

@@ -1,0 +1,17 @@
+Source: buildapp
+Section: lisp
+Priority: optional
+Maintainer: Christoph Egger <christoph@debian.org>
+Build-Depends: debhelper (>= 7.0.50~), sbcl, cl-asdf
+Standards-Version: 3.9.0
+Homepage: http://www.xach.com/lisp/buildapp/
+Vcs-Git: git://git.debian.org/collab-maint/buildapp.git
+Vcs-Browser: http://git.debian.org/?p=collab-maint/buildapp.git;a=summary
+
+Package: buildapp
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, sbcl
+Description: application to create common lisp images
+ Buildapp is an application for SBCL that configures and saves an
+ executable Common Lisp image. It is similar to cl-launch and
+ hu.dwim.build.

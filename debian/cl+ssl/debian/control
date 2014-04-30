@@ -1,0 +1,20 @@
+Source: cl-plus-ssl
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: http://common-lisp.net/project/cl-plus-ssl/
+Vcs-Git: https://github.com/cl-plus-ssl/cl-plus-ssl.git
+Vcs-Browser: https://github.com/cl-plus-ssl/cl-plus-ssl
+
+Package: cl-plus-ssl
+Architecture: all
+Depends: ${misc:Depends}, cl-cffi, cl-trivial-gray-streams, cl-flexi-streams, cl-bordeaux-threads, cl-trivial-garbage
+Description: Common Lisp interface to OpenSSL
+ CL+SSL is portable code based on CFFI and gray streams. It defines its own
+ libssl BIO method, so that SSL I/O can be written over portable Lisp
+ streams instead of bypassing the streams and sending data over Unix file
+ descriptors directly. (But the traditional approach is still used if
+ possible.)

@@ -1,0 +1,18 @@
+Source: cl-trivial-garbage
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: http://common-lisp.net/project/trivial-garbage/
+Vcs-Git: https://github.com/trivial-garbage/trivial-garbage.git
+Vcs-Browser: https://github.com/trivial-garbage/trivial-garbage
+
+Package: cl-trivial-garbage
+Architecture: all
+Depends: ${misc:Depends}
+Description: Portable GC-related APIs for Common Lisp
+ trivial-garbage provides a portable API to finalizers, weak hash-tables and
+ weak pointers on all major implementations of the Common Lisp programming
+ language.

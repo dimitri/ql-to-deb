@@ -1,0 +1,20 @@
+Source: cl-dynamic-classes
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: http://common-lisp.net/project/dynamic-classes/
+Vcs-Git: git://github.com/gwkkwg/dynamic-classes
+Vcs-Browser: https://github.com/gwkkwg/dynamic-classes
+
+Package: cl-dynamic-classes
+Architecture: all
+Depends: ${misc:Depends}, cl-metatilities-base
+Description: Common Lisp Dynamic Classes
+ Class-mixins are a great idea but sometimes they lead to a proliferation of
+ subclasses with names like
+ printable-touchable-composing-colored-shape-square-mixin and that's just
+ ugly. Common-Lisp is a dynamic-programming language; Dynamic-Classes brings
+ dynamism to class definition!

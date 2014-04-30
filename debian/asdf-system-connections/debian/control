@@ -1,0 +1,24 @@
+Source: cl-asdf-system-connections
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: http://common-lisp.net/project/asdf-system-connections/
+Vcs-Git: git://github.com/gwkkwg/asdf-System-Connections
+Vcs-Browser: https://github.com/gwkkwg/asdf-System-Connections
+
+Package: cl-asdf-system-connections
+Architecture: all
+Depends: ${misc:Depends}
+Description: Allows for ASDF system to be connected so that auto-loading may occur
+ ASDF-System-Connections provides auto-loading of systems that only make
+ sense when several other systems are loaded. If I'm lucky, an example will
+ make this clear! CL-Containers and CL-Variates are separate systems and can
+ therefore be loaded independently. If both of them are loaded, however,
+ then it makes sense to also load code that uses CL-Variates to sample
+ random elements from containers. Rather than requiring you to remember to
+ load that extra system (and to load it only after both Cl-Containers and
+ CL-Variates are loaded), ASDF-System-Connections lets you set things up so
+ that loading happens automatically.

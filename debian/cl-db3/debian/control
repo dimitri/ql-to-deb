@@ -1,0 +1,15 @@
+Source: cl-db3
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: https://github.com/dimitri/cl-db3
+Vcs-Git: https://github.com/dimitri/cl-db3.git
+Vcs-Browser: https://github.com/dimitri/cl-db3
+
+Package: cl-db3
+Architecture: all
+Depends: ${misc:Depends}
+Description: Common Lisp lib to read dbf files version 3

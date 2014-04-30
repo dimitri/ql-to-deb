@@ -1,0 +1,23 @@
+Source: cl-local-time
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: http://common-lisp.net/project/local-time/
+Vcs-Git: git://github.com/dlowe-net/local-time.git
+Vcs-Browser: http://github.com/dlowe-net/local-time
+
+Package: cl-local-time
+Architecture: all
+Depends: ${misc:Depends}, cl-fad
+Description: Common Lisp library for date and time manipulations
+ local-time is a development library for manipulating date and time
+ information in a semi-standard manner. It is based almost entirely off of
+ Erik Naggum's paper, The Long, Painful History of Time.
+ .
+ It includes such features as: Time and date arithmetic, ISO 8601 timestring
+ formatted output and parsing, Reader macros to embed timestrings directly
+ in code, Timezone handling (will read unix tzfile format), Conversion
+ between universal and unix time epochs, Julian date calculation.

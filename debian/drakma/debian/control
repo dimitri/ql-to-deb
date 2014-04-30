@@ -1,0 +1,18 @@
+Source: cl-drakma
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: http://weitz.de/drakma/
+Vcs-Git: https://github.com/edicl/drakma.git
+Vcs-Browser: https://github.com/edicl/drakma
+
+Package: cl-drakma
+Architecture: all
+Depends: ${misc:Depends}, cl-flexi-streams, cl-puri, cl-base64, cl-chunga, cl-ppcre, cl-usocket
+Description: Common Lisp HTTP client
+ Drakma is a full-featured HTTP client implemented in Common Lisp. It knows
+ how to handle HTTP/1.1 chunking, persistent connections, re-usable sockets,
+ SSL, continuable uploads, file uploads, cookies, and more.

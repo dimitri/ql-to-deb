@@ -1,0 +1,18 @@
+Source: cl-markdown
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: http://common-lisp.net/project/cl-markdown/
+Vcs-Git: git://github.com/gwkkwg/cl-markdown
+Vcs-Browser: https://github.com/gwkkwg/cl-markdown
+
+Package: cl-markdown
+Architecture: all
+Depends: ${misc:Depends}, cl-metatilities-base, cl-metabang-bind, cl-containers, cl-dynamic-classes, cl-anaphora, cl-ppcre
+Description: Common Lisp HTTP client
+ Markdown is a full-featured HTTP client implemented in Common Lisp. It knows
+ how to handle HTTP/1.1 chunking, persistent connections, re-usable sockets,
+ SSL, continuable uploads, file uploads, cookies, and more.

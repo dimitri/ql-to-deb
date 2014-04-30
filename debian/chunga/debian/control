@@ -1,0 +1,24 @@
+Source: cl-chunga
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: http://weitz.de/chunga/
+Vcs-Git: https://github.com/edicl/chunga.git
+Vcs-Browser: https://github.com/edicl/chunga
+
+Package: cl-chunga
+Architecture: all
+Depends: ${misc:Depends}, cl-trivial-gray-streams
+Description: Portable chunked streams for Common Lisp
+ Chunga implements streams capable of chunked encoding on demand as defined
+ in RFC 2616. For an example of how these streams can be used see Drakma.
+ .
+ The library needs a Common Lisp implementation that supports Gray streams
+ and relies on David Lichteblau's trivial-gray-streams to offer portability
+ between different Lisps.
+ .
+ Chunga is currently not optimized towards performance - it is rather
+ intended to be easy to use and (if possible) to behave correctly. 

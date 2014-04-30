@@ -1,0 +1,19 @@
+Source: cl-asdf-finalizers
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Vcs-Git: git://common-lisp.net/projects/asdf/asdf-finalizers.git
+Vcs-Browser: http://common-lisp.net/gitweb?p=projects/asdf/asdf-finalizers.git
+
+Package: cl-asdf-finalizers
+Architecture: all
+Depends: ${misc:Depends}, cl-asdf (>= 3.0.3)
+Description: Enforced finalization of ASDF Common Lisp components
+ This library allows you to implement and enforce proper finalization of
+ compile-time constructs while building Lisp source files. It depends on
+ ASDF 2.22.3 or later.
+ .
+ 

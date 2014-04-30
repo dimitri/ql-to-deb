@@ -1,0 +1,22 @@
+Source: cl-py-configparser
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: http://common-lisp.net/project/py-configparser/
+Vcs-Browser: http://common-lisp.net/websvn/listing.php?repname=py-configparser
+
+Package: cl-py-configparser
+Architecture: all
+Depends: ${misc:Depends}, cl-parse-number
+Description: implements the ConfigParser Python module functionality in Common Lisp
+ The py-configparser package implements the ConfigParser Python module
+ functionality in Common Lisp.
+ .
+ In short, it implements reading and writing of .INI-file style
+ configuration files with sections containing key/value pairs of
+ configuration options. In line with the functionalities in the python
+ module, does this package implement basic interpolation of option values in
+ other options.

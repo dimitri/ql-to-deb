@@ -1,0 +1,3 @@
+usr/share/common-lisp/source/local-time/local-time.asd usr/share/common-lisp/systems/local-time.asd
+usr/share/common-lisp/source/local-time/local-time.test.asd usr/share/common-lisp/systems/local-time.test.asd
+usr/share/common-lisp/source/local-time/cl-postgres+local-time.asd usr/share/common-lisp/systems/cl-postgres+local-time.asd

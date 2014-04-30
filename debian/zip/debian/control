@@ -1,0 +1,17 @@
+Source: cl-zip
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: http://common-lisp.net/project/zip/
+Vcs-Browser: http://common-lisp.net/cgi-bin/viewcvs.cgi/zip/?cvsroot=zip
+
+Package: cl-zip
+Architecture: all
+Depends: ${misc:Depends}, cl-flexi-streams, cl-trivial-gray-streams
+Description: Common Lisp HTTP client
+ Zip is a full-featured HTTP client implemented in Common Lisp. It knows
+ how to handle HTTP/1.1 chunking, persistent connections, re-usable sockets,
+ SSL, continuable uploads, file uploads, cookies, and more.

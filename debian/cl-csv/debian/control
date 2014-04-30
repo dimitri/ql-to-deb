@@ -1,0 +1,35 @@
+Source: cl-csv
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: https://github.com/AccelerationNet/cl-csv
+Vcs-Git: https://github.com/AccelerationNet/cl-csv
+Vcs-Browser: https://github.com/AccelerationNet/cl-csv.git
+
+Package: cl-csv
+Architecture: all
+Depends: ${misc:Depends}, cl-iterate, cl-alexandria, cl-interpol
+Description: Common Lisp library providing easy csv reading and writing
+ I had many scattered, not well tested, not easily runable pieces of csv
+ code. I was unhappy with this situation then decided to refactor all of
+ this into a single location. I wrote tests for it and had a library so I
+ thought I might release it. This project started as extensions and bugfixes
+ on arnesi's CSV.
+ .
+ I then looked around and saw there are other csv libs out there that
+ probably mostly accomplished what I had set out to do. However, I already
+ had code that was tested and had an easier license (BSD) so, I figured why
+ not just release it anyway.
+
+Package: cl-csv-clsql
+Architecture: all
+Depends: ${misc:Depends}, cl-csv
+Description: Common Lisp library providing easy csv reading and writing
+
+Package: cl-csv-data-table
+Architecture: all
+Depends: ${misc:Depends}, cl-csv
+Description: Common Lisp library providing easy csv reading and writing

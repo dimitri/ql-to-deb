@@ -1,0 +1,12 @@
+Files
+-----
+
+zip.lisp, sbcl.lisp, acl.lisp
+	Copyright (c) 2004,2005 David Lichteblau <david@lichteblau.com>
+        Lizenz: (L)LGPL
+	COMPRESS function taken from Zachary Beane's salza.
+        Changes copyright (c) 2004 knowledgeTools Int. GmbH
+
+inflate.lisp
+        copyright (c) 1986-2000 Franz Inc, Berkeley, CA
+        (moved into the "ZIP" package, no other changes)

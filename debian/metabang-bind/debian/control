@@ -1,0 +1,20 @@
+Source: cl-metabang-bind
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: http://common-lisp.net/project/metabang-bind/
+Vcs-Git: git://github.com/gwkkwg/metabang-bind
+Vcs-Browser: https://github.com/gwkkwg/metabang-bind
+
+Package: cl-metabang-bind
+Architecture: all
+Depends: ${misc:Depends}
+Description: Common Lisp flexible pattern matching
+ Bind extends the idea of of let and destructing to provide a uniform syntax
+ for all your accessor needs. It combines let, destructuring-bind,
+ with-slots, with-accessors, structure editing, property or
+ association-lists, and multiple-value-bind and a whole lot more into a
+ single form.

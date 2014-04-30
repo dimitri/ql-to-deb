@@ -1,0 +1,18 @@
+Source: cl-interpol
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: http://weitz.de/interpol/
+Vcs-Darcs: http://common-lisp.net/~loliveira/ediware/cl-interpol/
+
+Package: cl-interpol
+Architecture: all
+Depends: ${misc:Depends}
+Description: String interpolation for Common Lisp
+ CL-INTERPOL is a library for Common Lisp which modifies the reader so that
+ you can have interpolation within strings similar to Perl or Unix Shell
+ scripts. It also provides various ways to insert arbitrary characters into
+ literal strings even if your editor/IDE doesn't support them.

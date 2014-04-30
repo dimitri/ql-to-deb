@@ -1,0 +1,29 @@
+Source: cffi
+Section: lisp
+Priority: optional
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp, texinfo, a2ps, sbcl, texlive-extra-utils, texlive, texlive-generic-recommended
+Maintainer: Debian Common Lisp Team <pkg-common-lisp-devel@lists.alioth.debian.org>
+Uploaders: Peter Van Eynde <pvaneynd@debian.org>
+Standards-Version: 3.8.3
+Homepage: http://common-lisp.net/project/cffi/
+Vcs-Darcs: http://darcs.debian.org/darcs/pkg-common-lisp/cffi
+
+Package: cl-cffi
+Architecture: all
+Depends: ${misc:Depends}, cl-alexandria,  cl-trivial-features, cl-babel
+Description: The Common Foreign Function Interface for Common Lisp
+ CFFI, the Common Foreign Function Interface, purports to be a portable foreign
+ function interface for Common Lisp. The CFFI library is composed of a
+ Lisp-implementation-specific backend in the CFFI-SYS package, and a portable
+ frontend in the CFFI package.
+ .
+ The CFFI-SYS backend package defines a low-level interface to the native FFI
+ support in the Lisp implementation. It offers operators for allocating and
+ dereferencing foreign memory, calling foreign functions, and loading shared
+ libraries. The CFFI frontend provides a declarative interface for defining
+ foreign functions, structures, typedefs, enumerated types. It is implemented
+ in portable ANSI CL making use of the low-level operators exported by
+ CFFI-SYS.
+ .
+ A UFFI compatibility layer is also being developed.

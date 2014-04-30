@@ -1,0 +1,20 @@
+Source: cl-abnf
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: https://github.com/dimitri/cl-abnf
+Vcs-Git: https://github.com/dimitri/cl-abnf.git
+Vcs-Browser: https://github.com/dimitri/cl-abnf
+
+Package: cl-abnf
+Architecture: all
+Depends: ${misc:Depends}
+Description: Common Lisp ABNF parser generator
+ The generated parser is a regular expression scanner provided by the
+ http://weitz.de/cl-ppcre/ lib, which means that we can't parse recursive
+ grammar definition. One such definition is the ABNF definition as given by
+ the RFC. Fortunately, as you have this lib, you most probably don't need to
+ generate another parser to handle that particular ABNF grammar.

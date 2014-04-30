@@ -1,0 +1,59 @@
+Source: cl-postmodern
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: http://marijnhaverbeke.nl/postmodern/
+Vcs-Git: https://github.com/marijnh/Postmodern.git
+Vcs-Browser: https://github.com/marijnh/Postmodern
+
+Package: cl-postmodern
+Architecture: all
+Depends: ${misc:Depends}, cl-postgres, cl-s-sql, cl-closer-mop, cl-bordeaux-threads
+Description: Common Lisp library for interacting with PostgreSQL databases
+ Features efficient communication with the database server without need for
+ foreign libraries, support for UTF-8 on Unicode-aware Lisp implementations,
+ a syntax for mixing SQL and Lisp code, convenient support for prepared
+ statements and stored procedures, a metaclass for simple database-access
+ objects
+ .
+ The biggest differences between this library and CLSQL/CommonSQL are that
+ Postmodern has no intention of being portable across different SQL
+ implementations (it embraces non-standard Postgres features), and
+ approaches extensions like lispy SQL and database access objects in a quite
+ different way. This library was written because the CLSQL approach did not
+ really work for me, your mileage may vary.
+
+Package: cl-postgres
+Architecture: all
+Depends: ${misc:Depends}, cl-usocket
+Description: Low-level client library for PosgreSQL
+ CL-postgres module implements a rather low-level interface for
+ communicating with a PostgreSQL database server. It is part of the
+ Postmodern library, but can be used separately.
+
+Package: cl-s-sql
+Architecture: all
+Depends: ${misc:Depends}
+Description: lispy syntax for SQL queries
+ S-SQL provides a lispy syntax for SQL queries, and knows how to convert
+ various lisp types to their textual SQL representation. It takes care to do
+ as much of the work as possible at compile-time, so that at runtime a
+ string concatenation is all that is needed to produce the final SQL query.
+
+Package: cl-simple-date
+Architecture: all
+Depends: ${misc:Depends}
+Description: Common Lisp types for dates, timestamps, and intervals
+ Simple-date provides types (CLOS classes) for dates, timestamps, and
+ intervals similar to the ones SQL databases use, in order to be able to
+ store and read these to and from a database in a straighforward way. A few
+ obvious operations are defined on these types.
+ .
+ The most glaring defect of this library is its ignorance of time zones. It
+ pretends the whole world lives in UTC. Use with care.
+ .
+ When this libary is loaded after CL-postgres, it will register suitable SQL
+ readers and writers for the associated database types.

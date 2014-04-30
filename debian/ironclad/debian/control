@@ -1,0 +1,20 @@
+Source: cl-ironclad
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: http://method-combination.net/lisp/ironclad/
+Vcs-Git: https://github.com/froydnj/ironclad.git
+Vcs-Browser: https://github.com/froydnj/ironclad
+
+Package: cl-ironclad
+Architecture: all
+Depends: ${misc:Depends}, cl-nibbles
+Description: cryptographic toolkit written in Common Lisp
+ Ironclad is a cryptography library written entirely in Common Lisp. It
+ includes support for several popular ciphers, digests, and MACs.
+ Rudimentary support for public-key cryptography is included. For several
+ implementations that support Gray Streams, support is included for
+ convenient stream wrappers.

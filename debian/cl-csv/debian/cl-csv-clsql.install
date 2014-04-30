@@ -1,0 +1,3 @@
+cl-csv-clsql.asd usr/share/common-lisp/source/cl-csv-clsql
+data-table.lisp usr/share/common-lisp/source/cl-csv-clsql
+clsql.lisp usr/share/common-lisp/source/cl-csv-clsql

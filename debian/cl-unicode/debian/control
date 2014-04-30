@@ -1,0 +1,21 @@
+Source: cl-unicode
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: http://weitz.de/cl-unicode/
+
+Package: cl-unicode
+Architecture: all
+Depends: ${misc:Depends}, cl-flexi-streams
+Description: portable Unicode library for Common Lisp
+ CL-UNICODE is a library which provides Common Lisp implementations with
+ knowledge about Unicode characters including their name, their general
+ category, the scripts and blocks they belong to, their numerical value, and
+ several other properties. It also provides the ability to replace the
+ standard syntax for reading Lisp characters with one that is Unicode-aware
+ and is used to enhance CL-PPCRE with Unicode properties.
+ .
+ CL-UNICODE is based on Unicode 5.1.

@@ -1,0 +1,20 @@
+Source: cl-salza2
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: http://www.xach.com/lisp/salza2/
+Vcs-Git: https://github.com/xach/salza2.git
+Vcs-Browser: https://github.com/xach/salza2
+
+Package: cl-salza2
+Architecture: all
+Depends: ${misc:Depends}
+Description: Create compressed data from Common Lisp
+ Salza2 is a Common Lisp library for creating compressed data in the ZLIB,
+ DEFLATE, or GZIP data formats, described in RFC 1950, RFC 1951, and RFC
+ 1952, respectively. It does not use any external libraries for compression.
+ It does not yet support decompression. Salza2 is available under a BSD-like
+ license.

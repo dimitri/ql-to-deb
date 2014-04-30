@@ -1,0 +1,19 @@
+Source: cl-qmynd
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: http://common-lisp.net/project/qitab/
+Vcs-Git: https://github.com/qitab/qmynd.git
+Vcs-Browser: https://github.com/qitab/qmynd
+
+Package: cl-qmynd
+Architecture: all
+Depends: ${misc:Depends}, cl-babel, cl-flexi-streams, cl-ironclad, cl-trivial-gray-streams, cl-usocket
+Description: MySQL Native Driver for Common Lisp
+ QMyND, the QITAB MySQL Native Driver, is a MySQL client library that
+ directly talks to a MySQL server in its native network protocol. The little
+ documentation there is currently lies in the code itself and its test
+ suite.

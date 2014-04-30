@@ -1,0 +1,9 @@
+Document: puri
+Title: PURI
+Author: Franz, Inc
+Abstract: This manual describes the use of the PURI Common Lisp library.
+Section: Programming/Lisp
+
+Format: HTML
+Index: /usr/share/doc/cl-puri/uri.html
+Files: /usr/share/doc/cl-puri/uri.html

@@ -1,0 +1,21 @@
+Source: cl-iterate
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: http://common-lisp.net/project/iterate/
+Vcs-Darcs: http://common-lisp.net/project/iterate/darcs/iterate
+Vcs-Browser: http://common-lisp.net/project/iterate/darcs/iterate
+
+Package: cl-iterate
+Architecture: all
+Depends: ${misc:Depends}
+Description: Jonathan Amsterdam's Common Lisp iterator/gatherer/accumulator facility
+ iterate is an iteration construct for Common Lisp. It is similar to the
+ CL:LOOP macro, with these distinguishing marks:
+ .
+ it is extensible, it helps editors like Emacs indent iterate forms by
+ having a more lisp-like syntax, and it isn't part of the ANSI standard for
+ Common Lisp (which is sometimes a bad thing and sometimes good).

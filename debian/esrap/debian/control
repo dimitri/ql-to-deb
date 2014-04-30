@@ -1,0 +1,18 @@
+Source: cl-esrap
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: http://nikodemus.github.io/esrap/
+Vcs-Git: git://github.com/nikodemus/esrap.git
+Vcs-Browser: http://github.com/nikodemus/esrap
+
+Package: cl-esrap
+Architecture: all
+Depends: ${misc:Depends}, cl-alexandria
+Description: Packrat Parsing library for Common Lisp
+ In addition to regular Packrat / Parsing Grammar / TDPL features Esrap
+ supports dynamic redefinition of nonterminals, inline grammars, semantic
+ predicates, and include introspecive facilities for development.
