@@ -12,7 +12,9 @@
                  #:iolib                ; OS integration
                  #:iolib/os             ; OS integration
                  #:iolib/pathnames      ; walk directory and all
-		 )
+                 #:md5                  ; check archive checksums
+		 #:command-line-arguments ; for the main function
+                 )
     :components
     ((:module "src"
               :serial t

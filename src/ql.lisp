@@ -44,11 +44,16 @@ drakma http://beta.quicklisp.org/archive/drakma/2014-04-25/drakma-1.3.8.tgz 7098
 
 (defstruct (ql-release
              (:conc-name ql-)
-             (:constructor make-ql-release (project url size file-md5
-                                                    content-sha1 prefix
-                                                    &rest systems
-                                                    &aux (version (ql-parse-version-string project prefix)))))
-  project version url size file-md5 content-sha1 prefix systems)
+             (:constructor make-ql-release
+                           (project url size file-md5
+                                    content-sha1 prefix
+                                    &rest systems
+                                    &aux (version
+                                          (ql-parse-version-string project prefix)))))
+  ;; found in the releases.txt file
+  project version url size file-md5 content-sha1 prefix systems
+  ;; added while working on the packaging the release
+  archive)
 
 (defun ql-parse-releases (releases-string)
   "Parse the RELEASES-STRING content"
@@ -95,3 +100,73 @@ drakma http://beta.quicklisp.org/archive/drakma/2014-04-25/drakma-1.3.8.tgz 7098
            ql-releases-hash)
          (error 'quicklisp-http-error
                 :uri uri :status status-code :reason reason :body body)))))
+
+
+;;;
+;;; Archive fetching and unpacking
+;;;
+(defparameter *archive-buffer-size* 8192)
+
+(defmethod validate-checksum ((release ql-release))
+  "Return a generalized boolean that is non-nil when RELEASE computed md5sum
+   is the same as its 'file-md5 slot value."
+  (when (ql-archive release)
+    (let* ((md5        (md5:md5sum-file (ql-archive release)))
+           (md5-string (format nil "~(~{~2,'0X~}~)" (coerce md5 'list))))
+      (unless (string= (ql-file-md5 release) md5-string)
+        (error 'quicklisp-http-error
+               :uri (ql-url release)
+               :reason (format nil "checksum failure, expected ~s, got ~s~%"
+                               (ql-file-md5 release) md5-string))))))
+
+(defun ql-fetch-release (release)
+  "Download given RELEASE archive file in *ARCHIVE-DIRECTORY*."
+  (ensure-directories-exist (directory-namestring *archive-directory*))
+
+  (let* ((filename (make-pathname :name (pathname-name (ql-url release))
+                                  :type "tgz"))
+         (archive  (merge-pathnames filename *archive-directory*)))
+
+    ;; remember where we did download the archive to
+    (setf (ql-archive release) archive)
+
+    ;; first download the archive, a .tgz
+   (multiple-value-bind (body status-code headers uri stream must-close reason)
+       (drakma:http-request (ql-url release))
+
+     (declare (ignore headers stream must-close))
+     (unless (= 200 status-code)
+       (error 'quicklisp-http-error :uri uri :status status-code :reason reason))
+
+     (with-open-file (out archive
+                          :direction :output
+                          :if-exists :supersede
+                          :if-does-not-exist :create
+                          :element-type '(unsigned-byte 8))
+       (write-sequence body out)))
+
+   ;; check that the archive has the expected checksum
+   (validate-checksum release)
+
+   ;; return the archive pathname we just created
+   archive))
+
+(defun ql-unpack-archive (release)
+  "Unpack already fetched RELEASE in *BUILD-ROOT*"
+  (ensure-directories-exist (directory-namestring *build-root*))
+
+  (let* ((archive     (ql-archive release))
+         (environment (iolib/os:environment)))
+    (with-current-directory *build-root*
+      (multiple-value-bind (code stdout stderr)
+          (run-program `("tar" "xzf" ,(namestring archive))
+                       :environment environment)
+        (unless (= 0 code)
+          (error "Failed to unpack archive ~s:~% ~a~%" archive stderr))
+        stdout))))
+
+(defmethod ql-fetch-and-unpack-release ((release ql-release))
+  "Fetches release from its URL slot value into *ARCHIVE-DIRECTORY* then
+   unpack it in the same place."
+  (ql-fetch-release release)
+  (ql-unpack-archive release))

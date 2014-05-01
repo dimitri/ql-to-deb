@@ -8,7 +8,7 @@
   (system  nil :type string)
   (dir     nil :type pathname)
   (version nil :type (or null string))
-  (pname   nil :type (or null string)))
+  (package nil :type (or null string)))
 
 (defmethod read-version ((deb debian-package))
   "Parse the debian/changelog for the current version of the package."
@@ -32,14 +32,24 @@
     ;; first, the main system name is either the package name or the
     ;; package name prefixed with cl-
     (with-slots (system) deb
-      (if (and (< 3 (length system))
-               (string= "cl-" system :end2 3))
-          (setf (deb-pname deb) system)
-          (setf (deb-pname deb) (format nil "cl-~a" system))))
+      (let ((package (if (and (< 3 (length system))
+                              (string= "cl-" system :end2 3))
+                         system
+                         (format nil "cl-~a" system))))
+        (setf (deb-package deb) package)))
 
     ;; and now go fetch the current version in the debian/changelog file if
     ;; such does exists.
     (setf (deb-version deb) (read-version deb))))
+
+(defun find-debian-package (package-name)
+  "Find PACKAGE-NAME in *DEBIAN-PACKAGES* directory."
+  (let* ((pdir (make-pathname :directory `(:relative ,package-name)))
+         (pdir (merge-pathnames pdir *debian-packages*)))
+    (when (probe-file pdir)
+      (let ((package (make-debian-package :system package-name :dir pdir)))
+        (complete-debian-package package)
+        package))))
 
 (defun list-debian-packages ()
   "Walk the *DEBIAN-PACKAGES* directory and return a list of debian-package."
