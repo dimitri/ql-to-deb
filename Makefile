@@ -29,6 +29,7 @@ endif
 
 BUILDDIR   = build
 LIBS       = $(BUILDDIR)/libs.stamp
+BUILDAPP_  = $(BUILDDIR)/buildapp.stamp
 BUILDAPP   = $(BUILDDIR)/bin/buildapp
 MANIFEST   = $(BUILDDIR)/manifest.ql
 QL_TO_DEB  = $(BUILDDIR)/bin/$(APP_NAME)
@@ -50,17 +51,10 @@ $(LIBS): quicklisp
              --eval '(require :asdf)'                               \
              --eval '(asdf:load-system :asdf)'                      \
              --eval '(ql:quickload "ql-to-deb")'                    \
-             --eval '(quit)'
+             --eval '(quit)' > /dev/null 2>&1
 	touch $@
 
 libs: $(LIBS) ;
-
-$(MANIFEST): libs
-	$(CL) $(CL_OPTS) --load $(QLDIR)/setup.lisp                \
-             --eval '(ql:write-asdf-manifest-file "$(MANIFEST)")'  \
-             --eval '(quit)'
-
-manifest: $(MANIFEST) ;
 
 $(BUILDAPP): quicklisp
 	mkdir -p $(BUILDDIR)/bin
@@ -69,16 +63,18 @@ $(BUILDAPP): quicklisp
              --eval '(buildapp:build-buildapp "$(BUILDAPP)")'     \
              --eval '(quit)'
 
-buildapp: $(BUILDAPP) ;
+$(BUILDAPP_): $(BUILDAPP)
+	touch $@
 
-$(QL_TO_DEB): manifest buildapp
+buildapp: $(BUILDAPP_) ;
+
+$(QL_TO_DEB): buildapp
 	mkdir -p $(BUILDDIR)/bin
 	$(BUILDAPP)      --logfile /tmp/build.log                \
                          $(BUILDAPP_OPTS)                        \
                          --sbcl $(CL)                            \
                          --require asdf                          \
                          --load-system asdf                      \
-                         --manifest-file $(MANIFEST)             \
                          --asdf-tree $(QLDIR)/dists              \
                          --asdf-path .                           \
                          --load-system $(APP_NAME)               \
