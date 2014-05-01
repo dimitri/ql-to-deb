@@ -19,17 +19,15 @@
     (("quicklisp" #\Q) :type string :initial-value ,*ql-props-url*
      :documentation "URL to use to fetch quicklisp.txt main file")))
 
-(defun mkdir-or-die (path debug &optional (stream *standard-output*))
+(defun mkdir-or-die (path &optional (stream *standard-output*))
   "Create a directory at given PATH and exit with an error message when
    that's not possible."
   (handler-case
       (ensure-directories-exist path)
     (condition (e)
       ;; any error here is a panic
-      (if debug
-	  (print-backtrace e debug stream)
-	  (format stream "PANIC: ~a.~%" e))
-      (uiop:quit))))
+      (format stream "PANIC: ~a.~%" e)
+      (uiop:quit 5))))
 
 (defun usage (argv &key quit)
   "Show usage then QUIT if asked to."
@@ -57,10 +55,10 @@
         (let ((dir-truename (probe-file dir)))
           (if dir-truename
               (setf *build-root* (directory-namestring dir-truename))
-              (format t "FATAL: can't find dir: ~s~%" dir)))
+              (mkdir-or-die dir)))
 
         (when version
-	  (format t "pgloader version ~s~%" *version-string*)
+	  (format t "ql-to-deb version ~s~%" *version-string*)
           (format t "compiled with ~a ~a~%"
                   (lisp-implementation-type)
                   (lisp-implementation-version)))
@@ -77,11 +75,7 @@
 
                 ;; by default, try to update them all
                 (loop :for (package . release) :in (list-packages-to-update)
-                   :do (progn
-                         (format t "updating package ~a to version ~a~%"
-                                 (deb-package package)
-                                 (ql-version release))
-                         (update-package package release))))
+                   :do (update-package package release)))
 
           (condition (c)
             (format t "Fatal: ~a~%" c)

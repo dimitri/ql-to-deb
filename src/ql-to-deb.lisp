@@ -48,6 +48,9 @@
   (declare (type debian-package deb)
            (type ql-release ql))
 
+  (format t "updating package ~a to version ~a~%"
+          (deb-package deb) (ql-version ql))
+
   ;; fetch the archive, unpack it
   (ql-fetch-and-unpack-release ql)
 
@@ -76,30 +79,25 @@
     ;; get rid of possibly existing stray symlinks from previous runs
     (when (probe-file debian-archive-filename)
       (delete-file debian-archive-filename))
-    (iolib.os:make-symlink debian-archive-filename (ql-archive release)))
+    (make-symlink (ql-archive release) debian-archive-filename))
 
   ;; rename the directory in which the archive has been expanded
   (let* ((ql-dir  (merge-pathnames (ql-prefix release) *build-root*))
-         (deb-dir (merge-pathnames (deb-package deb) *build-root*)))
+         (deb-dir (make-pathname :directory `(:relative ,(deb-package deb))))
+         (deb-dir (merge-pathnames deb-dir *build-root*)))
     ;; remove possibly existing stray target directory
-    (when (probe-file deb-dir)
-      (iolib/os:delete-files deb-dir :recursive t))
-    (rename-file ql-dir deb-dir))
+    (uiop:delete-directory-tree deb-dir :validate t :if-does-not-exist :ignore)
+    (rename-file ql-dir (deb-package deb)))
 
   ;; now just copy the debian/ directory and all its contents in place into
   ;; the unpacked directory where we find the release
-  (let* ((dir `(:relative ,(format nil "~a/debian" (deb-package deb))))
-         (dir (merge-pathnames (make-pathname :directory dir) *build-root*)))
-    (multiple-value-bind (code stdout stderr)
-        (run-program `("cp" "-a"
-                            ,(directory-namestring (deb-dir deb))
-                            ,(namestring dir)))
-      (unless (= 0 code)
-        (error "Failed to copy the debian/ packaging from ~s to ~s:~% ~a~%"
-               (directory-namestring (deb-dir deb))
-               (namestring dir)
-               stderr))
-      stdout))
+  (let* ((dir (make-pathname :directory `(:relative ,(deb-package deb))))
+         (dir (merge-pathnames dir *build-root*)))
+    (multiple-value-bind (output error code)
+        (uiop:run-program `("cp" "-a"
+                                 ,(directory-namestring (deb-dir deb))
+                                 ,(directory-namestring dir)))
+      (declare (ignore output error code))))
 
   ;; side effects only, no return value
   (values))
@@ -108,15 +106,22 @@
   "Update the debian/changelog for DEB package, at *BUILD-ROOT*."
   (let* ((pdir        (make-pathname :directory `(:relative ,(deb-package deb))))
          (pdir        (merge-pathnames pdir *build-root*))
-         (changelog   (merge-pathnames "debian/changelog" pdir))
-         (environment (iolib/os:environment)))
-    (with-current-directory pdir
-      (multiple-value-bind (code stdout stderr)
-          (run-program `("dch"
-                         ,(unless (probe-file changelog) "--create")
-                         "--newversion" ,(format nil "~a-1" (ql-version ql))
-                         "--package"    ,(deb-package deb))
-                       :environment environment)
+         (changelog   (merge-pathnames "debian/changelog" pdir)))
+    (format t "~{~a~^ ~}~%"
+            `("dch"
+                              ,@(unless (probe-file changelog) (list "--create"))
+                              "--newversion" ,(format nil "~a-1" (ql-version ql))
+                              "--package"    ,(deb-package deb)))
+    (uiop:with-current-directory (pdir)
+      (multiple-value-bind (output error code)
+          (uiop:run-program `("dch"
+                              ,@(unless (probe-file changelog) (list "--create"))
+                              "--newversion" ,(format nil "~a-1" (ql-version ql))
+                              "--package"    ,(deb-package deb))
+                            :ignore-error-status t
+                            :output :string
+                            :error-output :string)
         (unless (= 0 code)
-          (error "Failed to generate ~s:~% ~a~%" changelog stderr))
-        stdout))))
+          (format t "code:   ~a~%" code)
+          (format t "stdout: ~%~a~%" output)
+          (format t "stderr: ~%~a~%" error))))))

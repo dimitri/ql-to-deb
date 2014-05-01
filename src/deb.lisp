@@ -44,7 +44,7 @@
 
 (defun find-debian-package (package-name)
   "Find PACKAGE-NAME in *DEBIAN-PACKAGES* directory."
-  (let* ((pdir (make-pathname :directory `(:relative ,package-name)))
+  (let* ((pdir (make-pathname :directory `(:relative ,package-name "debian")))
          (pdir (merge-pathnames pdir *debian-packages*)))
     (when (probe-file pdir)
       (let ((package (make-debian-package :system package-name :dir pdir)))
@@ -53,21 +53,11 @@
 
 (defun list-debian-packages ()
   "Walk the *DEBIAN-PACKAGES* directory and return a list of debian-package."
-  (let ((root     *debian-packages*)
-        (packages '()))
-    (flet ((add-package (name-key kind parent depth)
-             (declare (ignore parent))
-             (when (and (= depth 1) (eq kind :directory))
-               (let* ((system  (file-path-namestring name-key))
-                      (curdir  (make-pathname :directory `(:relative ,system)))
-                      (curdir  (merge-pathnames curdir root))
-                      (debian  (make-pathname :directory '(:relative "debian")))
-                      (debian-pathname (merge-pathnames debian curdir))
-                      (package
-                       (make-debian-package :system system
-                                            :dir debian-pathname)))
-                 (complete-debian-package package)
-                 (push package packages)))))
-      (walk-directory root #'add-package))
-    (nreverse packages)))
+  (loop :for dir :in (uiop:directory-files *debian-packages*)
+     :collect (let* ((system  (last-directory dir))
+                     (debian  (uiop:merge-pathnames* "debian/" dir))
+                     (package (make-debian-package :system system
+                                                   :dir debian)))
+                (complete-debian-package package)
+                package)))
 

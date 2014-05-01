@@ -4,7 +4,7 @@
 
 (in-package #:ql-to-deb)
 
-(defparameter *version-string* "0.1.0"
+(defparameter *version-string* "0.2.0"
   "Our version string...")
 
 (defparameter *debian-packages*

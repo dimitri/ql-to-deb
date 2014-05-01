@@ -5,13 +5,11 @@
     :description "Automated debian package updates from Quicklisp releases"
     :author "Dimitri Fontaine <dim@tapouen.org>"
     :license "WTFPL"
+    :version "0.2.0"
     :depends-on (#:uiop			; host system integration
 		 #:drakma		; http client, download archives
                  #:cl-ppcre             ; Regular Expressions
                  #:split-sequence       ; split sequences
-                 #:iolib                ; OS integration
-                 #:iolib/os             ; OS integration
-                 #:iolib/pathnames      ; walk directory and all
                  #:md5                  ; check archive checksums
 		 #:command-line-arguments ; for the main function
                  )
@@ -21,6 +19,7 @@
 	      :components
               ((:file "package")
                (:file "params")
+               (:file "utils")
                (:file "ql")
                (:file "deb")
                (:file "ql-to-deb")
