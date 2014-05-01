@@ -60,10 +60,8 @@
   ;; add a debian changelog entry
   (update-changelog deb ql)
 
-  ;; now debuild the package?
-  (let* ((pdir        (make-pathname :directory `(:relative ,(deb-package deb))))
-         (pdir        (merge-pathnames pdir *build-root*)))
-   (format t "cd ~s && debuild -us -uc" pdir)))
+  ;; now debuild the package
+  (debuild deb))
 
 
 ;;;
@@ -107,21 +105,13 @@
   (let* ((pdir        (make-pathname :directory `(:relative ,(deb-package deb))))
          (pdir        (merge-pathnames pdir *build-root*))
          (changelog   (merge-pathnames "debian/changelog" pdir)))
-    (format t "~{~a~^ ~}~%"
-            `("dch"
-                              ,@(unless (probe-file changelog) (list "--create"))
-                              "--newversion" ,(format nil "~a-1" (ql-version ql))
-                              "--package"    ,(deb-package deb)))
     (uiop:with-current-directory (pdir)
       (multiple-value-bind (output error code)
           (uiop:run-program `("dch"
                               ,@(unless (probe-file changelog) (list "--create"))
                               "--newversion" ,(format nil "~a-1" (ql-version ql))
-                              "--package"    ,(deb-package deb))
-                            :ignore-error-status t
+                              "--package"    ,(deb-package deb)
+                              "Quicklisp release update.")
                             :output :string
                             :error-output :string)
-        (unless (= 0 code)
-          (format t "code:   ~a~%" code)
-          (format t "stdout: ~%~a~%" output)
-          (format t "stderr: ~%~a~%" error))))))
+        (declare (ignore output error code))))))
