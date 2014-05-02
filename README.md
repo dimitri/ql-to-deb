@@ -53,7 +53,12 @@ in debian yet (drakma, md5 and command-line-arguments).
 
     $ sudo apt-get install sbcl cl-ppcre cl-split-sequence
     $ sudo apt-get build-dep cl-asdf
+    $ sudo apt-get build-dep buildapp
     $ dpkg -i cl-asdf...
+
+Note that we need `cl-asdf` version 3.0.3 or more recent, and `buildapp`
+version 1.5 or more recent, both as found in *sid* and an `apt-get
+build-dep` command away to being backported into *squeeze*.
 
 Now that you have the build requirements sorted:
 
