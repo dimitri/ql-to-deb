@@ -76,7 +76,12 @@
             (update-changelog deb ql)
 
             ;; now debuild the package
-            (debuild deb))
+            (debuild deb)
+
+            ;; copy the new changelog file to our debian packaging source
+            (let ((cp `("cp" ,(namestring (build-changelog deb))
+                             ,(namestring (source-changelog deb)))))
+              (run-command cp (deb-dir deb))))
 
         ;; just ensure we keep the log file when something happens
         (condition (c)
@@ -121,9 +126,8 @@
 
 (defmethod update-changelog ((deb debian-package) (ql ql-release))
   "Update the debian/changelog for DEB package, at *BUILD-ROOT*."
-  (let* ((pdir        (make-pathname :directory `(:relative ,(deb-source deb))))
-         (pdir        (merge-pathnames pdir *build-root*))
-         (changelog   (merge-pathnames "debian/changelog" pdir)))
+  (let* ((pdir        (build-directory deb))
+         (changelog   (build-changelog deb)))
 
     ;; we might need to bump epoch here
     (compute-next-version deb (ql-version ql))
@@ -135,14 +139,7 @@
                          "--package"    ,(deb-source deb)
                          "--distribution" "unstable"
                          "--controlmaint"
-                         "Quicklisp release update."))
-          (cp          `("cp" ,(namestring changelog) "changelog")))
+                         "Quicklisp release update.")))
 
       ;; run dch then update debian's package version string
-      (run-command dch pdir)
-      (setf (deb-version deb) (ql-version ql))
-
-      ;; copy the new changelog file to our debian packaging source:
-      ;; with (deb-dir deb) as the current working directory, the target file
-      ;; name is just "changelog".
-      (run-command cp (deb-dir deb)))))
+      (run-command dch pdir))))

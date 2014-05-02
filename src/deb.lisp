@@ -73,17 +73,25 @@
                 (complete-debian-package package)
                 package)))
 
+(defmethod build-directory ((deb debian-package))
+  (let ((source (make-pathname :directory `(:relative ,(deb-source deb)))))
+    (merge-pathnames source *build-root*)))
+
+(defmethod build-changelog ((deb debian-package))
+  (uiop:merge-pathnames* "debian/changelog" (build-directory deb)))
+
+(defmethod source-changelog ((deb debian-package))
+  (merge-pathnames "changelog" (deb-dir deb)))
+
 
 ;;;
 ;;; Using debian utilities
 ;;;
 (defmethod debuild ((deb debian-package))
   "Use the command `debuild -us -uc' to build given DEB package."
-  (let* ((pdir    (make-pathname :directory `(:relative ,(deb-source deb))))
-         (pdir    (merge-pathnames pdir *build-root*))
-         (debuild `("debuild" "-us" "-uc")))
+  (let ((debuild `("debuild" "-us" "-uc")))
     (format t "Building package ~a~%" (deb-source deb))
-    (run-command debuild pdir)))
+    (run-command debuild (build-directory deb))))
 
 (defmethod next-epoch ((deb debian-package))
   (cl-ppcre:register-groups-bind (epoch version)
