@@ -29,7 +29,6 @@ endif
 
 BUILDDIR   = build
 LIBS       = $(BUILDDIR)/libs.stamp
-BUILDAPP_  = $(BUILDDIR)/buildapp.stamp
 BUILDAPP   = $(BUILDDIR)/bin/buildapp
 MANIFEST   = $(BUILDDIR)/manifest.ql
 QL_TO_DEB  = $(BUILDDIR)/bin/$(APP_NAME)
@@ -46,7 +45,7 @@ $(QLDIR)/setup.lisp:
 
 quicklisp: $(QLDIR)/setup.lisp ;
 
-$(LIBS): quicklisp
+$(LIBS): $(QLDIR)/setup.lisp
 	$(CL) $(CL_OPTS) --load $(QLDIR)/setup.lisp                 \
              --eval '(require :asdf)'                               \
              --eval '(asdf:load-system :asdf)'                      \
@@ -56,19 +55,16 @@ $(LIBS): quicklisp
 
 libs: $(LIBS) ;
 
-$(BUILDAPP): quicklisp
+$(BUILDAPP): $(QLDIR)/setup.lisp
 	mkdir -p $(BUILDDIR)/bin
 	$(CL) $(CL_OPTS) --load $(QLDIR)/setup.lisp               \
              --eval '(ql:quickload "buildapp")'                   \
              --eval '(buildapp:build-buildapp "$(BUILDAPP)")'     \
              --eval '(quit)'
 
-$(BUILDAPP_): $(BUILDAPP)
-	touch $@
+buildapp: $(BUILDAPP) ;
 
-buildapp: $(BUILDAPP_) ;
-
-$(QL_TO_DEB): buildapp
+$(QL_TO_DEB): $(BUILDAPP)
 	mkdir -p $(BUILDDIR)/bin
 	$(BUILDAPP)      --logfile /tmp/build.log                \
                          $(BUILDAPP_OPTS)                        \
