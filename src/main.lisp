@@ -74,11 +74,13 @@
 
         (handler-case
             (if packages
-                (loop :for package :in packages
-                   :do (maybe-update-package package))
+                (loop :for (package . release)
+                   :in (filter-packages-to-update packages)
+                   :do (update-package package release))
 
                 ;; by default, try to update them all
-                (loop :for (package . release) :in (list-packages-to-update)
+                (loop :for (package . release)
+                   :in (list-packages-to-update)
                    :do (update-package package release)))
 
           (condition (c)

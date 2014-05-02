@@ -9,38 +9,39 @@
   (when (deb-version deb)
     (string= (deb-version deb) (ql-version ql))))
 
-(defun maybe-update-package (package-name)
-  "Check if given PACKAGE-NAME needs an update, then do it if needed."
-  (let ((package  (find-debian-package package-name))
-        (releases (ql-fetch-current-releases)))
-    (if package
-        (let ((release (gethash (deb-system package) releases)))
-         (if release
-             (if (same-version-p package release)
-                 (format t "package ~a is already up to date (~a)~%"
-                         (deb-source package)
-                         (ql-version release))
-                 (update-package package release))
+(defun ensure-debian-package-list (packages)
+  "Returns a lisp of debian-package instances."
+  (loop :for package-or-name :in packages
+     :for package := (etypecase package-or-name
+                       (string         (find-debian-package package-or-name))
+                       (debian-package package-or-name))
+     :when package
+     :collect package
+     :else
+     :do (format t "Could not find a debian package named: ~a~%"
+                 package-or-name)))
 
-             ;; not found in the releases hash
-             (format t "Missing a Quicklisp release for package: ~s~%"
-                     package-name)))
+(defun filter-packages-to-update (packages)
+  "Return the list of packages that needs an update."
+  (let ((releases (ql-fetch-current-releases)))
+    (loop :for package :in (ensure-debian-package-list packages)
+       :for release := (gethash (deb-system package) releases)
 
-        ;; no package found
-        (format t "Could not find a debian package named: ~a~%" package-name))))
+       :when (null release)
+       :do (format t "Missing a Quicklisp release for package: ~s~%" package)
+
+       :when (same-version-p package release)
+       :do (format t "package ~a is already up to date (~a)~%"
+                   (deb-source package)
+                   (ql-version release))
+
+       :unless (or (null release) (same-version-p package release))
+       :collect (cons package release))))
 
 (defun list-packages-to-update ()
   "Walk the *DEBIAN-PACKAGES* directory, fetch the lastest Quicklisp release
    distributions, and return a list of packages that need a new version."
-  (let ((packages (list-debian-packages))
-        (releases (ql-fetch-current-releases)))
-    (loop :for package :in packages
-       :for release := (gethash (deb-system package) releases)
-       :when (null release)
-       :do (format t "Missing a Quicklisp release for package: ~s~%" package)
-       :unless (or (null release)
-                   (same-version-p package release))
-       :collect (cons package release))))
+  (filter-packages-to-update (list-debian-packages)))
 
 (defun update-package (deb ql)
   "Given a debian package DEB and a Quicklisp release QL, update the debian
