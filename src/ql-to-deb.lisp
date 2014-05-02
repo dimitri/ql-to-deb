@@ -129,7 +129,13 @@
                         "--package"    ,(deb-package deb)
                         "--distribution" "unstable"
                         "--controlmaint"
-                        "Quicklisp release update.")))
+                        "Quicklisp release update."))
+         (cp          `("cp" ,(namestring changelog) "changelog")))
     ;; run dch then update debian's package version string
     (run-command dch pdir)
-    (setf (deb-version deb) (ql-version ql))))
+    (setf (deb-version deb) (ql-version ql))
+
+    ;; copy the new changelog file to our debian packaging source:
+    ;; with (deb-dir deb) as the current working directory, the target file
+    ;; name is just "changelog".
+    (run-command cp (deb-dir deb))))
