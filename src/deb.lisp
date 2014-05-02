@@ -5,10 +5,11 @@
 
 (defstruct (debian-package
              (:conc-name deb-))
-  (system  nil :type string)
-  (dir     nil :type pathname)
-  (version nil :type (or null string))
-  (package nil :type (or null string)))
+  (system  nil :type string)            ; the quicklisp system it relates too
+  (dir     nil :type pathname)          ; our own debian/ directory
+  (source  nil :type (or null string))  ; the source package name
+  (version nil :type (or null string))  ; debian/changelog first version string
+  (package nil :type (or null string))) ; debian package name
 
 (defmethod read-version ((deb debian-package))
   "Parse the debian/changelog for the current version of the package."
@@ -20,6 +21,14 @@
         (cl-ppcre:register-groups-bind (version)
             ("[^ ]+ \\(([^-]+)-[^\\)]+.*" first-line)
           version)))))
+
+(defmethod read-source-name ((deb debian-package))
+  "Parse debian/control first line for the name of the source package."
+  (let ((control (make-pathname :defaults (deb-dir deb) :name "control")))
+    (let ((first-line (with-open-file (s control) (read-line s))))
+      (cl-ppcre:register-groups-bind (source)
+          ("Source: (.*)" first-line)
+        source))))
 
 (defmethod complete-debian-package ((deb debian-package))
   "Compute missing elements in the package."
@@ -37,6 +46,9 @@
                          system
                          (format nil "cl-~a" system))))
         (setf (deb-package deb) package)))
+
+    ;; grab the debian package's source name from debian/control
+    (setf (deb-source deb) (read-source-name deb))
 
     ;; and now go fetch the current version in the debian/changelog file if
     ;; such does exists.
@@ -67,10 +79,10 @@
 ;;;
 (defmethod debuild ((deb debian-package))
   "Use the command `debuild -us -uc' to build given DEB package."
-  (let* ((pdir    (make-pathname :directory `(:relative ,(deb-package deb))))
+  (let* ((pdir    (make-pathname :directory `(:relative ,(deb-source deb))))
          (pdir    (merge-pathnames pdir *build-root*))
          (debuild `("debuild" "-us" "-uc")))
-    (format t "Building package ~a~%" (deb-package deb))
+    (format t "Building package ~a~%" (deb-source deb))
     (run-command debuild pdir)))
 
 (defmethod next-epoch ((deb debian-package))

@@ -18,7 +18,7 @@
          (if release
              (if (same-version-p package release)
                  (format t "package ~a is already up to date (~a)~%"
-                         (deb-package package)
+                         (deb-source package)
                          (ql-version release))
                  (update-package package release))
 
@@ -49,10 +49,10 @@
            (type ql-release ql))
 
   (format t "~%Updating package ~a to version ~a.~%"
-          (deb-package deb) (ql-version ql))
+          (deb-source deb) (ql-version ql))
 
   (let ((log-pathname (make-pathname :directory *logs-root*
-                                     :name (deb-package deb)
+                                     :name (deb-source deb)
                                      :type "log")))
     (ensure-directories-exist *logs-root*)
 
@@ -90,7 +90,7 @@
   "Transform a Quicklisp release to a ready to build debian package."
   ;; we need the infamous debian orig tarball
   (let* ((orig-filename
-          (format nil "~a_~a.orig.tar.gz" (deb-package deb) (ql-version release)))
+          (format nil "~a_~a.orig.tar.gz" (deb-source deb) (ql-version release)))
          (debian-archive-filename
           (merge-pathnames orig-filename *build-root*)))
     ;; get rid of possibly existing stray symlinks from previous runs
@@ -100,16 +100,16 @@
 
   ;; rename the directory in which the archive has been expanded
   (let* ((ql-dir  (merge-pathnames (ql-prefix release) *build-root*))
-         (deb-dir (make-pathname :directory `(:relative ,(deb-package deb))))
+         (deb-dir (make-pathname :directory `(:relative ,(deb-source deb))))
          (deb-dir (merge-pathnames deb-dir *build-root*))
-         (rename  `("mv" ,(namestring ql-dir) ,(deb-package deb))))
+         (rename  `("mv" ,(namestring ql-dir) ,(deb-source deb))))
     ;; remove possibly existing stray target directory
     (uiop:delete-directory-tree deb-dir :validate t :if-does-not-exist :ignore)
     (run-command rename *build-root*))
 
   ;; now just copy the debian/ directory and all its contents in place into
   ;; the unpacked directory where we find the release
-  (let* ((dir (uiop:merge-pathnames* (deb-package deb) *build-root*))
+  (let* ((dir (uiop:merge-pathnames* (deb-source deb) *build-root*))
          (cp  `("cp" "-a"
                      ,(string-right-trim "/" (namestring (deb-dir deb)))
                      ,(namestring dir))))
@@ -120,7 +120,7 @@
 
 (defmethod update-changelog ((deb debian-package) (ql ql-release))
   "Update the debian/changelog for DEB package, at *BUILD-ROOT*."
-  (let* ((pdir        (make-pathname :directory `(:relative ,(deb-package deb))))
+  (let* ((pdir        (make-pathname :directory `(:relative ,(deb-source deb))))
          (pdir        (merge-pathnames pdir *build-root*))
          (changelog   (merge-pathnames "debian/changelog" pdir)))
 
@@ -131,7 +131,7 @@
     (let ((dch         `("dch"
                          ,@(unless (probe-file changelog) (list "--create"))
                          "--newversion" ,(format nil "~a-1" (deb-version deb))
-                         "--package"    ,(deb-package deb)
+                         "--package"    ,(deb-source deb)
                          "--distribution" "unstable"
                          "--controlmaint"
                          "Quicklisp release update."))
