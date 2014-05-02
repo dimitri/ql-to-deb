@@ -7,12 +7,22 @@
 (defparameter *version-string* "0.2.0"
   "Our version string...")
 
+(defparameter *verbose* nil
+  "Be verbose.")
+
 (defparameter *debian-packages*
   (asdf:system-relative-pathname :ql-to-deb "debian/")
   "Where to find our base packaging")
 
 (defparameter *build-root* "/tmp/ql-to-deb/"
   "Where to build our packages from Quicklisp releases")
+
+(defparameter *logs-root*
+  (directory-namestring (uiop:merge-pathnames* "logs/" *build-root*))
+  "Where to write the per-package detailed logs")
+
+(defvar *log-stream* nil
+  "Currently openend stream where to log all we do.")
 
 (defparameter *archive-directory* "/tmp/ql-to-deb/archives/"
   "Where to fetch the Quicklisp release archives")

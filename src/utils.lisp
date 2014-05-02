@@ -20,3 +20,21 @@
                           :output :string
                           :error-output :string)
       (declare (ignore output error code)))))
+
+(defun run-command (command cwd &optional (log-stream *log-stream*))
+  "Run specified COMMAND (a list of strings) within CWD."
+  (flet ((format-command (stream command)
+           (format stream "~{~a~^ ~}~%" (mapcar (lambda (arg)
+                                                  (if (find #\Space arg)
+                                                      (format nil "~s" arg)
+                                                      arg))
+                                                command))))
+   (when *verbose*
+     (format-command t command))
+   (format-command log-stream command))
+
+  (let ((cs (make-broadcast-stream log-stream)))
+    (uiop:with-current-directory (cwd)
+      (multiple-value-bind (output error code)
+          (uiop:run-program command :output cs :error-output cs)
+        (declare (ignore output error code))))))

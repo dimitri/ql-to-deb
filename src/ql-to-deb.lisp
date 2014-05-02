@@ -48,20 +48,39 @@
   (declare (type debian-package deb)
            (type ql-release ql))
 
-  (format t "updating package ~a to version ~a~%"
+  (format t "~%Updating package ~a to version ~a.~%"
           (deb-package deb) (ql-version ql))
 
-  ;; fetch the archive, unpack it
-  (ql-fetch-and-unpack-release ql)
+  (let ((log-pathname (make-pathname :directory *logs-root*
+                                     :name (deb-package deb)
+                                     :type "log")))
+    (ensure-directories-exist *logs-root*)
 
-  ;; rename the archive and add the debian directory in its directory
-  (package-release deb ql)
+    (format t "     see logs in ~s~%" (namestring log-pathname))
 
-  ;; add a debian changelog entry
-  (update-changelog deb ql)
+    (with-open-file (*log-stream* log-pathname
+                                  :direction :output
+                                  :if-exists :supersede
+                                  :if-does-not-exist :create)
 
-  ;; now debuild the package
-  (debuild deb))
+      (handler-case
+          (progn
+            ;; fetch the archive, unpack it
+            (ql-fetch-and-unpack-release ql)
+
+            ;; rename the archive and add the debian directory in its directory
+            (package-release deb ql)
+
+            ;; add a debian changelog entry
+            (update-changelog deb ql)
+
+            ;; now debuild the package
+            (debuild deb))
+
+        ;; just ensure we keep the log file when something happens
+        (condition (c)
+          (format *log-stream* "Fatal: ~a~%" c)
+          (format t "Fatal: ~a~%" c))))))
 
 
 ;;;
@@ -82,20 +101,19 @@
   ;; rename the directory in which the archive has been expanded
   (let* ((ql-dir  (merge-pathnames (ql-prefix release) *build-root*))
          (deb-dir (make-pathname :directory `(:relative ,(deb-package deb))))
-         (deb-dir (merge-pathnames deb-dir *build-root*)))
+         (deb-dir (merge-pathnames deb-dir *build-root*))
+         (rename  `("mv" ,(namestring ql-dir) ,(deb-package deb))))
     ;; remove possibly existing stray target directory
     (uiop:delete-directory-tree deb-dir :validate t :if-does-not-exist :ignore)
-    (rename-file ql-dir (deb-package deb)))
+    (run-command rename *build-root*))
 
   ;; now just copy the debian/ directory and all its contents in place into
   ;; the unpacked directory where we find the release
-  (let* ((dir (make-pathname :directory `(:relative ,(deb-package deb))))
-         (dir (merge-pathnames dir *build-root*)))
-    (multiple-value-bind (output error code)
-        (uiop:run-program `("cp" "-a"
-                                 ,(directory-namestring (deb-dir deb))
-                                 ,(directory-namestring dir)))
-      (declare (ignore output error code))))
+  (let* ((dir (uiop:merge-pathnames* (deb-package deb) *build-root*))
+         (cp  `("cp" "-a"
+                     ,(string-right-trim "/" (namestring (deb-dir deb)))
+                     ,(namestring dir))))
+    (run-command cp *build-root*))
 
   ;; side effects only, no return value
   (values))
@@ -104,14 +122,14 @@
   "Update the debian/changelog for DEB package, at *BUILD-ROOT*."
   (let* ((pdir        (make-pathname :directory `(:relative ,(deb-package deb))))
          (pdir        (merge-pathnames pdir *build-root*))
-         (changelog   (merge-pathnames "debian/changelog" pdir)))
-    (uiop:with-current-directory (pdir)
-      (multiple-value-bind (output error code)
-          (uiop:run-program `("dch"
-                              ,@(unless (probe-file changelog) (list "--create"))
-                              "--newversion" ,(format nil "~a-1" (ql-version ql))
-                              "--package"    ,(deb-package deb)
-                              "Quicklisp release update.")
-                            :output :string
-                            :error-output :string)
-        (declare (ignore output error code))))))
+         (changelog   (merge-pathnames "debian/changelog" pdir))
+         (dch         `("dch"
+                        ,@(unless (probe-file changelog) (list "--create"))
+                        "--newversion" ,(format nil "~a-1" (ql-version ql))
+                        "--package"    ,(deb-package deb)
+                        "--distribution" "unstable"
+                        "--controlmaint"
+                        "Quicklisp release update.")))
+    ;; run dch then update debian's package version string
+    (run-command dch pdir)
+    (setf (deb-version deb) (ql-version ql))))

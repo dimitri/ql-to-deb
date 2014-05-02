@@ -116,7 +116,7 @@ drakma http://beta.quicklisp.org/archive/drakma/2014-04-25/drakma-1.3.8.tgz 7098
     (let* ((md5        (md5:md5sum-file (ql-archive release)))
            (md5-string (format nil "~(~{~2,'0X~}~)" (coerce md5 'list))))
       (if (string= (ql-file-md5 release) md5-string)
-          (format t "checksum of ~s is ~s as expected.~%"
+          (format t "Checksum test passed.~%~5TFile: ~s~%~5T md5: ~a~%"
                   (uiop:native-namestring (ql-archive release))
                   md5-string)
           (error 'quicklisp-http-error
@@ -161,14 +161,9 @@ drakma http://beta.quicklisp.org/archive/drakma/2014-04-25/drakma-1.3.8.tgz 7098
   "Unpack already fetched RELEASE in *BUILD-ROOT*"
   (ensure-directories-exist (directory-namestring *build-root*))
 
-  (let ((archive     (ql-archive release)))
-    (format t "Unpacking ~s in ~s~%" (uiop:native-namestring archive) *build-root*)
-    (uiop:with-current-directory (*build-root*)
-      (multiple-value-bind (output error code)
-          (uiop:run-program `("tar" "xzf" ,(namestring archive))
-                            :output :string
-                            :error-output :string)
-        (declare (ignore output error code))))))
+  (let* ((archive     (ql-archive release))
+         (tar        `("tar" "xzf" ,(namestring archive))))
+    (run-command tar *build-root*)))
 
 (defmethod ql-fetch-and-unpack-release ((release ql-release))
   "Fetches release from its URL slot value into *ARCHIVE-DIRECTORY* then

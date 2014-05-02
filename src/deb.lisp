@@ -44,16 +44,11 @@
 
 (defmethod debuild ((deb debian-package))
   "Use the command `debuild -us -uc' to build given DEB package."
-  (let* ((pdir  (make-pathname :directory `(:relative ,(deb-package deb))))
-         (pdir  (merge-pathnames pdir *build-root*)))
-    (format t "cd ~s && debuild -us -uc~%" pdir)
-    (uiop:with-current-directory (pdir)
-      (multiple-value-bind (output error code)
-          (uiop:run-program `("debuild" "-us" "-uc'")
-          (uiop:run-program `("debuild" "-us" "-uc")
-                            :output :string
-                            :error-output :string)
-        (declare (ignore output error code))))))
+  (let* ((pdir    (make-pathname :directory `(:relative ,(deb-package deb))))
+         (pdir    (merge-pathnames pdir *build-root*))
+         (debuild `("debuild" "-us" "-uc")))
+    (format t "Building package ~a~%" (deb-package deb))
+    (run-command debuild pdir)))
 
 (defun find-debian-package (package-name)
   "Find PACKAGE-NAME in *DEBIAN-PACKAGES* directory."

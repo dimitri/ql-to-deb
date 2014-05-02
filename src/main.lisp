@@ -9,12 +9,13 @@
 
     (("version" #\V) :type boolean :documentation "Displays version and exit.")
 
-    (("quiet"   #\q) :type boolean :documentation "Be quiet")
-    (("verbose" #\v) :type boolean :documentation "Be verbose")
-    (("debug"   #\d) :type boolean :documentation "Display debug level information.")
+    (("verbose" #\v) :type boolean :documentation "Be verbose.")
 
     (("dir" #\D) :type string :initial-value ,*build-root*
      :documentation "where to build packages.")
+
+    (("logs" #\L) :type string :initial-value ,*logs-root*
+     :documentation "where to write detailed logs.")
 
     (("quicklisp" #\Q) :type string :initial-value ,*ql-props-url*
      :documentation "URL to use to fetch quicklisp.txt main file")))
@@ -45,17 +46,8 @@
             (declare (ignore e))
             (usage argv :quit t)))
 
-      (destructuring-bind (&key help version quiet verbose debug dir quicklisp)
+      (destructuring-bind (&key help version verbose dir logs quicklisp)
 	  options
-
-        (declare (ignore quiet verbose debug))
-
-        (setf *ql-props-url* quicklisp)
-
-        (let ((dir-truename (probe-file dir)))
-          (if dir-truename
-              (setf *build-root* (directory-namestring dir-truename))
-              (mkdir-or-die dir)))
 
         (when version
 	  (format t "ql-to-deb version ~s~%" *version-string*)
@@ -63,10 +55,22 @@
                   (lisp-implementation-type)
                   (lisp-implementation-version)))
 
-	(when help
-          (usage argv))
+	(when help (usage argv))
 
         (when (or help version) (uiop:quit))
+
+        (setf *verbose* verbose)
+        (setf *ql-props-url* quicklisp)
+
+        (let ((dir-truename (probe-file dir)))
+          (if dir-truename
+              (setf *build-root* (directory-namestring dir-truename))
+              (setf *build-root* (pathname (mkdir-or-die dir)))))
+
+        (let ((logs-truename (probe-file logs)))
+          (if logs-truename
+              (setf *logs-root* (directory-namestring logs-truename))
+              (setf *logs-root* (mkdir-or-die logs))))
 
         (handler-case
             (if packages
