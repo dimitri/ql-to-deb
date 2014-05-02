@@ -78,7 +78,7 @@ drakma http://beta.quicklisp.org/archive/drakma/2014-04-25/drakma-1.3.8.tgz 7098
 
 (defun ql-fetch-current-properties ()
   "Fetch the current Quicklisp releases."
-  (format t "Fetching: ~s~%" *ql-props-url*)
+  (format t "Fetching ~s~%" *ql-props-url*)
   (multiple-value-bind (body status-code headers uri stream must-close reason)
       (drakma:http-request *ql-props-url*)
     (declare (ignore headers stream must-close))
@@ -91,7 +91,7 @@ drakma http://beta.quicklisp.org/archive/drakma/2014-04-25/drakma-1.3.8.tgz 7098
   "Fetch the current Quicklisp releases."
   (let* ((properties  (ql-fetch-current-properties))
          (release-url (ql-property *ql-release-property* properties)))
-    (format t "Fetching: ~s~%" release-url)
+    (format t "Fetching ~s~%" release-url)
    (multiple-value-bind (body status-code headers uri stream must-close reason)
        (drakma:http-request release-url)
      (declare (ignore headers stream must-close))
@@ -136,7 +136,7 @@ drakma http://beta.quicklisp.org/archive/drakma/2014-04-25/drakma-1.3.8.tgz 7098
     (setf (ql-archive release) archive)
 
     ;; first download the archive, a .tgz
-    (format t "Fetching: ~s~%" (ql-url release))
+    (format t "Fetching ~s~%" (ql-url release))
     (multiple-value-bind (body status-code headers uri stream must-close reason)
         (drakma:http-request (ql-url release))
 

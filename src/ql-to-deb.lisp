@@ -21,7 +21,7 @@
      :when package
      :collect package
      :else
-     :do (format t "Could not find a debian package named: ~a~%"
+     :do (format t "Could not find a debian package named: ~a.~%"
                  package-or-name)))
 
 (defun filter-packages-to-update (packages)
@@ -31,10 +31,10 @@
        :for release := (gethash (deb-system package) releases)
 
        :when (null release)
-       :do (format t "Missing a Quicklisp release for package: ~s~%" package)
+       :do (format t "Missing a Quicklisp release for package: ~s.~%" package)
 
        :when (same-version-p package release)
-       :do (format t "package ~a is already up to date (~a)~%"
+       :do (format t "~a is already up to date (~a).~%"
                    (deb-source package)
                    (ql-version release))
 
