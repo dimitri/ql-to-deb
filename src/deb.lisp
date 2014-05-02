@@ -93,18 +93,22 @@
 
 (defmethod compute-next-version ((deb debian-package) new-version)
   "We might need to increment the epoch, it is taken care of here."
-  (let ((compare `("dpkg"
-                   "--compare-versions"
-                   ,new-version
-                   "gt"
-                   ,(deb-version deb))))
-    (if (= 0 (run-command compare (deb-dir deb) :ignore-error-status t))
-        (setf (deb-version deb) new-version)
+  (if (deb-version deb)
+      (let ((compare `("dpkg"
+                       "--compare-versions"
+                       ,new-version
+                       "gt"
+                       ,(deb-version deb))))
+        (if (= 0 (run-command compare (deb-dir deb) :ignore-error-status t))
+            (setf (deb-version deb) new-version)
 
-        ;; bump epoch!
-        (progn
-         (setf (deb-version deb)
-               (format nil "~d:~a" (next-epoch deb) new-version))
-         (format t "Epoch bump needed, new version is ~s~%" (deb-version deb)))))
+            ;; bump epoch!
+            (progn
+              (setf (deb-version deb)
+                    (format nil "~d:~a" (next-epoch deb) new-version))
+              (format t "Epoch bump needed, new version is ~s~%" (deb-version deb)))))
+
+      ;; no pre-existing debian version, just take the Quicklisp version string
+      (setf (deb-version deb) new-version))
   deb)
 
