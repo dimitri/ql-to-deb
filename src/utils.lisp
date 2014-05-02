@@ -21,7 +21,10 @@
                           :error-output :string)
       (declare (ignore output error code)))))
 
-(defun run-command (command cwd &optional (log-stream *log-stream*))
+(defun run-command (command cwd
+                    &key
+                      ignore-error-status
+                      (log-stream *log-stream*))
   "Run specified COMMAND (a list of strings) within CWD."
   (flet ((format-command (stream command)
            (format stream "~{~a~^ ~}~%" (mapcar (lambda (arg)
@@ -29,12 +32,28 @@
                                                       (format nil "~s" arg)
                                                       arg))
                                                 command))))
-   (when *verbose*
-     (format-command t command))
-   (format-command log-stream command))
+    (when *verbose*
+      (format-command t command))
+    (format-command log-stream command)
 
-  (let ((cs (make-broadcast-stream log-stream)))
-    (uiop:with-current-directory (cwd)
-      (multiple-value-bind (output error code)
-          (uiop:run-program command :output cs :error-output cs)
-        (declare (ignore output error code))))))
+    (let* ((out    (make-broadcast-stream log-stream))
+           (errors (make-string-output-stream))
+           (err    (make-broadcast-stream log-stream errors)))
+      (uiop:with-current-directory (cwd)
+        (multiple-value-bind (output error code)
+            (uiop:run-program command
+                              :output out
+                              :error-output err
+                              :ignore-error-status t)
+          (declare (ignore output error))
+          (unless ignore-error-status
+            (unless (= 0 code)
+              (format t "~%Command:  ~a" (format-command nil command))
+              (format t "Status: ~a~%" code)
+              (format t "Error: ~a: ~a~%"
+                      (car command)
+                      (get-output-stream-string errors))
+              (error "Command ~s failed with status ~a." (car command) code)))
+
+          ;; return the error code, as we don't have output/error anymore
+          code)))))

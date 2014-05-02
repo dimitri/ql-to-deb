@@ -42,14 +42,6 @@
     ;; such does exists.
     (setf (deb-version deb) (read-version deb))))
 
-(defmethod debuild ((deb debian-package))
-  "Use the command `debuild -us -uc' to build given DEB package."
-  (let* ((pdir    (make-pathname :directory `(:relative ,(deb-package deb))))
-         (pdir    (merge-pathnames pdir *build-root*))
-         (debuild `("debuild" "-us" "-uc")))
-    (format t "Building package ~a~%" (deb-package deb))
-    (run-command debuild pdir)))
-
 (defun find-debian-package (package-name)
   "Find PACKAGE-NAME in *DEBIAN-PACKAGES* directory."
   (let* ((pdir (make-pathname :directory `(:relative ,package-name "debian")))
@@ -68,4 +60,39 @@
                                                    :dir debian)))
                 (complete-debian-package package)
                 package)))
+
+
+;;;
+;;; Using debian utilities
+;;;
+(defmethod debuild ((deb debian-package))
+  "Use the command `debuild -us -uc' to build given DEB package."
+  (let* ((pdir    (make-pathname :directory `(:relative ,(deb-package deb))))
+         (pdir    (merge-pathnames pdir *build-root*))
+         (debuild `("debuild" "-us" "-uc")))
+    (format t "Building package ~a~%" (deb-package deb))
+    (run-command debuild pdir)))
+
+(defmethod next-epoch ((deb debian-package))
+  (cl-ppcre:register-groups-bind (epoch version)
+      ("([0-9]*:)?(.*)" (deb-version deb))
+    (declare (ignore version))
+    (+ 1 (parse-integer (or epoch "0")))))
+
+(defmethod compute-next-version ((deb debian-package) new-version)
+  "We might need to increment the epoch, it is taken care of here."
+  (let ((compare `("dpkg"
+                   "--compare-versions"
+                   ,new-version
+                   "gt"
+                   ,(deb-version deb))))
+    (if (= 0 (run-command compare (deb-dir deb) :ignore-error-status t))
+        (setf (deb-version deb) new-version)
+
+        ;; bump epoch!
+        (progn
+         (setf (deb-version deb)
+               (format nil "~d:~a" (next-epoch deb) new-version))
+         (format t "Epoch bump needed, new version is ~s~%" (deb-version deb)))))
+  deb)
 
