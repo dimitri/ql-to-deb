@@ -50,6 +50,7 @@
     (uiop:with-current-directory (pdir)
       (multiple-value-bind (output error code)
           (uiop:run-program `("debuild" "-us" "-uc'")
+          (uiop:run-program `("debuild" "-us" "-uc")
                             :output :string
                             :error-output :string)
         (declare (ignore output error code))))))
