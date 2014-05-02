@@ -85,6 +85,22 @@
 
 
 ;;;
+;;; Dealing with epoch in debian version strings
+;;;
+(defmethod epoch-and-version ((deb debian-package))
+  "Return epoch and version string as two different values."
+  (cl-ppcre:register-groups-bind (epoch version)
+      ("([0-9]*:)?(.*)" (deb-version deb))
+    (values epoch version)))
+
+(defmethod next-epoch ((deb debian-package))
+  (multiple-value-bind (epoch version)
+      (epoch-and-version deb)
+    (declare (ignore version))
+    (+ 1 (parse-integer (or epoch "0")))))
+
+
+;;;
 ;;; Using debian utilities
 ;;;
 (defmethod debuild ((deb debian-package))
@@ -92,12 +108,6 @@
   (let ((debuild `("debuild" "-us" "-uc")))
     (format t "Building package ~a~%" (deb-source deb))
     (run-command debuild (build-directory deb))))
-
-(defmethod next-epoch ((deb debian-package))
-  (cl-ppcre:register-groups-bind (epoch version)
-      ("([0-9]*:)?(.*)" (deb-version deb))
-    (declare (ignore version))
-    (+ 1 (parse-integer (or epoch "0")))))
 
 (defmethod compute-next-version ((deb debian-package) new-version)
   "We might need to increment the epoch, it is taken care of here."

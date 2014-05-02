@@ -7,7 +7,10 @@
   "Return a generalized boolean that is non-nil when both the debian package
   and the ql release have the same current version number."
   (when (deb-version deb)
-    (string= (deb-version deb) (ql-version ql))))
+    (multiple-value-bind (epoch version)
+        (epoch-and-version deb)
+      (declare (ignore epoch))
+      (string= version (ql-version ql)))))
 
 (defun ensure-debian-package-list (packages)
   "Returns a lisp of debian-package instances."
@@ -49,8 +52,8 @@
   (declare (type debian-package deb)
            (type ql-release ql))
 
-  (format t "~%Updating package ~a to version ~a.~%"
-          (deb-source deb) (ql-version ql))
+  (format t "~%Updating package ~a~@[ from ~a~] to ~a.~%"
+          (deb-source deb) (deb-version deb) (ql-version ql))
 
   (let ((log-pathname (make-pathname :directory *logs-root*
                                      :name (deb-source deb)
