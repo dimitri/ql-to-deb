@@ -1,0 +1,33 @@
+cl-alexandria (0.0.20121214-1) experimental; urgency=low
+
+  [ Peter Van Eynde ]
+  * open for changes
+
+  [ Christoph Egger ]
+  * New upstream
+  * We're now using git
+    * Couldn't both track upstream git and import debian history. The
+      repository follows upstream, Debian changes lost in the transition
+  * Add me to uploaders
+
+ -- Christoph Egger <christoph@debian.org>  Fri, 14 Dec 2012 15:23:22 -0800
+
+cl-alexandria (0.0.20100217-1) unstable; urgency=low
+
+  * New upstream release. 
+  * Fixed typo in description.  (Closes: #563767)
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Tue, 02 Mar 2010 08:19:13 +0100
+
+cl-alexandria (0.0.20091125-1) unstable; urgency=low
+
+  * New upstream with minor changes. 
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Thu, 31 Dec 2009 14:39:35 +0100
+
+cl-alexandria (0.0.20091101-1) unstable; urgency=low
+
+  * First packaged.
+  * Added dummy watch file
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Sat, 07 Nov 2009 14:03:49 +0100
