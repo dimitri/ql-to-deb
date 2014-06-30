@@ -1,0 +1,36 @@
+Source: hunchentoot
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: http://weitz.de/hunchentoot/
+Vcs-Git: https://github.com/edicl/hunchentoot.git
+Vcs-Browser: https://github.com/edicl/hunchentoot
+
+Package: cl-hunchentoot
+Architecture: all
+Depends: ${misc:Depends}, cl-chunga, cl-base64, cl-fad, cl-ppcre, cl-flexi-streams, cl-plus-ssl, cl-md5, cl-rfc2388, cl-trivial-backtrace, cl-usocket, cl-bordeaux-threads
+Description: The Common Lisp web server formerly known as TBNL
+ Hunchentoot is a web server written in Common Lisp and at the same time a
+ toolkit for building dynamic websites. As a stand-alone web server,
+ Hunchentoot is capable of HTTP/1.1 chunking (both directions), persistent
+ connections (keep-alive), and SSL.
+ .
+ Hunchentoot provides facilities like automatic session handling (with and
+ without cookies), logging, customizable error handling, and easy access to
+ GET and POST parameters sent by the client. It does not include
+ functionality to programmatically generate HTML output. For this task you
+ can use any library you like, e.g. (shameless self-plug) CL-WHO or
+ HTML-TEMPLATE.
+ .
+ Hunchentoot talks with its front-end or with the client over TCP/IP sockets
+ and optionally uses multiprocessing to handle several requests at the same
+ time. Therefore, it cannot be implemented completely in portable Common
+ Lisp. It currently works "natively" with LispWorks (which is the main
+ development and testing platform), and additionally on all Lisps which are
+ supported by the compatibility layers usocket and Bordeaux Threads.
+ .
+ Hunchentoot comes with a BSD-style license so you can basically do with it
+ whatever you want. 
