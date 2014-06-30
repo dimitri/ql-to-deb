@@ -1,0 +1,18 @@
+Source: cl-github-v3
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: https://github.com/hanshuebner/cl-github-v3
+Vcs-Git: https://github.com/hanshuebner/cl-github-v3.git
+Vcs-Browser: https://github.com/hanshuebner/cl-github-v3
+
+Package: cl-github-v3
+Architecture: all
+Depends: ${misc:Depends}
+Description: Common Lisp interface to the github V3 API
+ This library implements a thin wrapper around github's V3 API. At this
+ point, it is incomplete and only defines CL functions for listing and
+ creating repositories.
