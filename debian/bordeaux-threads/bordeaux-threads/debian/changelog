@@ -1,0 +1,17 @@
+bordeaux-threads (0.0.2-1) unstable; urgency=low
+
+  * New upstream release. (Closes: #444911) 
+
+ -- Pierre THIERRY <nowhere.man@levallois.eu.org>  Mon, 01 Oct 2007 21:23:55 +0200
+
+bordeaux-threads (0.0.1-2) unstable; urgency=low
+
+  * Corrected debhelper dependency 
+
+ -- Pierre THIERRY <nowhere.man@levallois.eu.org>  Sun, 11 Mar 2007 21:42:28 +0100
+
+bordeaux-threads (0.0.1-1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Pierre THIERRY <nowhere.man@levallois.eu.org>  Sat, 10 Mar 2007 02:56:10 +0100

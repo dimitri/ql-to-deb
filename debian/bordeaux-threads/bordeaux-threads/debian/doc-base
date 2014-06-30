@@ -1,0 +1,10 @@
+Document: bordeaux-threads
+Title: Bordeaux Threads API documentation
+Author: Greg Pfeil
+Abstract: This document describes Bordeaux Threads' API
+Section: libs
+
+Format: HTML
+Index: /usr/share/doc/cl-bordeaux-threads/index.html
+Files: /usr/share/doc/cl-bordeaux-threads/index.html
+   /usr/share/doc/cl-bordeaux-threads/style.css

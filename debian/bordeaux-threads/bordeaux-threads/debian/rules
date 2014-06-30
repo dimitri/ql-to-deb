@@ -1,0 +1,14 @@
+#!/usr/bin/make -f
+# Sample debian/rules that uses cdbs.  Originaly written by Robert Millan.
+# This file is public domain.
+  
+DEB_TAR_SRCDIR                  := bordeaux-threads-0.0.2
+DEB_AUTO_CLEANUP_RCS            := yes
+
+# Add here any variable or target overrides you need
+
+  
+include /usr/share/cdbs/1/rules/debhelper.mk
+
+binary-post-install/cl-bordeaux-threads::
+	dh_lisp

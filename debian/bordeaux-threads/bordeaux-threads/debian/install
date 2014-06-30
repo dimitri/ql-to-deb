@@ -1,0 +1,2 @@
+version.lisp-expr src/ test/ *.asd usr/share/common-lisp/source/bordeaux-threads
+site/style.css usr/share/doc/cl-bordeaux-threads

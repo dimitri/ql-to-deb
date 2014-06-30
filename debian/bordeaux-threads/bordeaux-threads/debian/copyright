@@ -1,0 +1,14 @@
+This package was debianized by Pierre THIERRY <nowhere.man@levallois.eu.org> on
+Thu,  10 Mar 2007 02:45:00 +0200.
+
+It was downloaded from http://common-lisp.net/project/bordeaux-threads/
+
+Upstream Author: Greg Pfeil
+
+License:
+
+     MIT license
+
+The Debian packaging is (C) 2007, Pierre THIERRY <nowhere.man@levallois.eu.org> and
+is licensed under the GPL, see `/usr/share/common-licenses/GPL'.
+
