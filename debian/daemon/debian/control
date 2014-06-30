@@ -1,0 +1,17 @@
+Source: cl-daemon
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: https://github.com/snmsts/daemon
+Vcs-Git: https://github.com/snmsts/daemon.git
+Vcs-Browser: https://github.com/snmsts/daemon
+
+Package: cl-daemon
+Architecture: all
+Depends: ${misc:Depends}
+Description: make lisp process daemonize on unix like platform
+ This is a library which has simple functionality to make lisp process
+ daemonize on unix like platform.
