@@ -1,0 +1,18 @@
+Source: cl-cxml
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: http://common-lisp.net/project/cxml/
+Vcs-Git: git://repo.or.cz/cxml.git
+Vcs-Browser: http://repo.or.cz/w/cxml.git
+
+Package: cl-cxml
+Architecture: all
+Depends: ${misc:Depends}
+Description: An XML parser written in Common Lisp
+ CXML implements a namespace-aware, validating XML 1.0 parser as well as the
+ DOM Level 2 Core interfaces. Two parser interfaces are offered, one
+ SAX-like, the other similar to StAX.
