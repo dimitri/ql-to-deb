@@ -1,0 +1,18 @@
+Source: cl-zs3
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: http://xach.com/lisp/zs3/
+Vcs-Git: https://github.com/xach/zs3.git
+Vcs-Browser: https://github.com/xach/zs3
+
+Package: cl-zs3
+Architecture: all
+Depends: ${misc:Depends}
+Description: Amazon S3 and CloudFront from Common Lisp
+ ZS3 is a Common Lisp library for working with Amazon's Simple Storage
+ Service (S3) and CloudFront content delivery service. It is available under
+ a BSD-style license.
