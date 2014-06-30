@@ -1,0 +1,19 @@
+Source: cl-who
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.4
+Homepage: http://weitz.de/cl-who/
+Vcs-Git: https://github.com/edicl/cl-who.git
+Vcs-Browser: https://github.com/edicl/cl-who
+
+Package: cl-who
+Architecture: all
+Depends: ${misc:Depends}
+Description: Yet another Lisp markup language
+ There are plenty of Lisp Markup Languages out there - every Lisp programmer
+ seems to write at least one during his career - and CL-WHO (where WHO means
+ "with-html-output" for want of a better acronym) is probably just as good
+ or bad as the next one.
