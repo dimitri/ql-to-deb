@@ -11,7 +11,7 @@ Vcs-Browser: https://github.com/xach/zs3
 
 Package: cl-zs3
 Architecture: all
-Depends: ${misc:Depends}
+Depends: ${misc:Depends}, cl-cxml, cl-drakma, cl-ironclad, cl-puri, cl-base64
 Description: Amazon S3 and CloudFront from Common Lisp
  ZS3 is a Common Lisp library for working with Amazon's Simple Storage
  Service (S3) and CloudFront content delivery service. It is available under
