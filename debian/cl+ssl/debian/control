@@ -11,7 +11,7 @@ Vcs-Browser: https://github.com/cl-plus-ssl/cl-plus-ssl
 
 Package: cl-plus-ssl
 Architecture: all
-Depends: ${misc:Depends}, cl-cffi, cl-trivial-gray-streams, cl-flexi-streams, cl-bordeaux-threads, cl-trivial-garbage
+Depends: ${misc:Depends}, cl-cffi, cl-trivial-gray-streams, cl-flexi-streams, cl-bordeaux-threads, cl-trivial-garbage, libssl1.0.0
 Description: Common Lisp interface to OpenSSL
  CL+SSL is portable code based on CFFI and gray streams. It defines its own
  libssl BIO method, so that SSL I/O can be written over portable Lisp
