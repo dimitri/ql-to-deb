@@ -21,9 +21,11 @@ install: build
 	dh_prep
 	dh_installdirs
 	dh_install $(pkg).asd $(clc-files)
+	dh_install catalog.dtd $(clc-files)
 	dh_install dom $(clc-files)
 	dh_install xml $(clc-files)
 	dh_install klacks $(clc-files)
+	dh_install test $(clc-files)
 	dh_link $(clc-files)/$(pkg).asd $(clc-systems)/$(pkg).asd
 
 binary-indep: install

@@ -11,7 +11,7 @@ Vcs-Browser: http://repo.or.cz/w/cxml.git
 
 Package: cl-cxml
 Architecture: all
-Depends: ${misc:Depends}
+Depends: ${misc:Depends}, cl-closure-common
 Description: An XML parser written in Common Lisp
  CXML implements a namespace-aware, validating XML 1.0 parser as well as the
  DOM Level 2 Core interfaces. Two parser interfaces are offered, one
