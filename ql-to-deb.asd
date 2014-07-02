@@ -5,7 +5,7 @@
     :description "Automated debian package updates from Quicklisp releases"
     :author "Dimitri Fontaine <dim@tapouen.org>"
     :license "WTFPL"
-    :version "0.3.0"
+    :version "0.4.0"
     :depends-on (#:uiop			; host system integration
 		 #:drakma		; http client, download archives
                  #:cl-ppcre             ; Regular Expressions

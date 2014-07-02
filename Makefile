@@ -4,9 +4,22 @@ APP_NAME   = ql-to-deb
 # use either sbcl or ccl
 CL	   = sbcl
 
+LISP_SRC   = $(wildcard src/*lisp) ql-to-deb.asd
+
+BUILDDIR   = build
+LIBS       = $(BUILDDIR)/libs.stamp
+QLDIR      = $(BUILDDIR)/quicklisp
+MANIFEST   = $(BUILDDIR)/manifest.ql
+QL_TO_DEB  = $(BUILDDIR)/bin/$(APP_NAME)
+
+BUILDAPP_CCL  = $(BUILDDIR)/bin/buildapp.ccl
+BUILDAPP_SBCL = $(BUILDDIR)/bin/buildapp.sbcl
+
 ifeq ($(CL),sbcl)
+BUILDAPP   = $(BUILDAPP_SBCL)
 CL_OPTS    = --no-sysinit --no-userinit
 else
+BUILDAPP   = $(BUILDAPP_CCL)
 CL_OPTS    = --no-init
 endif
 
@@ -27,14 +40,10 @@ BUILDAPP_OPTS =          --require sb-posix                      \
 endif
 
 
-BUILDDIR   = build
-LIBS       = $(BUILDDIR)/libs.stamp
-BUILDAPP   = $(BUILDDIR)/bin/buildapp
-MANIFEST   = $(BUILDDIR)/manifest.ql
-QL_TO_DEB  = $(BUILDDIR)/bin/$(APP_NAME)
-QLDIR      = $(BUILDDIR)/quicklisp
-
 all: $(QL_TO_DEB)
+
+clean:
+	rm -rf $(LIBS) $(QLDIR) $(MANIFEST) $(BUILDAPP) $(QL_TO_DEB)
 
 $(QLDIR)/setup.lisp:
 	mkdir -p $(BUILDDIR)
@@ -55,16 +64,30 @@ $(LIBS): $(QLDIR)/setup.lisp
 
 libs: $(LIBS) ;
 
-$(BUILDAPP): $(QLDIR)/setup.lisp
+$(MANIFEST): $(LIBS)
+	$(CL) $(CL_OPTS) --load $(QLDIR)/setup.lisp                \
+             --eval '(ql:write-asdf-manifest-file "$(MANIFEST)")'  \
+             --eval '(quit)'
+
+manifest: $(MANIFEST) ;
+
+$(BUILDAPP_CCL): $(QLDIR)/setup.lisp
 	mkdir -p $(BUILDDIR)/bin
 	$(CL) $(CL_OPTS) --load $(QLDIR)/setup.lisp               \
              --eval '(ql:quickload "buildapp")'                   \
-             --eval '(buildapp:build-buildapp "$(BUILDAPP)")'     \
+             --eval '(buildapp:build-buildapp "$@")'              \
+             --eval '(quit)'
+
+$(BUILDAPP_SBCL): $(QLDIR)/setup.lisp
+	mkdir -p $(BUILDDIR)/bin
+	$(CL) $(CL_OPTS) --load $(QLDIR)/setup.lisp               \
+             --eval '(ql:quickload "buildapp")'                   \
+             --eval '(buildapp:build-buildapp "$@")'              \
              --eval '(quit)'
 
 buildapp: $(BUILDAPP) ;
 
-$(QL_TO_DEB): $(BUILDAPP)
+$(QL_TO_DEB): $(MANIFEST) $(BUILDAPP) $(LISP_SRC)
 	mkdir -p $(BUILDDIR)/bin
 	$(BUILDAPP)      --logfile /tmp/build.log                \
                          $(BUILDAPP_OPTS)                        \

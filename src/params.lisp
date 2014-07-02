@@ -4,14 +4,14 @@
 
 (in-package #:ql-to-deb)
 
-(defparameter *version-string* "0.3.0"
+(defparameter *version-string* "0.4.0"
   "Our version string...")
 
 (defparameter *verbose* nil
   "Be verbose.")
 
 (defparameter *debian-packages*
-  (asdf:system-relative-pathname :ql-to-deb "debian/")
+  (asdf:system-relative-pathname :ql-to-deb "packages/")
   "Where to find our base packaging")
 
 (defparameter *build-root* "/tmp/ql-to-deb/"
