@@ -9,6 +9,7 @@ LISP_SRC   = $(wildcard src/*lisp) ql-to-deb.asd
 BUILDDIR   = build
 LIBS       = $(BUILDDIR)/libs.stamp
 QLDIR      = $(BUILDDIR)/quicklisp
+QUICKLISP  = $(BUILDDIR)/quicklisp.lisp
 MANIFEST   = $(BUILDDIR)/manifest.ql
 QL_TO_DEB  = $(BUILDDIR)/bin/$(APP_NAME)
 
@@ -33,22 +34,20 @@ COMPRESS_CORE_OPT =
 endif
 endif
 
-ifeq ($(CL),sbcl)
-BUILDAPP_OPTS =          --require sb-posix                      \
-                         --require sb-bsd-sockets                \
-                         --require sb-rotate-byte
-endif
+# ifeq ($(CL),sbcl)
+# BUILDAPP_OPTS =          --require sb-posix
+# endif
 
 
 all: $(QL_TO_DEB)
 
 clean:
-	rm -rf $(LIBS) $(QLDIR) $(MANIFEST) $(BUILDAPP) $(QL_TO_DEB)
+	rm -rf $(LIBS) $(QUICKLISP) $(QLDIR) $(MANIFEST) $(BUILDAPP) $(QL_TO_DEB)
 
 $(QLDIR)/setup.lisp:
 	mkdir -p $(BUILDDIR)
-	curl -o $(BUILDDIR)/quicklisp.lisp http://beta.quicklisp.org/quicklisp.lisp
-	$(CL) $(CL_OPTS) --load $(BUILDDIR)/quicklisp.lisp                         \
+	curl -o $(QUICKLISP) http://beta.quicklisp.org/quicklisp.lisp
+	$(CL) $(CL_OPTS) --load $(QUICKLISP) \
              --eval '(quicklisp-quickstart:install :path "$(BUILDDIR)/quicklisp")' \
              --eval '(quit)'
 
@@ -103,3 +102,7 @@ $(QL_TO_DEB): $(MANIFEST) $(BUILDAPP) $(LISP_SRC)
                          --output $@
 
 ql-to-deb: $(QL_TO_DEB) ;
+
+deb:
+	make -f debian/rules orig
+	debuild -us -uc

@@ -3,7 +3,7 @@
 (asdf:defsystem #:ql-to-deb
     :serial t
     :description "Automated debian package updates from Quicklisp releases"
-    :author "Dimitri Fontaine <dim@tapouen.org>"
+    :author "Dimitri Fontaine <dim@tapoueh.org>"
     :license "WTFPL"
     :version "0.4.0"
     :depends-on (#:uiop			; host system integration

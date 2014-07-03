@@ -1,0 +1,6 @@
+ql-to-deb (0.4.0-1) unstable; urgency=medium
+
+  * Initial release.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Wed, 02 Jul 2014 13:43:55 +0400
+

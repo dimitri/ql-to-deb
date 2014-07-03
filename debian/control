@@ -1,0 +1,23 @@
+Source: ql-to-deb
+Section: database
+Priority: extra
+Maintainer: Dimitri Fontaine <dimitri@2ndQuadrant.fr>
+Build-Depends: debhelper (>= 8.0.0), sbcl, buildapp (>= 1.5), cl-drakma, cl-ppcre, cl-split-sequence, cl-md5, cl-command-line-arguments
+Standards-Version: 3.9.3
+Homepage: https://github.com/dimitri/ql-to-deb
+Vcs-Git: https://github.com/dimitri/ql-to-deb.git
+Vcs-Browser: https://github.com/dimitri/ql-to-deb
+
+Package: ql-to-deb
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, dpkg-dev
+Description: Update cl-* debian packages from Quicklisp releases
+ This projects updates Common Lisp libraries debian packages from the
+ current release found at Quicklisp, if an update is needed.
+
+Package: cl-ql-to-deb
+Architecture: all
+Depends: cl-drakma, cl-ppcre, cl-split-sequence, cl-md5, cl-command-line-arguments
+Description: Update cl-* debian packages from Quicklisp releases
+ This projects updates Common Lisp libraries debian packages from the
+ current release found at Quicklisp, if an update is needed.

@@ -1,0 +1,2 @@
+ql-to-deb.asd usr/share/common-lisp/source/ql-to-deb
+src usr/share/common-lisp/source/ql-to-deb
