@@ -1,3 +1,11 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: cl-fad
+Upstream-Contact: Peter Seibel <peter@gigamonkeys.com>
+Source: http://weitz.de/cl-fad/
+
+Files: *
+Copyright:
+
 Copyright (c) 2004, Peter Seibel.  All rights reserved.
 Copyright (c) 2004-2010, Dr. Edmund Weitz.  All rights reserved.
 
@@ -24,3 +32,7 @@ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
 WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+Files: debian/*
+Copyright: 2014 Dimitri Fontaine
+Licence: WTFPL

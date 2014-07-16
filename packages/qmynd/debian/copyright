@@ -1,3 +1,10 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: qmynd
+Source: http://common-lisp.net/project/qitab/
+
+Files: *
+Copyright:
+
 Copyright (c) 2012-2013 Google, Inc.
 
 Permission is hereby granted, free of charge, to any person
@@ -19,3 +26,7 @@ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
+
+Files: debian/*
+Copyright: 2014 Dimitri Fontaine
+Licence: WTFPL

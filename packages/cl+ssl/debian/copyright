@@ -1,3 +1,11 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: chunga
+Upstream-Contact: David Lichteblau
+Source: http://common-lisp.net/project/cl-plus-ssl/
+
+Files: *
+Copyright:
+
 Copyright (C) 2001, 2003  Eric Marsden
 Copyright (C) ????  Jochen Schmidt
 Copyright (C) 2005  David Lichteblau
@@ -29,3 +37,7 @@ Copyright (C) 2007  Pixel // pinterface
     ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
     CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
+
+Files: debian/*
+Copyright: 2014 Dimitri Fontaine
+Licence: WTFPL

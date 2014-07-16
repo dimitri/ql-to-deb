@@ -5,7 +5,7 @@ Maintainer: Dimitri Fontaine <dim@tapoueh.org>
 Build-Depends: debhelper (>= 7)
 Build-Depends-Indep: dh-lisp
 Standards-Version: 3.9.4
-Homepage: http://weitz.de/interpol/
+Homepage: http://weitz.de/cl-interpol/
 Vcs-Darcs: http://common-lisp.net/~loliveira/ediware/cl-interpol/
 
 Package: cl-interpol

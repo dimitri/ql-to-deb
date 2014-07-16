@@ -1,12 +1,21 @@
-Files
------
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: zip
+Upstream-Contact: David Lichteblau <david@lichteblau.com>
+Source: http://common-lisp.net/project/zip/
 
-zip.lisp, sbcl.lisp, acl.lisp
-	Copyright (c) 2004,2005 David Lichteblau <david@lichteblau.com>
+Files: zip.lisp, sbcl.lisp, acl.lisp 
+Copyright:
+
+        Copyright (c) 2004,2005 David Lichteblau <david@lichteblau.com>
         Lizenz: (L)LGPL
 	COMPRESS function taken from Zachary Beane's salza.
         Changes copyright (c) 2004 knowledgeTools Int. GmbH
 
-inflate.lisp
+Files: inflate.lisp
+Copyright:
+
         copyright (c) 1986-2000 Franz Inc, Berkeley, CA
-        (moved into the "ZIP" package, no other changes)
+
+Files: debian/*
+Copyright: 2014 Dimitri Fontaine
+Licence: WTFPL

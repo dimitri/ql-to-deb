@@ -1,3 +1,11 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: postmodern
+Upstream-Contact: Marijn Haverbeke <marijnh@gmail.com>
+Source: http://marijnhaverbeke.nl/postmodern/
+
+Files: *
+Copyright:
+
 Copyright (c) Marijn Haverbeke, marijnh@gmail.com
 
 This software is provided 'as-is', without any express or implied
@@ -18,3 +26,7 @@ redistribute it freely, subject to the following restrictions:
 
 3. This notice may not be removed or altered from any source
    distribution.
+
+Files: debian/*
+Copyright: 2014 Dimitri Fontaine
+Licence: WTFPL
