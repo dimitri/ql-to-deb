@@ -57,6 +57,7 @@ $(LIBS): $(QLDIR)/setup.lisp
 	$(CL) $(CL_OPTS) --load $(QLDIR)/setup.lisp                 \
              --eval '(require :asdf)'                               \
              --eval '(asdf:load-system :asdf)'                      \
+             --eval '(push "$(PWD)/" asdf:*central-registry*)'      \
              --eval '(ql:quickload "ql-to-deb")'                    \
              --eval '(quit)' > /dev/null 2>&1
 	touch $@
