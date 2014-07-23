@@ -8,6 +8,9 @@ clc-files	:= $(clc-source)/$(pkg)
 %:
 	dh $@ --with lisp
 
+override_dh_auto_build:
+	# pass
+
 override_dh_install:
 	dh_install $(pkg).asd $(clc-files)
 	dh_install dev $(clc-files)
