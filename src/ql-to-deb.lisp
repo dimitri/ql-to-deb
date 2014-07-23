@@ -141,7 +141,6 @@
                          "--newversion" ,(format nil "~a-1" (deb-version deb))
                          "--package"    ,(deb-source deb)
                          "--distribution" "unstable"
-                         "--controlmaint"
                          "Quicklisp release update.")))
 
       ;; run dch then update debian's package version string
