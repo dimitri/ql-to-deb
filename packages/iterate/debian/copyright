@@ -4,9 +4,38 @@ Upstream-Contact: attila.lendvai@gmail.com
 Source: http://common-lisp.net/project/iterate/
 
 Files: *
-Copyright: attila.lendvai@gmail.com
-Licence: public domain
-
+Copyright: 1989 by Jonathan Amsterdam
+License:
+ Permission to use, copy, modify, and distribute this software and its
+ documentation for any purpose and without fee is hereby granted,
+ provided that this copyright and permission notice appear in all
+ copies and supporting documentation, and that the name of M.I.T. not
+ be used in advertising or publicity pertaining to distribution of the
+ software without specific, written prior permission. M.I.T. makes no
+ representations about the suitability of this software for any
+ purpose.  It is provided "as is" without express or implied warranty.
+ .
+ M.I.T. DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING
+ ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL
+ M.I.T. BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR
+ ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
+ WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
+ ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
+ SOFTWARE.
+  
 Files: debian/*
 Copyright: 2014 Dimitri Fontaine
-Licence: WTFPL
+License: WTFPL
+        DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
+                    Version 2, December 2004 
+ .
+ Copyright (C) 2014 Dimitri Fontaine <dim@tapoueh.org>
+ .
+ Everyone is permitted to copy and distribute verbatim or modified 
+ copies of this license document, and changing it is allowed as long 
+ as the name is changed. 
+ .
+            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
+   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION 
+ .
+  0. You just DO WHAT THE FUCK YOU WANT TO.
