@@ -28,8 +28,11 @@ Package: cl-csv-clsql
 Architecture: all
 Depends: ${misc:Depends}, cl-csv
 Description: Common Lisp library providing easy csv reading and writing
+ Facilities for reading and writing CSV format files (and importing and
+ exporting csvs from databases)
 
 Package: cl-csv-data-table
 Architecture: all
 Depends: ${misc:Depends}, cl-csv
 Description: Common Lisp library providing easy csv reading and writing
+ Facilities for converting CSV data to data-tables.

@@ -10,7 +10,7 @@ Homepage: http://common-lisp.net/project/rfc2388/
 Package: cl-rfc2388
 Architecture: all
 Depends: ${misc:Depends}
-Description: An implementation of RFC 2388 in Common Lisp
+Description: implementation of RFC 2388 in Common Lisp
  This package contains an implementation of RFC 2388, which is used to
  process form data posted with HTTP POST method using enctype
  "multipart/form-data".

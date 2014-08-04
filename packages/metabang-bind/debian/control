@@ -13,7 +13,7 @@ Package: cl-metabang-bind
 Architecture: all
 Depends: ${misc:Depends}
 Description: Common Lisp flexible pattern matching
- Bind extends the idea of of let and destructing to provide a uniform syntax
+ Bind extends the idea of let and destructing to provide a uniform syntax
  for all your accessor needs. It combines let, destructuring-bind,
  with-slots, with-accessors, structure editing, property or
  association-lists, and multiple-value-bind and a whole lot more into a

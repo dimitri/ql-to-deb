@@ -12,7 +12,7 @@ Vcs-Browser: https://github.com/edicl/hunchentoot
 Package: cl-hunchentoot
 Architecture: all
 Depends: ${misc:Depends}, cl-chunga, cl-base64, cl-fad, cl-ppcre, cl-flexi-streams, cl-plus-ssl, cl-md5, cl-rfc2388, cl-trivial-backtrace, cl-usocket, cl-bordeaux-threads
-Description: The Common Lisp web server formerly known as TBNL
+Description: Common Lisp web server formerly known as TBNL
  Hunchentoot is a web server written in Common Lisp and at the same time a
  toolkit for building dynamic websites. As a stand-alone web server,
  Hunchentoot is capable of HTTP/1.1 chunking (both directions), persistent

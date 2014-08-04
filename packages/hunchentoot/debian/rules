@@ -9,6 +9,7 @@ clc-files	:= $(clc-source)/$(pkg)
 	dh $@ --with lisp
 
 override_dh_install:
+	chmod a-x lispworks.lisp
 	dh_install $(pkg).asd $(clc-files)
 	dh_install *.lisp $(clc-files)
 	dh_install url-rewrite $(clc-files)

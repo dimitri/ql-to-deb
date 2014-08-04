@@ -55,5 +55,5 @@ Description: Common Lisp types for dates, timestamps, and intervals
  The most glaring defect of this library is its ignorance of time zones. It
  pretends the whole world lives in UTC. Use with care.
  .
- When this libary is loaded after CL-postgres, it will register suitable SQL
+ When this library is loaded after CL-postgres, it will register suitable SQL
  readers and writers for the associated database types.

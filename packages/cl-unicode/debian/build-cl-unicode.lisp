@@ -4,6 +4,7 @@
 ;;;
 
 (require :asdf)
+(asdf:load-system :asdf)                ; upgrade
 (setf asdf:*central-registry*
       (list* '*default-pathname-defaults* asdf:*central-registry*))
 (asdf:load-system :cl-unicode)

@@ -10,7 +10,9 @@ Copyright:
         Lizenz: (L)LGPL
 	COMPRESS function taken from Zachary Beane's salza.
         Changes copyright (c) 2004 knowledgeTools Int. GmbH
-
+Licence: LGPL
+ On Debian systems, the text of the LGPL is in /usr/share/common-licenses/LGPL.
+             
 Files: inflate.lisp
 Copyright:
 

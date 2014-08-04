@@ -13,3 +13,4 @@ Package: cl-db3
 Architecture: all
 Depends: ${misc:Depends}
 Description: Common Lisp lib to read dbf files version 3
+ Allows processing data found in dbf and db3 files.

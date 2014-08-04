@@ -7,8 +7,12 @@ then
 fi
 
 sudo apt-get update
+sudo apt-get dist-upgrade -y
 sudo apt-get install -y devscripts debhelper debianutils dh-lisp \
      gnupg gnupg-agent pinentry-curses
+
+# build deps
+sudo apt-get install cl-asdf cl-flexi-streams cl-ppcre cdbs a2ps
 
 curl -O http://pgsql.tapoueh.org/sbcl/sbcl_1.2.0-1_amd64.deb
 sudo dpkg -i sbcl_1.2.0-1_amd64.deb

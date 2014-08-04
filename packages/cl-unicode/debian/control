@@ -2,7 +2,7 @@ Source: cl-unicode
 Section: lisp
 Priority: optional
 Maintainer: Dimitri Fontaine <dim@tapoueh.org>
-Build-Depends: debhelper (>= 7)
+Build-Depends: debhelper (>= 7), cl-ppcre, cl-flexi-streams, cl-asdf (>= 3.0.3)
 Build-Depends-Indep: dh-lisp
 Standards-Version: 3.9.4
 Homepage: http://weitz.de/cl-unicode/
