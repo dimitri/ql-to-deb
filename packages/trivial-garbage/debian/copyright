@@ -5,9 +5,24 @@ Source: http://common-lisp.net/project/trivial-garbage/
 
 Files: *
 Copyright: Luis Oliveira <loliveira@common-lisp.net>
-Licence: public domain
-
+License: public domain
+ ;;; This software is placed in the public domain by Luis Oliveira
+ ;;; <loliveira@common-lisp.net> and is provided with absolutely no
+ ;;; warranty.
 
 Files: debian/*
 Copyright: 2014 Dimitri Fontaine
-Licence: WTFPL
+License: WTFPL
+        DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
+                    Version 2, December 2004 
+ .
+ Copyright (C) 2014 Dimitri Fontaine <dim@tapoueh.org>
+ .
+ Everyone is permitted to copy and distribute verbatim or modified 
+ copies of this license document, and changing it is allowed as long 
+ as the name is changed. 
+ .
+            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
+   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION 
+ .
+  0. You just DO WHAT THE FUCK YOU WANT TO.
