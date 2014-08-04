@@ -3,21 +3,49 @@ Upstream-Name: zip
 Upstream-Contact: David Lichteblau <david@lichteblau.com>
 Source: http://common-lisp.net/project/zip/
 
-Files: zip.lisp, sbcl.lisp, acl.lisp 
-Copyright:
-
-        Copyright (c) 2004,2005 David Lichteblau <david@lichteblau.com>
-        Lizenz: (L)LGPL
-	COMPRESS function taken from Zachary Beane's salza.
-        Changes copyright (c) 2004 knowledgeTools Int. GmbH
-Licence: LGPL
- On Debian systems, the text of the LGPL is in /usr/share/common-licenses/LGPL.
+Files: zip.lisp sbcl.lisp acl.lisp 
+Copyright: 2004,2005 David Lichteblau <david@lichteblau.com>
+License: LGPL
+ On Debian systems, the text of the LGPL is in
+ /usr/share/common-licenses/LGPL-2.1.
              
 Files: inflate.lisp
-Copyright:
-
-        copyright (c) 1986-2000 Franz Inc, Berkeley, CA
+Copyright: 1986-2000 Franz Inc, Berkeley, CA
+License: LGPL-2.1
+ ;; This code is free software; you can redistribute it and/or
+ ;; modify it under the terms of the version 2.1 of
+ ;; the GNU Lesser General Public License as published by 
+ ;; the Free Software Foundation, as clarified by the AllegroServe
+ ;; prequel found in license-allegroserve.txt.
+ ;;
+ ;; This code is distributed in the hope that it will be useful,
+ ;; but without any warranty; without even the implied warranty of
+ ;; merchantability or fitness for a particular purpose.  See the GNU
+ ;; Lesser General Public License for more details.
+ ;;
+ ;; Version 2.1 of the GNU Lesser General Public License is in the file 
+ ;; license-lgpl.txt that was distributed with this file.
+ ;; If it is not present, you can access it from
+ ;; http://www.gnu.org/copyleft/lesser.txt (until superseded by a newer
+ ;; version) or write to the Free Software Foundation, Inc., 59 Temple Place, 
+ ;; Suite 330, Boston, MA  02111-1307  USA
+ .
+ On Debian systems, the text of the LGPL is in
+ /usr/share/common-licenses/LGPL-2.1.
 
 Files: debian/*
 Copyright: 2014 Dimitri Fontaine
-Licence: WTFPL
+License: WTFPL
+        DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
+                    Version 2, December 2004 
+ .
+ Copyright (C) 2014 Dimitri Fontaine <dim@tapoueh.org>
+ .
+ Everyone is permitted to copy and distribute verbatim or modified 
+ copies of this license document, and changing it is allowed as long 
+ as the name is changed. 
+ .
+            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
+   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION 
+ .
+  0. You just DO WHAT THE FUCK YOU WANT TO.
