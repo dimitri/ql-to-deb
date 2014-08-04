@@ -2,12 +2,25 @@ Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: cl-sqlite
 Source: http://common-lisp.net/project/cl-sqlite/
 
-
 Files: *
-Copyright:
-
-The code is in public domain so you can basically do with it whatever you want.
+Copyright: 2009-2014 Kalyanov Dmitry and contributors
+License: public domain
+ The code is in public domain so you can basically do with it whatever you
+ want.
 
 Files: debian/*
 Copyright: 2014 Dimitri Fontaine
-Licence: WTFPL
+License: WTFPL
+        DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
+                    Version 2, December 2004 
+ .
+ Copyright (C) 2014 Dimitri Fontaine <dim@tapoueh.org>
+ .
+ Everyone is permitted to copy and distribute verbatim or modified 
+ copies of this license document, and changing it is allowed as long 
+ as the name is changed. 
+ .
+            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
+   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION 
+ .
+  0. You just DO WHAT THE FUCK YOU WANT TO.
