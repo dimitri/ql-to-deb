@@ -1,50 +1,12 @@
 #!/usr/bin/make -f
 
-configure: configure-stamp
-configure-stamp:
-	dh_testdir
-	# Add here commands to configure the package.
-	touch configure-stamp
+pkg		:= chunga
+clc-source	:= usr/share/common-lisp/source
+clc-systems	:= usr/share/common-lisp/systems
+clc-files	:= $(clc-source)/$(pkg)
 
-build: build-stamp
-build-stamp: configure-stamp 
-	dh_testdir
-	# Add here commands to compile the package.
-	touch build-stamp
+%:
+	dh $@ --with lisp
 
-clean:
-	dh_testdir
-	dh_testroot
-	rm -f build-stamp configure-stamp
-	# Add here commands to clean up after the build process.
-	dh_clean
-
-install: build
-	dh_testdir
-	dh_testroot
-	dh_prep
-	# Add here commands to install the package into debian/xmls.
-	dh_installdirs 
-	dh_install 
-
-# Build architecture-dependent files here.
-binary-arch: 
-
-# Build architecture-independent files here.
-binary-indep: build install
-	dh_testdir
-	dh_testroot
-	dh_installdocs 
-	dh_installchangelogs
-	dh_lisp
-	dh_compress
-	dh_fixperms
-	dh_installdeb
-	dh_shlibdeps
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb
-
-binary: binary-indep binary-arch
-.PHONY: build clean binary-indep binary-arch binary install configure
-
+override_dh_link:
+	dh_link $(clc-files)/$(pkg).asd $(clc-systems)/$(pkg).asd

@@ -6,7 +6,7 @@ Uploaders: Peter Van Eynde <pvaneynd@debian.org>,
  Christoph Egger <christoph@debian.org>
 Build-Depends: debhelper (>= 7)
 Build-Depends-Indep: dh-lisp
-Standards-Version: 3.8.3
+Standards-Version: 3.9.5
 Homepage: http://common-lisp.net/project/alexandria/
 Vcs-Git: http://git.debian.org/git/pkg-common-lisp/cl-alexandria.git
 Vcs-Browser: http://git.debian.org/?p=pkg-common-lisp/cl-alexandria.git;a=summary
@@ -14,7 +14,7 @@ Vcs-Browser: http://git.debian.org/?p=pkg-common-lisp/cl-alexandria.git;a=summar
 Package: cl-alexandria
 Architecture: all
 Depends: ${misc:Depends}, ${shlibs:Depends}
-Description: A collection of portable Common Lisp utilities
+Description: Collection of portable Common Lisp utilities
  alexandria is a collection of utilities in the public domain for Common Lisp
  .
  It is a library but also a project that aims to reduce duplication of effort

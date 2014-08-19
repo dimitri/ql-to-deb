@@ -1,3 +1,9 @@
+cl-alexandria (0.0.20130703-1) unstable; urgency=low
+
+  * New upstream 
+
+ -- Christoph Egger <christoph@debian.org>  Wed, 03 Jul 2013 13:37:00 +0200
+
 cl-alexandria (0.0.20121214-1) experimental; urgency=low
 
   [ Peter Van Eynde ]
