@@ -1,0 +1,5 @@
+cl-closure-common (20101107-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Tue, 19 Aug 2014 17:09:07 +0400

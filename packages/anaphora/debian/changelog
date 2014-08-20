@@ -1,0 +1,5 @@
+cl-anaphora (0.9.4-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 04 Aug 2014 19:37:22 +0400

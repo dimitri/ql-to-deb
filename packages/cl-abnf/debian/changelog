@@ -1,0 +1,5 @@
+cl-abnf (20131211-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 04 Aug 2014 19:52:27 +0400

@@ -1,0 +1,5 @@
+cl-command-line-arguments (20140113-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 04 Aug 2014 20:19:44 +0400

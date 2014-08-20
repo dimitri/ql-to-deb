@@ -1,3 +1,9 @@
+cffi (1:0.13.0-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Tue, 19 Aug 2014 17:02:18 +0400
+
 cffi (20100219-2) unstable; urgency=low
 
   * Added grovel/ to the copied files. (Closes: #565864)
