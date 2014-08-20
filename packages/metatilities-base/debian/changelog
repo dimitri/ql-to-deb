@@ -1,0 +1,5 @@
+cl-metatilities-base (20120909-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Tue, 05 Aug 2014 00:26:20 +0400
