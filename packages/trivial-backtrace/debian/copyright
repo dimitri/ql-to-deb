@@ -4,7 +4,9 @@ Upstream-Contact: Gary Warren King <gwking@metabang.com>
 Source: http://common-lisp.net/project/trivial-backtrace/
 
 Files: *
-Copyright: 2008-2008 Gary Warren King (gwking@metabang.com) 
+Copyright:
+ 2008-2008 Gary Warren King (gwking@metabang.com)
+ Copyright (c) 2005-2007 Dr. Edi Weitz
 License:
  Permission is hereby granted, free of charge, to any person obtaining a
  copy of this software and associated documentation files (the "Software"),

@@ -1,0 +1,11 @@
+cl-trivial-backtrace (20120909-2) unstable; urgency=medium
+
+  * Fix Copyright, forgot to mention Edi Weitz
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Fri, 22 Aug 2014 19:02:29 +0400
+
+cl-trivial-backtrace (20120909-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Tue, 05 Aug 2014 00:51:23 +0400
