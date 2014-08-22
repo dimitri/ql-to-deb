@@ -1,3 +1,9 @@
+ql-to-deb (0.5.0-1) unstable; urgency=medium
+
+  * Implement --fix-bugs to repackage from the same Quicklisp version.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Fri, 22 Aug 2014 16:55:59 +0400
+
 ql-to-deb (0.4.0-1) unstable; urgency=medium
 
   * Initial release.

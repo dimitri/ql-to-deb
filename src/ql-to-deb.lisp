@@ -33,12 +33,20 @@
        :when (null release)
        :do (format t "Missing a Quicklisp release for package: ~s.~%" package)
 
-       :when (same-version-p package release)
+       :when (and (not *fix-bugs*) (same-version-p package release))
        :do (format t "~a is already up to date (~a).~%"
                    (deb-source package)
                    (ql-version release))
 
-       :unless (or (null release) (same-version-p package release))
+       :when (and *fix-bugs* (not (same-version-p package release)))
+       :do (format t "~a Quicklisp version (~a) is not the same as your changelog (~a).~%"
+                   (deb-source package)
+                   (ql-version release)
+                   (deb-version package))
+
+       :unless (or (null release)
+                   (and (not *fix-bugs*) (same-version-p package release))
+                   (and *fix-bugs* (not (same-version-p package release))))
        :collect (cons package release))))
 
 (defun list-packages-to-update ()
@@ -75,16 +83,19 @@
             ;; rename the archive and add the debian directory in its directory
             (package-release deb ql)
 
-            ;; add a debian changelog entry
-            (update-changelog deb ql)
+            ;; add a debian changelog entry, unless when repackaging from
+            ;; Quicklisp with manually fixed packaging.
+            (unless *fix-bugs*
+              (update-changelog deb ql))
 
             ;; now debuild the package
             (debuild deb)
 
             ;; copy the new changelog file to our debian packaging source
-            (let ((cp `("cp" ,(namestring (build-changelog deb))
-                             ,(namestring (source-changelog deb)))))
-              (run-command cp (deb-dir deb))))
+            (unless *fix-bugs*
+              (let ((cp `("cp" ,(namestring (build-changelog deb))
+                               ,(namestring (source-changelog deb)))))
+                (run-command cp (deb-dir deb)))))
 
         ;; just ensure we keep the log file when something happens
         (condition (c)

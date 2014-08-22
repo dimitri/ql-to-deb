@@ -11,6 +11,8 @@
 
     (("verbose" #\v) :type boolean :documentation "Be verbose.")
 
+    (("fix-bugs" #\F) :type boolean :documentation "Fix packaging bugs.")
+
     (("dir" #\D) :type string :initial-value ,*build-root*
      :documentation "where to build packages.")
 
@@ -46,7 +48,7 @@
             (declare (ignore e))
             (usage argv :quit t)))
 
-      (destructuring-bind (&key help version verbose dir logs quicklisp)
+      (destructuring-bind (&key help version verbose dir logs quicklisp fix-bugs)
 	  options
 
         (when version
@@ -61,6 +63,7 @@
 
         (setf *verbose* verbose)
         (setf *ql-props-url* quicklisp)
+        (setf *fix-bugs* fix-bugs)
 
         (let ((dir-truename (probe-file dir)))
           (if dir-truename

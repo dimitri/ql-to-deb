@@ -4,7 +4,7 @@
 
 (in-package #:ql-to-deb)
 
-(defparameter *version-string* "0.4.0"
+(defparameter *version-string* "0.5.0"
   "Our version string...")
 
 (defparameter *verbose* nil
@@ -34,3 +34,6 @@
 (defparameter *ql-release-property*
   "release-index-url"
   "Property we want to URL of to get at the releases")
+
+(defparameter *fix-bugs* nil
+  "When true, rebuild debian package for same Quicklisp release.")

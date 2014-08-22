@@ -38,6 +38,7 @@ endif
 # BUILDAPP_OPTS =          --require sb-posix
 # endif
 
+DEBUILD_ROOT = /tmp/ql-to-deb/debian
 
 all: $(QL_TO_DEB)
 
@@ -105,5 +106,9 @@ $(QL_TO_DEB): $(MANIFEST) $(BUILDAPP) $(LISP_SRC)
 ql-to-deb: $(QL_TO_DEB) ;
 
 deb:
-	make -f debian/rules orig
-	debuild -us -uc
+	# intended for use on a debian system
+	mkdir -p $(DEBUILD_ROOT) && rm -rf $(DEBUILD_ROOT)/*
+	rsync -Ca --exclude=build/* ./ $(DEBUILD_ROOT)/
+	cd $(DEBUILD_ROOT) && make -f debian/rules orig
+	cd $(DEBUILD_ROOT) && debuild -us -uc -sa
+	cp -a /tmp/ql-to-deb/debian/ql-to-deb_* build/
