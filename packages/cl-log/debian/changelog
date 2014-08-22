@@ -1,0 +1,5 @@
+cl-log (1.0.1-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 04 Aug 2014 20:07:06 +0400

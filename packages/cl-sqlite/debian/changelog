@@ -1,0 +1,5 @@
+cl-sqlite (20130615-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 04 Aug 2014 20:12:07 +0400

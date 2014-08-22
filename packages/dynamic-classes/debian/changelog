@@ -1,0 +1,5 @@
+cl-dynamic-classes (20130128-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 04 Aug 2014 23:51:45 +0400

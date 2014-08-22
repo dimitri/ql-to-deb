@@ -1,0 +1,5 @@
+cl-daemon (20131111-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 04 Aug 2014 23:41:55 +0400

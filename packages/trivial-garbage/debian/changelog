@@ -1,0 +1,5 @@
+cl-trivial-garbage (20130312-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Tue, 05 Aug 2014 00:53:06 +0400

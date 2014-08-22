@@ -1,0 +1,5 @@
+cl-py-configparser (20131003-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Tue, 05 Aug 2014 00:40:36 +0400

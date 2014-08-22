@@ -1,0 +1,5 @@
+cl-markdown (20101006-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 04 Aug 2014 20:09:16 +0400

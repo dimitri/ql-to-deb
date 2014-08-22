@@ -1,0 +1,5 @@
+cl-metabang-bind (20130128-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Tue, 05 Aug 2014 00:18:32 +0400

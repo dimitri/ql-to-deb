@@ -1,0 +1,5 @@
+cl-interpol (0.2.1-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 04 Aug 2014 20:05:31 +0400

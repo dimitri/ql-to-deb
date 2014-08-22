@@ -1,0 +1,5 @@
+cl-github-v3 (20130312-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 04 Aug 2014 20:03:30 +0400

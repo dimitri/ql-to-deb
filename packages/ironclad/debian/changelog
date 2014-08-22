@@ -1,0 +1,5 @@
+cl-ironclad (0.32.1-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Tue, 05 Aug 2014 00:07:53 +0400

@@ -1,0 +1,5 @@
+cl-salza2 (2.0.9-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Tue, 05 Aug 2014 00:49:59 +0400

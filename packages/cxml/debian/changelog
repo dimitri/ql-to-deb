@@ -1,0 +1,5 @@
+cl-cxml (20110619-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 04 Aug 2014 20:21:42 +0400
