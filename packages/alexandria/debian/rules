@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-pkg		:= chunga
+pkg		:= alexandria
 clc-source	:= usr/share/common-lisp/source
 clc-systems	:= usr/share/common-lisp/systems
 clc-files	:= $(clc-source)/$(pkg)

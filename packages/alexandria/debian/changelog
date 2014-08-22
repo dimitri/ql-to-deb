@@ -1,3 +1,9 @@
+cl-alexandria (20140713-2) unstable; urgency=medium
+
+  * Fix package name in debian/rules, Closes: #758836
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Fri, 22 Aug 2014 11:44:16 +0400
+
 cl-alexandria (20140713-1) unstable; urgency=medium
 
   * Quicklisp release update.
