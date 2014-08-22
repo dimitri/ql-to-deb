@@ -1,0 +1,11 @@
+cl-plus-ssl (20140713-2) unstable; urgency=medium
+
+  * Fix licence, which is MIT and no longer LGPL
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Fri, 22 Aug 2014 17:22:31 +0400
+
+cl-plus-ssl (20140713-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 04 Aug 2014 19:50:12 +0400

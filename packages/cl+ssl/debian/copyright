@@ -9,7 +9,7 @@ Copyright:
  Copyright (C) ????  Jochen Schmidt
  Copyright (C) 2005  David Lichteblau
  Copyright (C) 2007  Pixel // pinterface
-License: Lips-LGPL
+License: MIT
  * License first changed by Eric Marsden, Jochen Schmidt, and David Lichteblau
    from plain LGPL to Lisp-LGPL in December 2005.
  .
@@ -33,8 +33,6 @@ License: Lips-LGPL
  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  DEALINGS IN THE SOFTWARE.
- .
- On Debian systems, the text of the LGPL is in /usr/share/common-licenses/LGPL.
 
 Files: debian/*
 Copyright: 2014 Dimitri Fontaine
