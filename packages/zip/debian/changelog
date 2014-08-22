@@ -1,0 +1,11 @@
+cl-zip (20101107-2) unstable; urgency=medium
+
+  * Fix copyright
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Fri, 22 Aug 2014 19:15:01 +0400
+
+cl-zip (20101107-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Tue, 05 Aug 2014 00:59:36 +0400
