@@ -7,10 +7,9 @@
   "Return a generalized boolean that is non-nil when both the debian package
   and the ql release have the same current version number."
   (when (deb-version deb)
-    (multiple-value-bind (epoch version)
-        (epoch-and-version deb)
-      (declare (ignore epoch))
-      (string= version (ql-version ql)))))
+    (let* ((version          (version-and-epoch deb))
+           (non-dfsg-version (first (split-sequence #\+ version))))
+      (string= non-dfsg-version (ql-version ql)))))
 
 (defun ensure-debian-package-list (packages)
   "Returns a lisp of debian-package instances."
@@ -115,7 +114,7 @@
   (ql-fetch-release release)
 
   (let* ((orig-filename
-          (format nil "~a_~a.orig.tar.gz" (deb-source deb) (ql-version release)))
+          (format nil "~a_~a.orig.tar.gz" (deb-source deb) (version-and-epoch deb)))
          (debian-archive-pathname
           (merge-pathnames orig-filename *build-root*)))
     ;; get rid of possibly existing stray symlinks from previous runs
@@ -142,9 +141,6 @@
 
 (defmethod package-release ((deb debian-package) (release ql-release))
   "Transform a Quicklisp release to a ready to build debian package."
-  ;; we need the infamous debian orig tarball
-  (prepare-orig-tarball deb release)
-
   ;; rename the directory in which the archive has been expanded
   (let* ((ql-dir  (merge-pathnames (ql-prefix release) *build-root*))
          (deb-dir (make-pathname :directory `(:relative ,(deb-source deb))))

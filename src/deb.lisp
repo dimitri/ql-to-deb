@@ -87,15 +87,15 @@
 ;;;
 ;;; Dealing with epoch in debian version strings
 ;;;
-(defmethod epoch-and-version ((deb debian-package))
+(defmethod version-and-epoch ((deb debian-package))
   "Return epoch and version string as two different values."
   (cl-ppcre:register-groups-bind (epoch version)
       ("([0-9]*:)?(.*)" (deb-version deb))
-    (values epoch version)))
+    (values version epoch)))
 
 (defmethod next-epoch ((deb debian-package))
-  (multiple-value-bind (epoch version)
-      (epoch-and-version deb)
+  (multiple-value-bind (version epoch)
+      (version-and-epoch deb)
     (declare (ignore version))
     (+ 1 (parse-integer (or epoch "0")))))
 
@@ -112,8 +112,8 @@
 (defmethod compute-next-version ((deb debian-package) new-version)
   "We might need to increment the epoch, it is taken care of here."
   (if (deb-version deb)
-      (multiple-value-bind (epoch version)
-          (epoch-and-version deb)
+      (multiple-value-bind (version epoch)
+          (version-and-epoch deb)
        (let ((compare `("dpkg"
                         "--compare-versions"
                         ,new-version
