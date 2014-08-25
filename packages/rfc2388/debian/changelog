@@ -1,4 +1,4 @@
-cl-rfc2388 (20130720-1) unstable; urgency=medium
+cl-rfc2388 (20130720+dfsg-1) unstable; urgency=medium
 
   * Quicklisp release update.
 
