@@ -5,6 +5,8 @@
 
 (in-package #:ql-to-deb)
 
+(defvar *config-filename* "/etc/ql-to-deb.ini")
+
 (defvar *debian-packages*
   (make-pathname :directory "/usr/share/ql-to-deb/packages"))
 

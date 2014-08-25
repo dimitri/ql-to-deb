@@ -2,7 +2,7 @@ Source: ql-to-deb
 Section: database
 Priority: extra
 Maintainer: Dimitri Fontaine <dimitri@2ndQuadrant.fr>
-Build-Depends: debhelper (>= 8.0.0), sbcl, buildapp (>= 1.5), cl-drakma, cl-ppcre, cl-split-sequence, cl-md5, cl-command-line-arguments
+Build-Depends: debhelper (>= 8.0.0), sbcl, buildapp (>= 1.5), cl-drakma, cl-ppcre, cl-split-sequence, cl-md5, cl-command-line-arguments, cl-py-configparser
 Standards-Version: 3.9.3
 Homepage: https://github.com/dimitri/ql-to-deb
 Vcs-Git: https://github.com/dimitri/ql-to-deb.git

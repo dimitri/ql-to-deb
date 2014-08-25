@@ -21,6 +21,7 @@ override_dh_auto_build:
                  --asdf-tree /usr/share/common-lisp/systems \
                  --load-system asdf               	    \
                  --load-system split-sequence         	    \
+                 --load-system py-configparser         	    \
                  --load src/package.lisp                    \
                  --load debian/settings.lisp                \
                  --load-system ql-to-deb               	    \

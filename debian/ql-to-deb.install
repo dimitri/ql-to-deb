@@ -1,2 +1,3 @@
 build/bin/ql-to-deb /usr/bin
 packages /usr/share/ql-to-deb
+ql-to-deb.ini /etc
