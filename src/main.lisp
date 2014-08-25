@@ -13,6 +13,9 @@
 
     (("fix-bugs" #\F) :type boolean :documentation "Fix packaging bugs.")
 
+    (("config" #\c) :type string :initial-value ,*config-filename*
+     :documentation "configuration file.")
+
     (("dir" #\D) :type string :initial-value ,*build-root*
      :documentation "where to build packages.")
 
@@ -48,7 +51,8 @@
             (declare (ignore e))
             (usage argv :quit t)))
 
-      (destructuring-bind (&key help version verbose dir logs quicklisp fix-bugs)
+      (destructuring-bind (&key help version verbose  fix-bugs
+                                config dir logs quicklisp)
 	  options
 
         (when version
@@ -64,6 +68,7 @@
         (setf *verbose* verbose)
         (setf *ql-props-url* quicklisp)
         (setf *fix-bugs* fix-bugs)
+        (setf *config-filename* config)
 
         (let ((dir-truename (probe-file dir)))
           (if dir-truename

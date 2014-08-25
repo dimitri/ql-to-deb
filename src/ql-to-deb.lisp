@@ -77,8 +77,10 @@
 
       (handler-case
           (progn
-            ;; fetch the archive, unpack it
-            (ql-fetch-and-unpack-release ql)
+            ;; fetch the Quicklisp archive and turn it into an orig tarball
+            (let ((debian-archive-pathname (prepare-orig-tarball deb ql)))
+              ;; now unpack said archive at the place where we debuild it
+              (unpack-archive debian-archive-pathname))
 
             ;; rename the archive and add the debian directory in its directory
             (package-release deb ql)
@@ -106,17 +108,42 @@
 ;;;
 ;;; Lower level bits of Quicklisp to debian
 ;;;
+(defmethod prepare-orig-tarball ((deb debian-package) (release ql-release))
+  "Prepare the debian orig tarball, maybe calling into user specified scripts."
+
+  ;; first, fetch the Quicklisp archive
+  (ql-fetch-release release)
+
+  (let* ((orig-filename
+          (format nil "~a_~a.orig.tar.gz" (deb-source deb) (ql-version release)))
+         (debian-archive-pathname
+          (merge-pathnames orig-filename *build-root*)))
+    ;; get rid of possibly existing stray symlinks from previous runs
+    (when (probe-file debian-archive-pathname)
+      (delete-file debian-archive-pathname))
+
+    ;; we might have to run a hook here
+    (let ((hook (get-package-hook (deb-source deb) "orig")))
+      (if hook
+          (let* ((ql-tarball   (uiop:native-namestring (ql-archive release)))
+                 (orig-tarball (uiop:native-namestring debian-archive-pathname))
+
+                 (command  (cl-ppcre:regex-replace-all "%q" hook ql-tarball))
+                 (command  (cl-ppcre:regex-replace-all "%o" command orig-tarball)))
+
+            (run-command command *build-root*))
+
+          ;; no hook found, we default to symlinking the Quicklisp provided
+          ;; archive as the debian orig archive
+          (make-symlink (ql-archive release) debian-archive-pathname)))
+
+    ;; and return the archive we just built, for next stage of processing
+    debian-archive-pathname))
+
 (defmethod package-release ((deb debian-package) (release ql-release))
   "Transform a Quicklisp release to a ready to build debian package."
   ;; we need the infamous debian orig tarball
-  (let* ((orig-filename
-          (format nil "~a_~a.orig.tar.gz" (deb-source deb) (ql-version release)))
-         (debian-archive-filename
-          (merge-pathnames orig-filename *build-root*)))
-    ;; get rid of possibly existing stray symlinks from previous runs
-    (when (probe-file debian-archive-filename)
-      (delete-file debian-archive-filename))
-    (make-symlink (ql-archive release) debian-archive-filename))
+  (prepare-orig-tarball deb release)
 
   ;; rename the directory in which the archive has been expanded
   (let* ((ql-dir  (merge-pathnames (ql-prefix release) *build-root*))

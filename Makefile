@@ -38,7 +38,7 @@ endif
 # BUILDAPP_OPTS =          --require sb-posix
 # endif
 
-DEBUILD_ROOT = /tmp/ql-to-deb/debian
+DEBUILD_ROOT = /tmp/ql-to-deb/debian/ql-to-deb
 
 all: $(QL_TO_DEB)
 
@@ -60,7 +60,7 @@ $(LIBS): $(QLDIR)/setup.lisp
              --eval '(asdf:load-system :asdf)'                      \
              --eval '(push "$(PWD)/" asdf:*central-registry*)'      \
              --eval '(ql:quickload "ql-to-deb")'                    \
-             --eval '(quit)' > /dev/null 2>&1
+             --eval '(quit)' #> /dev/null 2>&1
 	touch $@
 
 libs: $(LIBS) ;
@@ -109,6 +109,7 @@ deb:
 	# intended for use on a debian system
 	mkdir -p $(DEBUILD_ROOT) && rm -rf $(DEBUILD_ROOT)/*
 	rsync -Ca --exclude=build/* ./ $(DEBUILD_ROOT)/
+	mkdir -p $(DEBUILD_ROOT)/build/bin
 	cd $(DEBUILD_ROOT) && make -f debian/rules orig
 	cd $(DEBUILD_ROOT) && debuild -us -uc -sa
 	cp -a /tmp/ql-to-deb/debian/ql-to-deb_* build/

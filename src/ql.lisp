@@ -158,16 +158,3 @@ drakma http://beta.quicklisp.org/archive/drakma/2014-04-25/drakma-1.3.8.tgz 7098
     ;; return the archive pathname we just created
     archive))
 
-(defun ql-unpack-archive (release)
-  "Unpack already fetched RELEASE in *BUILD-ROOT*"
-  (ensure-directories-exist (directory-namestring *build-root*))
-
-  (let* ((archive     (ql-archive release))
-         (tar        `("tar" "xzf" ,(namestring archive))))
-    (run-command tar *build-root*)))
-
-(defmethod ql-fetch-and-unpack-release ((release ql-release))
-  "Fetches release from its URL slot value into *ARCHIVE-DIRECTORY* then
-   unpack it in the same place."
-  (ql-fetch-release release)
-  (ql-unpack-archive release))

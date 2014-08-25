@@ -21,6 +21,18 @@
                           :error-output :string)
       (declare (ignore output error code)))))
 
+(defun unpack-archive (archive-pathname)
+  "Unpack already fetched RELEASE in *BUILD-ROOT*"
+  (ensure-directories-exist (directory-namestring *build-root*))
+
+  (let* ((tar `("tar" "xzf" ,(uiop:native-namestring archive-pathname))))
+    (run-command tar *build-root*)))
+
+(defun ensure-list (maybe-list)
+  (typecase maybe-list
+    (list maybe-list)
+    (t    (list maybe-list))))
+
 (defun run-command (command cwd
                     &key
                       ignore-error-status
@@ -31,7 +43,7 @@
                                                   (if (find #\Space arg)
                                                       (format nil "~s" arg)
                                                       arg))
-                                                command))))
+                                                (ensure-list command)))))
     (when *verbose*
       (format-command t command))
     (format-command log-stream command)
@@ -51,9 +63,11 @@
               (format t "~%Command:  ~a" (format-command nil command))
               (format t "Status: ~a~%" code)
               (format t "Error: ~a: ~a~%"
-                      (car command)
+                      (car (ensure-list command))
                       (get-output-stream-string errors))
-              (error "Command ~s failed with status ~a." (car command) code)))
+              (error "Command ~s failed with status ~a."
+                     (car (ensure-list command))
+                     code)))
 
           ;; return the error code, as we don't have output/error anymore
           code)))))

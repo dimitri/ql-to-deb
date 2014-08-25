@@ -5,23 +5,30 @@
     :description "Automated debian package updates from Quicklisp releases"
     :author "Dimitri Fontaine <dim@tapoueh.org>"
     :license "WTFPL"
-    :version "0.4.0"
+    :version "0.6.0"
     :depends-on (#:uiop			; host system integration
 		 #:drakma		; http client, download archives
                  #:cl-ppcre             ; Regular Expressions
                  #:split-sequence       ; split sequences
                  #:md5                  ; check archive checksums
 		 #:command-line-arguments ; for the main function
+                 #:py-configparser      ; read .ini config files
                  )
     :components
     ((:module "src"
-              :serial t
 	      :components
               ((:file "package")
-               (:file "params")
-               (:file "utils")
-               (:file "ql")
-               (:file "deb")
-               (:file "ql-to-deb")
-               (:file "main")))))
+               (:file "params" :depends-on ("package"))
+               (:file "utils"  :depends-on ("package"))
+               (:file "ql"     :depends-on ("package" "params" "utils"))
+               (:file "deb"    :depends-on ("package" "params" "utils"))
+               (:file "ql-to-deb" :depends-on ("package"
+                                               "params"
+                                               "utils"
+                                               "ql"
+                                               "deb"))
+               (:file "main" :depends-on ("package"
+                                          "params"
+                                          "utils"
+                                          "ql-to-deb"))))))
 
