@@ -1,0 +1,11 @@
+cl-unicode (0.1.4-2) unstable; urgency=medium
+
+  * Add sbcl as a build-dependency.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 25 Aug 2014 12:42:38 +0400
+
+cl-unicode (0.1.4-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 04 Aug 2014 20:13:34 +0400
