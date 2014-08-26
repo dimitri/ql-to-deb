@@ -12,7 +12,8 @@ Vcs-Browser: https://github.com/gwkkwg/cl-markdown
 Package: cl-markdown
 Architecture: all
 Depends: ${misc:Depends}, cl-metatilities-base, cl-metabang-bind, cl-containers, cl-dynamic-classes, cl-anaphora, cl-ppcre
-Description: Common Lisp HTTP client
- Markdown is a full-featured HTTP client implemented in Common Lisp. It knows
- how to handle HTTP/1.1 chunking, persistent connections, re-usable sockets,
- SSL, continuable uploads, file uploads, cookies, and more.
+Description: Common Lisp rewrite of Markdown
+ Markdown is John Gruber's text markup language and the Perl program that
+ converts documents written in that language into HTML. CL-Markdown is a
+ Common Lisp rewrite of Markdown. CL-Markdown is licensed under the MIT
+ license.

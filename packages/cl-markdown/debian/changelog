@@ -1,3 +1,9 @@
+cl-markdown (20101006-2) unstable; urgency=medium
+
+  * Fix package description, Closes: Bug#759304
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Tue, 26 Aug 2014 13:06:14 +0400
+
 cl-markdown (20101006-1) unstable; urgency=medium
 
   * Quicklisp release update.
