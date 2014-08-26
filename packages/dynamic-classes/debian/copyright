@@ -1,7 +1,7 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: chunga
+Upstream-Name: dynamic-classes
 Upstream-Contact: Edi Weitz <edi@weitz.de>
-Source: http://weitz.de/chunga/
+Source: http://common-lisp.net/project/dynamic-classes/
 
 Files: *
 Copyright: 2008-2008 Gary Warren King (gwking@metabang.com) 
