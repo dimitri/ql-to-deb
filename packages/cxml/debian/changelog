@@ -1,3 +1,9 @@
+cl-cxml (20110619-2) unstable; urgency=medium
+
+  * Fix copyright, include xml/sax-handler.lisp
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Fri, 29 Aug 2014 13:45:07 +0400
+
 cl-cxml (20110619-1) unstable; urgency=medium
 
   * Quicklisp release update.
