@@ -1,3 +1,9 @@
+cl-unicode (0.1.4-3) unstable; urgency=medium
+
+  * Fix copyright to include build/data Unicode terms of use
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Fri, 29 Aug 2014 15:09:03 +0400
+
 cl-unicode (0.1.4-2) unstable; urgency=medium
 
   * Add sbcl as a build-dependency.
