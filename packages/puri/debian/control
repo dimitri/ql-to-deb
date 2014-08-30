@@ -2,9 +2,10 @@ Source: cl-puri
 Section: lisp
 Priority: optional
 Maintainer: Kevin M. Rosenberg <kmr@debian.org>
+Uploaders: Dimitri Fontaine <dim@tapoueh.org>
 Build-Depends-Indep: dh-lisp
 Build-Depends: debhelper (>= 7.0.0)
-Standards-Version: 3.8.4.0
+Standards-Version: 3.9.5
 Homepage: http://files.b9.com/puri/
 Vcs-Git: git://git.b9.com/puri/
 Vcs-Browser: http://git.b9.com/puri/
