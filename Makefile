@@ -113,3 +113,9 @@ deb:
 	cd $(DEBUILD_ROOT) && make -f debian/rules orig
 	cd $(DEBUILD_ROOT) && debuild -us -uc -sa
 	cp -a /tmp/ql-to-deb/debian/ql-to-deb_* build/
+
+status:
+	awk '/^Package: / {print $$2}' packages/*/debian/control | sort> /tmp/clist
+	cat /tmp/clist | xargs rmadison -s sid |sort > /tmp/plist
+	join -a1 -j1 /tmp/clist /tmp/plist | column -t -s '|'
+
