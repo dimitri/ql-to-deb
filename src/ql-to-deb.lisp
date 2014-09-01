@@ -114,7 +114,10 @@
   (ql-fetch-release release)
 
   (let* ((orig-filename
-          (format nil "~a_~a.orig.tar.gz" (deb-source deb) (version-and-epoch deb)))
+          (format nil "~a_~a.orig.tar.gz"
+                  (deb-source deb)
+                  (or (version-and-epoch deb)
+                      (ql-version release))))
          (debian-archive-pathname
           (merge-pathnames orig-filename *build-root*)))
     ;; get rid of possibly existing stray symlinks from previous runs
