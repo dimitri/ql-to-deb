@@ -1,0 +1,22 @@
+#!/usr/bin/make -f
+
+pkg		:= graph
+clc-source	:= usr/share/common-lisp/source
+clc-systems	:= usr/share/common-lisp/systems
+clc-files	:= $(clc-source)/$(pkg)
+
+%:
+	dh $@ --with lisp
+
+override_dh_install:
+	dh_install *.asd $(clc-files)
+	dh_install *.lisp $(clc-files)
+
+override_dh_link:
+	dh_link $(clc-files)/$(pkg).asd $(clc-systems)/$(pkg).asd
+	dh_link $(clc-files)/$(pkg)-dot.asd $(clc-systems)/$(pkg)-dot.asd
+	dh_link $(clc-files)/$(pkg)-json.asd $(clc-systems)/$(pkg)-json.asd
+	dh_link $(clc-files)/$(pkg)-matrix.asd $(clc-systems)/$(pkg)-matrix.asd
+
+override_dh_installdocs:
+	dh_installdocs README NOTES

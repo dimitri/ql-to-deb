@@ -1,0 +1,18 @@
+Source: cl-curry-compose-reader-macros
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.5
+Homepage: http://eschulte.github.io/curry-compose-reader-macros/
+Vcs-Browser: https://github.com/eschulte/curry-compose-reader-macros
+
+Package: cl-curry-compose-reader-macros
+Architecture: all
+Depends: ${misc:Depends}
+Description: Reader macros for function partial application and composition.
+ These reader macros expand into the curry, rcurry and compose functions
+ from the Alexandria library. The contents of curly brackets are curried and
+ the contents of square brackets are composed. The _ symbol inside curly
+ brackets changes the order of arguments with rcurry.

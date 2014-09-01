@@ -1,0 +1,5 @@
+cl-curry-compose-reader-macros (20131003-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 01 Sep 2014 14:57:30 +0400

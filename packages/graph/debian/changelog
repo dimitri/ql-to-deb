@@ -1,0 +1,5 @@
+cl-graph (20140826-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 01 Sep 2014 15:06:23 +0400

@@ -1,0 +1,20 @@
+Source: cl-graph
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.5
+Homepage: http://eschulte.github.io/graph/
+Vcs-Browser: https://github.com/eschulte/graph
+
+Package: cl-graph
+Architecture: all
+Depends: ${misc:Depends}, cl-alexandria, cl-metabang-bind, cl-curry-compose-reader-macros
+Description: simple graph data structure and algorithms
+ The GRAPH library strives for simplicity both in backing data structures
+ and in usage. Graphs and Digraphs are represented as CLOS objects with
+ methods and algorithms provided for graph manipulation and analysis.
+ .
+ See the GRAPH-JSON and GRAPH-DOT libraries for serialization and
+ visualization of graphs.
