@@ -6,13 +6,12 @@ clc-systems	:= usr/share/common-lisp/systems
 clc-files	:= $(clc-source)/$(pkg)
 
 %:
-	dh $@ --with lisp
+	dh $@ --with lisp --with quilt
 
 override_dh_install:
 	dh_install *.asd $(clc-files)
 	dh_install src $(clc-files)
 	dh_install test $(clc-files)
-	dh_install zoneinfo $(clc-files)
 
 override_dh_link:
 	dh_link $(clc-files)/$(pkg).asd $(clc-systems)/$(pkg).asd
