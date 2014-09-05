@@ -1,3 +1,9 @@
+cl-ironclad (0.32.1-2) unstable; urgency=medium
+
+  * Fix debian/copyright
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Fri, 05 Sep 2014 12:56:37 +0400
+
 cl-ironclad (0.32.1-1) unstable; urgency=medium
 
   * Quicklisp release update.

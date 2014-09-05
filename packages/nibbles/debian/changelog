@@ -1,3 +1,9 @@
+cl-nibbles (20140713-2) unstable; urgency=medium
+
+  * Fix debian/copyright that missed rt.lisp special license
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Fri, 05 Sep 2014 13:05:23 +0400
+
 cl-nibbles (20140713-1) unstable; urgency=medium
 
   * Quicklisp release update.
