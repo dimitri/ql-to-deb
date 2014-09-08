@@ -51,7 +51,7 @@ Currently lacking a debian package, because of a classic chicken and eggs
 problem: `ql-to-deb` itself has some dependencies that are not to be found
 in debian yet (drakma, md5 and command-line-arguments).
 
-    $ sudo apt-get install sbcl cl-ppcre cl-split-sequence
+    $ sudo apt-get install sbcl cl-ppcre cl-split-sequence cl-alexandria
     $ sudo apt-get build-dep cl-asdf
     $ sudo apt-get build-dep buildapp
     $ dpkg -i cl-asdf...
