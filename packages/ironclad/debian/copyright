@@ -33,11 +33,16 @@ License:
  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 Files: src/digests/whirlpool.lisp
-Copyright: 2007, Peter Gijsels
+Copyright:
+ 2009-2012, Nathan Froyd
 License:
- This software is "as is", and has no warranty of any kind.  The
- authors assume no responsibility for the consequences of any use of
- this software.
+ The file contains the original 'All rights reserved.' mention from the C
+ version of the code written by Peter Gijsels, but is a complete new work
+ made in Common Lisp by Nathan Froyd. As such, the file fits into the
+ ironclad licensing.
+ .
+ Details and discussion about this can be found at
+ https://github.com/froydnj/ironclad/issues/46.
 
 Files: testing/rt.lisp
 Copyright: 1990 by the Massachusetts Institute of Technology, Cambridge MA.
