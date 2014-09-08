@@ -1,0 +1,17 @@
+Source: cl-ieee-floats
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.5
+Homepage: https://github.com/dimitri/cl-ieee-floats
+Vcs-Git: https://github.com/dimitri/cl-ieee-floats.git
+Vcs-Browser: https://github.com/dimitri/cl-ieee-floats
+
+Package: cl-ieee-floats
+Architecture: all
+Depends: ${misc:Depends}
+Description: Common Lisp IEEE-754 float en- and decoding
+ Functions for converting floating point numbers represented in
+ IEEE 754 style to lisp numbers.

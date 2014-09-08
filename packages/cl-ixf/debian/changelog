@@ -1,0 +1,5 @@
+cl-ixf (20140826-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 08 Sep 2014 23:53:48 +0400

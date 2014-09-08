@@ -1,0 +1,16 @@
+Source: cl-ixf
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.5
+Homepage: https://github.com/dimitri/cl-ixf
+Vcs-Git: https://github.com/dimitri/cl-ixf.git
+Vcs-Browser: https://github.com/dimitri/cl-ixf
+
+Package: cl-ixf
+Architecture: all
+Depends: ${misc:Depends}, cl-ieee-floats
+Description: Common Lisp library to parse IBM IXF file format.
+ Tools to handle IBM PC version of IXF file format.
