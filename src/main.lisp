@@ -13,6 +13,8 @@
 
     (("fix-bugs" #\F) :type boolean :documentation "Fix packaging bugs.")
 
+    (("status") :type boolean :documentation "Display packages status.")
+
     (("config" #\c) :type string :initial-value ,*config-filename*
      :documentation "configuration file.")
 
@@ -41,6 +43,25 @@
   (command-line-arguments:show-option-help *opt-spec*)
   (when quit (uiop:quit)))
 
+(defun status (&key
+                 (debian-suite "sid")
+                 (package-list (list-debian-packages)))
+  "Fetch and display current package list status."
+  (let ((debian-status (rmadison package-list :suite debian-suite)))
+    (format t "~a~35t~a~50t~a~%"  "  Package"   "sid version"   "local version")
+    (format t "~a~35t~a~50t~a~%" "-----------" "-------------" "---------------")
+    (loop :for package :in package-list
+       :for source  := (deb-source package)
+       :for local-version := (format nil "~a-~a"
+                                     (deb-version package)
+                                     (deb-revision package))
+       :for sid-version := (gethash source debian-status)
+       :do (format t "~:[✗~;✓~] ~a~35t~a~50t~a~%"
+                   (string= sid-version local-version)
+                   source
+                   (or sid-version "")
+                   local-version))))
+
 (defun main (argv)
   (let ((args (rest argv)))
     (multiple-value-bind (options packages)
@@ -51,7 +72,7 @@
             (declare (ignore e))
             (usage argv :quit t)))
 
-      (destructuring-bind (&key help version verbose  fix-bugs
+      (destructuring-bind (&key help version verbose status fix-bugs
                                 config dir logs quicklisp)
 	  options
 
@@ -64,6 +85,12 @@
 	(when help (usage argv))
 
         (when (or help version) (uiop:quit))
+
+        (when status
+          (if packages (status :package-list packages)
+              (status))
+
+          (uiop:quit))
 
         (setf *verbose* verbose)
         (setf *ql-props-url* quicklisp)

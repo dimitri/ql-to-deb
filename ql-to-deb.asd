@@ -13,6 +13,7 @@
                  #:md5                  ; check archive checksums
 		 #:command-line-arguments ; for the main function
                  #:py-configparser      ; read .ini config files
+                 #:alexandria           ; some utils
                  )
     :components
     ((:module "src"
@@ -30,5 +31,6 @@
                (:file "main" :depends-on ("package"
                                           "params"
                                           "utils"
+                                          "deb"
                                           "ql-to-deb"))))))
 

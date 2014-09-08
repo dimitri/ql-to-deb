@@ -5,11 +5,12 @@
 
 (defstruct (debian-package
              (:conc-name deb-))
-  (system  nil :type string)            ; the quicklisp system it relates too
-  (dir     nil :type pathname)          ; our own debian/ directory
-  (source  nil :type (or null string))  ; the source package name
-  (version nil :type (or null string))  ; debian/changelog first version string
-  (package nil :type (or null string))) ; debian package name
+  (system   nil :type string)            ; the quicklisp system it relates too
+  (dir      nil :type pathname)          ; our own debian/ directory
+  (source   nil :type (or null string))  ; the source package name
+  (version  nil :type (or null string))  ; debian/changelog first version string
+  (revision nil :type (or null string))  ; debian/changelog revision string
+  (package  nil :type (or null string))) ; debian package name
 
 (defmethod read-version ((deb debian-package))
   "Parse the debian/changelog for the current version of the package."
@@ -18,9 +19,9 @@
     (when (probe-file changelog)
       (let ((first-line (with-open-file (s changelog)
                           (read-line s))))
-        (cl-ppcre:register-groups-bind (version)
-            ("[^ ]+ \\(([^-]+)-[^\\)]+.*" first-line)
-          version)))))
+        (cl-ppcre:register-groups-bind (version revision)
+            ("[^ ]+ \\(([^-]+)-([^\\)]+).*" first-line)
+          (values version revision))))))
 
 (defmethod read-source-name ((deb debian-package))
   "Parse debian/control first line for the name of the source package."
@@ -52,7 +53,10 @@
 
     ;; and now go fetch the current version in the debian/changelog file if
     ;; such does exists.
-    (setf (deb-version deb) (read-version deb))))
+    (multiple-value-bind (version revision)
+        (read-version deb)
+      (setf (deb-version deb) version
+            (deb-revision deb) revision))))
 
 (defun find-debian-package (package-name)
   "Find PACKAGE-NAME in *DEBIAN-PACKAGES* directory."
@@ -103,6 +107,24 @@
 ;;;
 ;;; Using debian utilities
 ;;;
+(defun rmadison (package-list &key (suite "sid"))
+  "Run the `rmadison` command on given PACKAGE-LIST."
+  (let* ((source-list  (mapcar #'deb-source package-list))
+         (rmadison    `("rmadison" "-s" ,suite ,@source-list)))
+    (multiple-value-bind (output error code)
+        (uiop:run-program rmadison :output :string :error-output :string)
+      ;; now parse the output
+      (declare (ignore error code))
+      (alexandria:alist-hash-table
+       (with-input-from-string (s output)
+         (loop :for line := (read-line s nil nil)
+            :while line
+            :collect (destructuring-bind (name version suite &rest details)
+                         (remove "" (cl-ppcre:split "[\\| ]"  line) :test #'string=)
+                       (declare (ignore suite details))
+                       (cons name version))))
+       :test 'equal))))
+
 (defmethod debuild ((deb debian-package))
   "Use the command `debuild -us -uc' to build given DEB package."
   (let ((debuild `("debuild" "-us" "-uc")))
