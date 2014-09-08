@@ -1,35 +1,20 @@
 #!/usr/bin/make -f
 
-build:
+pkg		:= md5
+clc-source	:= usr/share/common-lisp/source
+clc-systems	:= usr/share/common-lisp/systems
+clc-files	:= $(clc-source)/$(pkg)
 
-clean:
-	dh_testdir
-	dh_testroot
-	dh_clean
+%:
+	dh $@ --with lisp
 
-install: build
-	dh_testdir
-	dh_testroot
-	dh_prep
-	dh_installdirs
-	dh_install 
+override_dh_install:
+	dh_install $(pkg).asd $(clc-files)
+	dh_install *.lisp $(clc-files)
+	chmod -x debian/cl-md5/$(clc-files)/*.lisp
 
-binary-arch:
+override_dh_link:
+	dh_link $(clc-files)/$(pkg).asd $(clc-systems)/$(pkg).asd
 
-binary-indep: install
-	dh_testdir
-	dh_testroot
-	dh_installchangelogs
-	dh_lisp
-	dh_installdocs
-	dh_compress
-	dh_fixperms
-	dh_installdeb
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb
-
-binary: binary-indep
-
-
-.PHONY: build clean binary-indep binary-arch binary install
+override_dh_installdocs:
+	dh_installdocs README NEWS

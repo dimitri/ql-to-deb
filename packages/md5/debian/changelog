@@ -1,3 +1,9 @@
+cl-md5 (1:20130312-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 04 Aug 2014 18:52:37 +0400
+
 cl-md5 (1:1.8.5-1) unstable; urgency=low
 
   * Added debian/README.building 
