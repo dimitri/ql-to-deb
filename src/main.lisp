@@ -43,24 +43,29 @@
   (command-line-arguments:show-option-help *opt-spec*)
   (when quit (uiop:quit)))
 
+(defun format-package (source sid-version local-version &optional title)
+  (format t (if title
+                "~*~a~35t~a~55t~a~%"
+                "~:[✗~;✓~] ~a~35t~a~55t~a~%")
+          (string= sid-version local-version)
+          source
+          (or sid-version "")
+          local-version))
+
 (defun status (&key
                  (debian-suite "sid")
                  (package-list (list-debian-packages)))
   "Fetch and display current package list status."
   (let ((debian-status (rmadison package-list :suite debian-suite)))
-    (format t "~a~35t~a~50t~a~%"  "  Package"   "sid version"   "local version")
-    (format t "~a~35t~a~50t~a~%" "-----------" "-------------" "---------------")
+    (format-package "  Package"   " sid version"   " local version" t)
+    (format-package "-----------" "-------------" "---------------" t)
     (loop :for package :in package-list
        :for source  := (deb-source package)
        :for local-version := (format nil "~a-~a"
                                      (deb-version package)
                                      (deb-revision package))
        :for sid-version := (gethash source debian-status)
-       :do (format t "~:[✗~;✓~] ~a~35t~a~50t~a~%"
-                   (string= sid-version local-version)
-                   source
-                   (or sid-version "")
-                   local-version))))
+       :do (format-package source sid-version local-version))))
 
 (defun main (argv)
   (let ((args (rest argv)))
