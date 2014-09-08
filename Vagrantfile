@@ -22,8 +22,15 @@ Vagrant.configure("2") do |config|
     file.destination = '/home/vagrant/.gnupg/gpg.conf'
   end
 
+  config.vm.provision :file do |file|
+    file.source      = 'conf/ql-to-deb.conf'
+    file.destination = '/home/vagrant/.config/common-lisp/source-registry.conf.d/ql-to-deb.conf'
+  end
+
   config.vm.provision "shell" do |s|
     s.path = "conf/bootstrap.sh"
     s.privileged = false
   end
+
+  config.vm.network :forwarded_port, guest: 4205, host: 4205
 end

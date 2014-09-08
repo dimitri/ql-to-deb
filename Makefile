@@ -118,4 +118,6 @@ status:
 	awk '/^Package: / {print $$2}' packages/*/debian/control | sort> /tmp/clist
 	cat /tmp/clist | xargs rmadison -s sid |sort > /tmp/plist
 	join -a1 -j1 /tmp/clist /tmp/plist | column -t -s '|'
+swank:
+	sbcl --load conf/start-swank-server.lisp
 
