@@ -1,3 +1,9 @@
+bordeaux-threads (0.8.3-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 04 Aug 2014 18:55:53 +0400
+
 bordeaux-threads (0.0.2-1) unstable; urgency=low
 
   * New upstream release. (Closes: #444911) 

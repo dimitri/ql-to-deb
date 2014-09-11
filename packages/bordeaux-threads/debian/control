@@ -2,9 +2,10 @@ Source: bordeaux-threads
 Section: libs
 Priority: optional
 Maintainer: Pierre THIERRY <nowhere.man@levallois.eu.org>
+Uploaders: Dimitri Fontaine <dim@tapoueh.org>
 Build-Depends: cdbs, debhelper (>= 5)
 Build-Depends-Indep: dh-lisp
-Standards-Version: 3.7.2
+Standards-Version: 3.9.5
 
 Package: cl-bordeaux-threads
 Architecture: all
