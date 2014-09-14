@@ -1,3 +1,9 @@
+cl-esrap (20140826-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 15 Sep 2014 01:03:45 +0400
+
 cl-esrap (20140713-2) unstable; urgency=medium
 
   * Fix debian/copyright

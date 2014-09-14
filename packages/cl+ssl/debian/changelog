@@ -1,3 +1,9 @@
+cl-plus-ssl (20140826-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 15 Sep 2014 01:03:11 +0400
+
 cl-plus-ssl (20140822-1) unstable; urgency=medium
 
   * Fix debian/copyright mentions of wrong upstream
