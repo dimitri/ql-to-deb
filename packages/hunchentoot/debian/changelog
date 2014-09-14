@@ -1,3 +1,9 @@
+hunchentoot (1.2.27-2) unstable; urgency=medium
+
+  * Fix dependencies for cl-md5.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Sun, 14 Sep 2014 23:19:05 +0400
+
 hunchentoot (1.2.27-1) unstable; urgency=medium
 
   * Quicklisp release update.
