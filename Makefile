@@ -42,6 +42,9 @@ DEBUILD_ROOT = /tmp/ql-to-deb/debian/ql-to-deb
 
 all: $(QL_TO_DEB)
 
+docs:
+	ronn -roff ql-to-deb.1.md
+
 clean:
 	rm -rf $(LIBS) $(QUICKLISP) $(QLDIR) $(MANIFEST) $(BUILDAPP) $(QL_TO_DEB)
 
@@ -107,8 +110,8 @@ ql-to-deb: $(QL_TO_DEB) ;
 
 deb:
 	# intended for use on a debian system
-	mkdir -p $(DEBUILD_ROOT) && rm -rf $(DEBUILD_ROOT)/*
-	rsync -Ca --exclude=build/* ./ $(DEBUILD_ROOT)/
+	mkdir -p $(DEBUILD_ROOT) && rm -rf $(DEBUILD_ROOT)
+	rsync -Ca --exclude=build/* --exclude=.vagrant ./ $(DEBUILD_ROOT)/
 	mkdir -p $(DEBUILD_ROOT)/build/bin
 	cd $(DEBUILD_ROOT) && make -f debian/rules orig
 	cd $(DEBUILD_ROOT) && debuild -us -uc -sa

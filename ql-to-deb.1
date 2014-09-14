@@ -1,0 +1,60 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "QL\-TO\-DEB" "1" "September 2014" "ff" ""
+.
+.SH "NAME"
+\fBql\-to\-deb\fR \- PostgreSQL data loader
+.
+.SH "SYNOPSIS"
+\fBql\-to\-deb\fR [\fIoptions\fR] [\fIquicklisp system\fR \.\.\.]
+.
+.SH "DESCRIPTION"
+ql\-to\-deb aims to simplify maintaining debian packages for Common Lisp librairies, by automating their updates from Quicklisp\. When using ql\-to\-deb, debian upstream actually is Quicklisp\.
+.
+.SH "OPTIONS"
+.
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+Show command usage summary and exit\.
+.
+.TP
+\fB\-V\fR, \fB\-\-version\fR
+Show ql\-to\-deb version string and exit\.
+.
+.TP
+\fB\-v\fR, \fB\-\-verbose\fR
+Be verbose\.
+.
+.TP
+\fB\-c\fR, \fB\-\-config\fR
+Which filename to use as the main ql\-to\-deb configuration\.
+.
+.TP
+\fB\-\-status\fR
+Display a list of known packages and their status in the debian sid distribution\. The status is ok only when the Quicklisp release and the current sid package both have the same version string, discarding the debian epoch and debian release parts of the version number\.
+.
+.TP
+\fB\-F\fR, \fB\-\-fix\-bugs\fR
+Rebuild given package(s) from the same Quicklisp release as the current most recent debian/changelog entry, allowing for debian packaging bug fixes\.
+.
+.TP
+\fB\-D\fR, \fB\-\-dir\fR
+Where to build the packages\.
+.
+.TP
+\fB\-L\fR, \fB\-\-logs\fR
+Where to store the build log files\. A separate log file is produced for each package that\'s being built\.
+.
+.TP
+\fB\-Q\fR, \fB\-\-quicklisp\fR
+Quicklisp URL to use to fetch Quicklisp distribution\.
+.
+.SH "Quicklisp Releases and Debian packages"
+The \fIquicklisp systems\fR on the command line should be names after their Quicklisp name, which is used as the directory name where the debian packaging is maintained\. When usin the ql\-to\-deb sources, that\'s in \fB\./packages\fR, and when using the debian package version of ql\-to\-deb, the packages are located in \fB/usr/share/ql\-to\-deb/packages\fR\.
+.
+.SH "AUTHOR"
+Dimitri Fontaine \fIdimitri@2ndQuadrant\.fr\fR
+.
+.SH "SEE ALSO"
+The ql\-to\-deb source code and all documentation may be downloaded from \fIhttps://github\.com/dimitri/ql\-to\-deb/\fR\.
