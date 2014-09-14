@@ -31,6 +31,7 @@
                (:file "main" :depends-on ("package"
                                           "params"
                                           "utils"
+                                          "ql"
                                           "deb"
                                           "ql-to-deb"))))))
 

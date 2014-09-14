@@ -43,29 +43,34 @@
   (command-line-arguments:show-option-help *opt-spec*)
   (when quit (uiop:quit)))
 
-(defun format-package (source sid-version local-version &optional title)
-  (format t (if title
-                "~*~a~35t~a~55t~a~%"
-                "~:[✗~;✓~] ~a~35t~a~55t~a~%")
-          (string= sid-version local-version)
+(defun format-package (source sid-version local-version package release)
+  (format t "~:[✗~;✓~] ~a~35t~a~55t~a~70t~a~%"
+          (and (string= sid-version local-version)
+               (same-version-p package release))
           source
           (or sid-version "")
-          local-version))
+          local-version
+          (ql-version release)))
 
 (defun status (&key
                  (debian-suite "sid")
                  (package-list (list-debian-packages)))
   "Fetch and display current package list status."
-  (let ((debian-status (rmadison package-list :suite debian-suite)))
-    (format-package "  Package"   " sid version"   " local version" t)
-    (format-package "-----------" "-------------" "---------------" t)
+  (let ((ql-status     (ql-fetch-current-releases))
+        (debian-status (rmadison package-list :suite debian-suite)))
+    (format t  "~a~35t~a~55t~a~70t~a~%"
+            "  Package"   " sid version"  " local version"  " ql version")
+    (format t  "~a~35t~a~55t~a~70t~a~%"
+            "-----------" "-------------" "---------------" "------------")
     (loop :for package :in package-list
        :for source  := (deb-source package)
+       :for system  := (deb-system package)
        :for local-version := (format nil "~a-~a"
                                      (deb-version package)
                                      (deb-revision package))
        :for sid-version := (gethash source debian-status)
-       :do (format-package source sid-version local-version))))
+       :for release := (gethash system ql-status)
+       :do (format-package source sid-version local-version package release))))
 
 (defun main (argv)
   (let ((args (rest argv)))

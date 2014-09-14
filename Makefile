@@ -120,5 +120,5 @@ deb:
 swank:
 	sbcl --load conf/start-swank-server.lisp
 
-status:
+status: $(QL_TO_DEB)
 	$(QL_TO_DEB) --status
