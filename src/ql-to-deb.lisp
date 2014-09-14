@@ -116,10 +116,10 @@
   (let* ((orig-filename
           (format nil "~a_~a.orig.tar.gz"
                   (deb-source deb)
-                  (or (version-and-epoch deb)
-                      (ql-version release))))
+                  (ql-version release)))
          (debian-archive-pathname
           (merge-pathnames orig-filename *build-root*)))
+
     ;; get rid of possibly existing stray symlinks from previous runs
     (when (probe-file debian-archive-pathname)
       (delete-file debian-archive-pathname))
