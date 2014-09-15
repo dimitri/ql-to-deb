@@ -43,15 +43,6 @@
   (command-line-arguments:show-option-help *opt-spec*)
   (when quit (uiop:quit)))
 
-(defun format-package (source sid-version local-version package release)
-  (format t "~:[✗~;✓~] ~a~35t~a~55t~a~70t~a~%"
-          (and (string= sid-version local-version)
-               (same-version-p package release))
-          source
-          (or sid-version "")
-          local-version
-          (ql-version release)))
-
 (defun status (&key
                  (debian-suite "sid")
                  (package-list (list-debian-packages)))
@@ -70,7 +61,13 @@
                                      (deb-revision package))
        :for sid-version := (gethash source debian-status)
        :for release := (gethash system ql-status)
-       :do (format-package source sid-version local-version package release))))
+       :do (format t "~:[✗~;✓~] ~a~35t~a~55t~a~70t~a~%"
+                   (and (string= sid-version local-version)
+                        (same-version-p package release))
+                   source
+                   (or sid-version "")
+                   local-version
+                   (ql-version release)))))
 
 (defun main (argv)
   (let ((args (rest argv)))
