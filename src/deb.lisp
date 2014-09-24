@@ -10,7 +10,9 @@
   (source   nil :type (or null string))  ; the source package name
   (version  nil :type (or null string))  ; debian/changelog first version string
   (revision nil :type (or null string))  ; debian/changelog revision string
-  (package  nil :type (or null string))) ; debian package name
+  (package  nil :type (or null string))  ; debian package name
+  (sid-version  nil :type (or null string)) ; sid version
+  )
 
 (defmethod read-version ((deb debian-package))
   "Parse the debian/changelog for the current version of the package."
@@ -22,6 +24,10 @@
         (cl-ppcre:register-groups-bind (version revision)
             ("[^ ]+ \\(([^-]+)-([^\\)]+).*" first-line)
           (values version revision))))))
+
+(defmethod full-version ((deb debian-package))
+  "Return the full text of the local-version of the DEB pacakge."
+  (format nil "~a-~a" (deb-version deb) (deb-revision deb)))
 
 (defmethod read-source-name ((deb debian-package))
   "Parse debian/control first line for the name of the source package."
@@ -102,6 +108,12 @@
       (version-and-epoch deb)
     (declare (ignore version))
     (+ 1 (parse-integer (or epoch "0")))))
+
+(defmethod package-changes-namestring ((deb debian-package) arch)
+  "Return the pathname of the debian .changes file for DEB on ARCH."
+  (let ((filename (format nil "~a_~a_~a.changes"
+                          (deb-source deb) (full-version deb) arch)))
+    (uiop:native-namestring (uiop:merge-pathnames* filename *build-root*))))
 
 
 ;;;

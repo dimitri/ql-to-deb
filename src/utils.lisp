@@ -24,6 +24,34 @@
   (let* ((tar `("tar" "xzf" ,(uiop:native-namestring archive-pathname))))
     (run-command tar *build-root*)))
 
+(defun dpkg-architecture ()
+  "Return the result of `dpkg --print-architecture`."
+  (let ((output
+         (uiop:run-program '("dpkg" "--print-architecture") :output :string)))
+   (with-input-from-string (s output)
+     (read-line s))))
+
+(defun lintian (changes-filename)
+  "Print whatever the lintian command outputs."
+  (uiop:run-program `("lintian" ,changes-filename)
+                    :output :interactive
+                    :error-output :interactive
+                    :ignore-error-status t))
+
+(defun debsign (changes-filename)
+  "Call `debsign` on given CHANGES-FILENAME."
+  (uiop:run-program `("debsign" ,changes-filename)
+                    :output :interactive
+                    :error-output :interactive
+                    :ignore-error-status t))
+
+(defun dput (changes-filename)
+  "Call `dput` on given CHANGES-FILENAME."
+  (uiop:run-program `("dput" ,changes-filename)
+                    :output :interactive
+                    :error-output :interactive
+                    :ignore-error-status t))
+
 (defun ensure-list (maybe-list)
   (typecase maybe-list
     (list maybe-list)

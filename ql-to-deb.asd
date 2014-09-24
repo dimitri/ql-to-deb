@@ -28,10 +28,17 @@
                                                "utils"
                                                "ql"
                                                "deb"))
+               (:file "commands" :depends-on ("package"
+                                              "params"
+                                              "utils"
+                                              "ql"
+                                              "deb"
+                                              "ql-to-deb"))
                (:file "main" :depends-on ("package"
                                           "params"
                                           "utils"
                                           "ql"
                                           "deb"
-                                          "ql-to-deb"))))))
+                                          "ql-to-deb"
+                                          "commands"))))))
 

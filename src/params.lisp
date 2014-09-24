@@ -4,7 +4,7 @@
 
 (in-package #:ql-to-deb)
 
-(defparameter *version-string* "0.6.0"
+(defparameter *version-string* "0.7.0"
   "Our version string...")
 
 (defparameter *verbose* nil
@@ -13,6 +13,12 @@
 (defvar *config-filename*
   (asdf:system-relative-pathname :ql-to-deb "ql-to-deb.ini")
   "Configuration file with per-package hooks.")
+
+(defvar *changes-filename* ".ql-to-deb.changes")
+
+(defvar *changes-pathname*
+  (uiop:merge-pathnames* *changes-filename* (user-homedir-pathname))
+  "Cache the list of just built .changes.")
 
 (defvar *debian-packages*
   (asdf:system-relative-pathname :ql-to-deb "packages/")

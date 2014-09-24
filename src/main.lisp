@@ -4,6 +4,16 @@
 
 (in-package #:ql-to-deb)
 
+(defparameter *commands*
+  '(("status" "Compare versions (debian sid, local, Quicklisp)" status)
+    ("check"  "List packages that need building"                check)
+    ("update" "Build either packages or all that need a build"  update)
+    ("build"  "Build either packages or all that need a build"  update)
+    ("lint"   "Run lintian on just built packages"              lint)
+    ("sign"   "Run debsin on just built packages"               sign)
+    ("upload" "Run dput on just built packages"                 upload))
+  "Top level commands for the ql-to-deb command line")
+
 (defparameter *opt-spec*
   `((("help" #\h) :type boolean :documentation "Show usage and exit.")
 
@@ -12,8 +22,6 @@
     (("verbose" #\v) :type boolean :documentation "Be verbose.")
 
     (("fix-bugs" #\F) :type boolean :documentation "Fix packaging bugs.")
-
-    (("status") :type boolean :documentation "Display packages status.")
 
     (("config" #\c) :type string :initial-value ,*config-filename*
      :documentation "configuration file.")
@@ -39,39 +47,23 @@
 
 (defun usage (argv &key quit)
   "Show usage then QUIT if asked to."
-  (format t "~a [ option ... ] [ package ...]" (first argv))
-  (command-line-arguments:show-option-help *opt-spec*)
-  (when quit (uiop:quit)))
+  (format t "~a [ option ... ] command [ package ...]" (first argv))
 
-(defun status (&key
-                 (debian-suite "sid")
-                 (package-list (list-debian-packages)))
-  "Fetch and display current package list status."
-  (let ((ql-status     (ql-fetch-current-releases))
-        (debian-status (rmadison package-list :suite debian-suite)))
-    (format t  "~a~35t~a~55t~a~70t~a~%"
-            "  Package"   " sid version"  " local version"  " ql version")
-    (format t  "~a~35t~a~55t~a~70t~a~%"
-            "-----------" "-------------" "---------------" "------------")
-    (loop :for package :in package-list
-       :for source  := (deb-source package)
-       :for system  := (deb-system package)
-       :for local-version := (format nil "~a-~a"
-                                     (deb-version package)
-                                     (deb-revision package))
-       :for sid-version := (gethash source debian-status)
-       :for release := (gethash system ql-status)
-       :do (format t "~:[✗~;✓~] ~a~35t~a~55t~a~70t~a~%"
-                   (and (string= sid-version local-version)
-                        (same-version-p package release))
-                   source
-                   (or sid-version "")
-                   local-version
-                   (ql-version release)))))
+  (format t "~&~%Options:~%")
+  (command-line-arguments:show-option-help *opt-spec*)
+
+  ;;
+  ;; Usage strings for commands
+  ;;
+  (format t "~&~%Commands:~%")
+  (loop :for (command help fn) :in *commands*
+     :do (format t "  ~a~12t~a~%" command help))
+
+  (when quit (uiop:quit)))
 
 (defun main (argv)
   (let ((args (rest argv)))
-    (multiple-value-bind (options packages)
+    (multiple-value-bind (options arguments)
 	(handler-case
             (command-line-arguments:process-command-line-options *opt-spec* args)
           (condition (e)
@@ -79,7 +71,7 @@
             (declare (ignore e))
             (usage argv :quit t)))
 
-      (destructuring-bind (&key help version verbose status fix-bugs
+      (destructuring-bind (&key help version verbose fix-bugs
                                 config dir logs quicklisp)
 	  options
 
@@ -93,16 +85,14 @@
 
         (when (or help version) (uiop:quit))
 
-        (when status
-          (if packages (status :package-list packages)
-              (status))
-
-          (uiop:quit))
-
         (setf *verbose* verbose)
         (setf *ql-props-url* quicklisp)
         (setf *fix-bugs* fix-bugs)
         (setf *config-filename* config)
+
+        ;; the .changes value needs to be set at runtime
+        (setf *changes-pathname*
+              (uiop:merge-pathnames* *changes-filename* (user-homedir-pathname)))
 
         (let ((dir-truename (probe-file dir)))
           (if dir-truename
@@ -115,16 +105,15 @@
               (setf *logs-root* (mkdir-or-die logs))))
 
         (handler-case
-            (if packages
-                (loop :for (package . release)
-                   :in (filter-packages-to-update packages)
-                   :do (update-package package release))
-
-                ;; by default, try to update them all
-                (loop :for (package . release)
-                   :in (list-packages-to-update)
-                   :do (update-package package release)))
-
+            (destructuring-bind (command &rest packages) arguments
+              (let ((cmd (assoc command *commands* :test #'string=)))
+                (if cmd
+                    (destructuring-bind (name help fn) cmd
+                      (declare (ignore name help))
+                      (funcall fn :packages packages))
+                    (error "Unknown command ~s" command))))
           (condition (c)
             (format t "Fatal: ~a~%" c)
-            (uiop:quit 1)))))))
+            (uiop:quit 1)))
+
+        (uiop:quit)))))

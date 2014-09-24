@@ -2,7 +2,7 @@
 
 ## SYNOPSIS
 
-`ql-to-deb` [<options>] [<quicklisp system> ...]
+`ql-to-deb` [<options>] command [<quicklisp system> ...]
 
 ## DESCRIPTION
 
@@ -24,12 +24,6 @@ ql-to-deb, debian upstream actually is Quicklisp.
   * `-c`, `--config`:
     Which filename to use as the main ql-to-deb configuration.
 
-  * `--status`:
-    Display a list of known packages and their status in the debian sid
-    distribution. The status is ok only when the Quicklisp release and the
-    current sid package both have the same version string, discarding the
-    debian epoch and debian release parts of the version number.
-
   * `-F`, `--fix-bugs`:
     Rebuild given package(s) from the same Quicklisp release as the current
     most recent debian/changelog entry, allowing for debian packaging bug
@@ -44,6 +38,41 @@ ql-to-deb, debian upstream actually is Quicklisp.
 
   * `-Q`, `--quicklisp`:
     Quicklisp URL to use to fetch Quicklisp distribution.
+    
+## COMMANDS
+
+  - `status`
+    Display a list of known packages and their status in the debian sid
+    distribution. The status is ok only when the Quicklisp release and the
+    current sid package both have the same version string, discarding the
+    debian epoch and debian release parts of the version number.
+
+  - `check`
+    Prints out what needs to be done: the list of packages needing an update
+    from Quicklisp and the list of packages needing to be uploaded to
+    debian.
+
+  - `update`
+    Fetch the current Quicklisp release for all the systems needing an
+    update, and build the debian package from the refreshed sources.
+    
+  - `build`
+    Alias for `update`.
+
+  - `lint`
+    Run the lintian command on the just built packages or the one manually
+    given on the command line. Figures out where the changes file is to be
+    found, and under which name exactly.
+  
+  - `sign`
+    Run the debsign command on the just built packages or the one manually
+    given on the command line. Figures out where the changes file is to be
+    found, and under which name exactly.
+
+  - `upload`
+    Run the dput command on the just built packages or the one manually
+    given on the command line. Figures out where the changes file is to be
+    found, and under which name exactly.
 
 ## Quicklisp Releases and Debian packages
 

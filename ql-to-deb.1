@@ -7,7 +7,7 @@
 \fBql\-to\-deb\fR \- PostgreSQL data loader
 .
 .SH "SYNOPSIS"
-\fBql\-to\-deb\fR [\fIoptions\fR] [\fIquicklisp system\fR \.\.\.]
+\fBql\-to\-deb\fR [\fIoptions\fR] command [\fIquicklisp system\fR \.\.\.]
 .
 .SH "DESCRIPTION"
 ql\-to\-deb aims to simplify maintaining debian packages for Common Lisp librairies, by automating their updates from Quicklisp\. When using ql\-to\-deb, debian upstream actually is Quicklisp\.
@@ -31,10 +31,6 @@ Be verbose\.
 Which filename to use as the main ql\-to\-deb configuration\.
 .
 .TP
-\fB\-\-status\fR
-Display a list of known packages and their status in the debian sid distribution\. The status is ok only when the Quicklisp release and the current sid package both have the same version string, discarding the debian epoch and debian release parts of the version number\.
-.
-.TP
 \fB\-F\fR, \fB\-\-fix\-bugs\fR
 Rebuild given package(s) from the same Quicklisp release as the current most recent debian/changelog entry, allowing for debian packaging bug fixes\.
 .
@@ -49,6 +45,31 @@ Where to store the build log files\. A separate log file is produced for each pa
 .TP
 \fB\-Q\fR, \fB\-\-quicklisp\fR
 Quicklisp URL to use to fetch Quicklisp distribution\.
+.
+.SH "COMMANDS"
+.
+.IP "\(bu" 4
+\fBstatus\fR Display a list of known packages and their status in the debian sid distribution\. The status is ok only when the Quicklisp release and the current sid package both have the same version string, discarding the debian epoch and debian release parts of the version number\.
+.
+.IP "\(bu" 4
+\fBcheck\fR Prints out what needs to be done: the list of packages needing an update from Quicklisp and the list of packages needing to be uploaded to debian\.
+.
+.IP "\(bu" 4
+\fBupdate\fR Fetch the current Quicklisp release for all the systems needing an update, and build the debian package from the refreshed sources\.
+.
+.IP "\(bu" 4
+\fBbuild\fR Alias for \fBupdate\fR\.
+.
+.IP "\(bu" 4
+\fBlint\fR Run the lintian command on the just built packages or the one manually given on the command line\. Figures out where the changes file is to be found, and under which name exactly\.
+.
+.IP "\(bu" 4
+\fBsign\fR Run the debsign command on the just built packages or the one manually given on the command line\. Figures out where the changes file is to be found, and under which name exactly\.
+.
+.IP "\(bu" 4
+\fBupload\fR Run the dput command on the just built packages or the one manually given on the command line\. Figures out where the changes file is to be found, and under which name exactly\.
+.
+.IP "" 0
 .
 .SH "Quicklisp Releases and Debian packages"
 The \fIquicklisp systems\fR on the command line should be names after their Quicklisp name, which is used as the directory name where the debian packaging is maintained\. When usin the ql\-to\-deb sources, that\'s in \fB\./packages\fR, and when using the debian package version of ql\-to\-deb, the packages are located in \fB/usr/share/ql\-to\-deb/packages\fR\.
