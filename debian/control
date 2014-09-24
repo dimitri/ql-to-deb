@@ -11,7 +11,7 @@ Vcs-Browser: https://github.com/dimitri/ql-to-deb
 
 Package: ql-to-deb
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, dpkg-dev
+Depends: ${shlibs:Depends}, ${misc:Depends}, dpkg-dev, devscripts, lintian, dput
 Description: Update cl-* debian packages from Quicklisp releases
  This projects updates Common Lisp libraries debian packages from the
  current release found at Quicklisp, if an update is needed.
