@@ -1,0 +1,14 @@
+[ftp-master]
+fqdn                    = ftp.upload.debian.org
+incoming                = /pub/UploadQueue/
+login                   = anonymous
+allow_dcut              = 1
+method                  = ftp
+
+# http://lists.debian.org/debian-project/2009/05/msg00036.html
+[ftp-eu]
+fqdn                    = ftp.eu.upload.debian.org
+method                  = ftp
+incoming                = /pub/UploadQueue/
+login                   = anonymous
+allow_dcut              = 1

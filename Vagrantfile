@@ -23,6 +23,11 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision :file do |file|
+    file.source      = 'conf/dput.cf'
+    file.destination = '/home/vagrant/.dput.cf'
+  end
+
+  config.vm.provision :file do |file|
     file.source      = 'conf/ql-to-deb.conf'
     file.destination = '/home/vagrant/.config/common-lisp/source-registry.conf.d/ql-to-deb.conf'
   end
