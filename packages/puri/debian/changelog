@@ -4,6 +4,12 @@ cl-puri (20101006-1) unstable; urgency=medium
 
  -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 04 Aug 2014 18:22:36 +0400
 
+cl-puri (1.5.5-1) unstable; urgency=low
+
+  * New upstream
+
+ -- Kevin M. Rosenberg <kmr@debian.org>  Fri, 07 May 2010 12:04:31 -0600
+
 cl-puri (1.5.4-1) unstable; urgency=low
 
   * New upstream
