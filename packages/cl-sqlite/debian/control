@@ -11,7 +11,7 @@ Vcs-Browser: http://github.com/dmitryvk/cl-sqlite
 
 Package: cl-sqlite
 Architecture: all
-Depends: ${misc:Depends}, cl-iterate, cl-cffi
+Depends: ${misc:Depends}, cl-iterate, cl-cffi, libsqlite3-0
 Description: Common Lisp interface to SQLite 
  CL-SQLITE package is an interface to the SQLite embedded relational
  database engine.
