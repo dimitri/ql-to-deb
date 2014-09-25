@@ -69,18 +69,26 @@ Now that you have the build requirements sorted:
 And then:
 
     $ ./build/bin/ql-to-deb --version
-    ql-to-deb version "0.3.0"
-    compiled with SBCL 1.0.57.0.debian
+    ql-to-deb version "0.7.0"
+    compiled with SBCL 1.2.3.debian
+
+    $ ./build/bin/ql-to-deb [ option ... ] command [ package ...]
     
-    $ ./build/bin/ql-to-deb --help
-    ./build/bin/ql-to-deb [ option ... ] [ package ...]
+    Options:
       --help -h                       boolean  Show usage and exit. 
       --version -V                    boolean  Displays version and exit. 
       --verbose -v                    boolean  Be verbose. 
+      --fix-bugs -F                   boolean  Fix packaging bugs. 
+      --config -c                     string   configuration file.  (default: #P"/vagrant/ql-to-deb.ini")
       --dir -D                        string   where to build packages.  (default: "/tmp/ql-to-deb/")
       --logs -L                       string   where to write detailed logs.  (default: "/tmp/ql-to-deb/logs/")
       --quicklisp -Q                  string   URL to use to fetch quicklisp.txt main file  (default: "http://beta.quicklisp.org/dist/quicklisp.txt")
-
-So, to check all known packages:
-
-    $ ./build/bin/ql-to-deb -v
+    
+    Commands:
+      status    Compare versions (debian sid, local, Quicklisp)
+      check     List packages that need building
+      update    Build either packages or all that need a build
+      build     Build either packages or all that need a build
+      lint      Run lintian on just built packages
+      sign      Run debsin on just built packages
+      upload    Run dput on just built packages
