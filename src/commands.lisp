@@ -34,6 +34,10 @@
    is different from the version in sid."
   (not (string= (deb-sid-version package) (full-version package))))
 
+(defun clean-changes-pathname ()
+  "Remove the *changes-pathname* file, cleaning the cache."
+  (delete-file *changes-pathname*))
+
 (defun status (&key
                  packages
                  (package-list (list-debian-packages)))
@@ -63,6 +67,7 @@
   "Display the list of packages in need for some care and love."
   (let ((current-status
          (fetch-current-status (filter-package-list package-list packages))))
+    (clean-changes-pathname)
     (loop :for (package release) :in current-status
        :when (package-needs-update package release)
        :collect (deb-system package) :into needs-update
