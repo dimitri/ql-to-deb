@@ -36,7 +36,8 @@
 
 (defun clean-changes-pathname ()
   "Remove the *changes-pathname* file, cleaning the cache."
-  (delete-file *changes-pathname*))
+  (when (probe-file *changes-pathname*)
+    (delete-file *changes-pathname*)))
 
 (defun status (&key
                  packages
