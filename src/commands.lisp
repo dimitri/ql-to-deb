@@ -12,10 +12,10 @@
                      package-list)
       package-list))
 
-(defun fetch-current-status (debian-package-list &key (debian-suite "sid"))
+(defun fetch-current-status (debian-package-list)
   "Given a list of debian packages, retrieve their status."
   (let ((ql-status     (ql-fetch-current-releases))
-        (debian-status (rmadison debian-package-list :suite debian-suite)))
+        (debian-status (rmadison debian-package-list)))
     (loop :for package :in debian-package-list
        :for source      := (deb-source package)
        :for system      := (deb-system package)
@@ -36,12 +36,10 @@
 
 (defun status (&key
                  packages
-                 (debian-suite "sid")
                  (package-list (list-debian-packages)))
   "Fetch and display current package list status."
   (let ((current-status
-         (fetch-current-status (filter-package-list package-list packages)
-                               :debian-suite debian-suite)))
+         (fetch-current-status (filter-package-list package-list packages))))
    (format t  "~a~35t~a~55t~a~73t~a~%"
            "  Package"   " sid version"  " local version"  " ql version")
    (format t  "~a~35t~a~55t~a~73t~a~%"
@@ -61,12 +59,10 @@
 
 (defun check (&key
                 packages
-                 (debian-suite "sid")
-                 (package-list (list-debian-packages)))
+                (package-list (list-debian-packages)))
   "Display the list of packages in need for some care and love."
   (let ((current-status
-         (fetch-current-status (filter-package-list package-list packages)
-                               :debian-suite debian-suite)))
+         (fetch-current-status (filter-package-list package-list packages))))
     (loop :for (package release) :in current-status
        :when (package-needs-update package release)
        :collect (deb-system package) :into needs-update
@@ -82,12 +78,10 @@
 
 (defun update (&key
                  packages
-                 (debian-suite "sid")
                  (package-list (list-debian-packages)))
   "Rebuild all packages that need to be updated."
   (let ((current-status
-         (fetch-current-status (filter-package-list package-list packages)
-                               :debian-suite debian-suite))
+         (fetch-current-status (filter-package-list package-list packages)))
         (arch (dpkg-architecture)))
     (with-open-file (changes *changes-pathname*
                              :direction :output

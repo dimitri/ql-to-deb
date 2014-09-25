@@ -75,7 +75,7 @@
 
 (defun list-debian-packages ()
   "Walk the *DEBIAN-PACKAGES* directory and return a list of debian-package."
-  (loop :for dir :in (uiop:directory-files *debian-packages*)
+  (loop :for dir :in (uiop:subdirectories *debian-packages*)
      :collect (let* ((system  (last-directory dir))
                      (debian  (uiop:merge-pathnames* "debian/" dir))
                      (package (make-debian-package :system system
@@ -119,23 +119,29 @@
 ;;;
 ;;; Using debian utilities
 ;;;
-(defun rmadison (package-list &key (suite "sid"))
+(defun parse-rmadison-output (output &key (suite-list '("sid" "debian/unstable/")))
+  "Parse the rmadison output"
+  (with-input-from-string (s output)
+    (remove
+     nil
+     (loop :for line := (read-line s nil nil)
+        :while line
+        :unless (cl-ppcre:scan-to-strings "^(debian|new):" line)
+        :collect (destructuring-bind (name version suite &rest details)
+                     (remove "" (cl-ppcre:split "[\\| ]"  line) :test #'string=)
+                   (declare (ignore details))
+                   (when (member suite suite-list :test #'string=)
+                     (cons name version)))))))
+
+(defun rmadison (package-list)
   "Run the `rmadison` command on given PACKAGE-LIST."
   (let* ((source-list  (mapcar #'deb-source package-list))
-         (rmadison    `("rmadison" "-s" ,suite ,@source-list)))
+         (rmadison    `("rmadison" ,@source-list)))
     (multiple-value-bind (output error code)
         (uiop:run-program rmadison :output :string :error-output :string)
       ;; now parse the output
       (declare (ignore error code))
-      (alexandria:alist-hash-table
-       (with-input-from-string (s output)
-         (loop :for line := (read-line s nil nil)
-            :while line
-            :collect (destructuring-bind (name version suite &rest details)
-                         (remove "" (cl-ppcre:split "[\\| ]"  line) :test #'string=)
-                       (declare (ignore suite details))
-                       (cons name version))))
-       :test 'equal))))
+      (alexandria:alist-hash-table (parse-rmadison-output output) :test 'equal))))
 
 (defmethod debuild ((deb debian-package))
   "Use the command `debuild -us -uc' to build given DEB package."
