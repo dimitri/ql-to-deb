@@ -1,3 +1,10 @@
+bordeaux-threads (0.8.3-2) unstable; urgency=medium
+
+  * Take over the package maintenance, as the current maintainer email
+    address bounces (Closes: #762529)
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Fri, 26 Sep 2014 17:31:33 +0400
+
 bordeaux-threads (0.8.3-1) unstable; urgency=medium
 
   * Quicklisp release update.

@@ -1,8 +1,8 @@
 Source: bordeaux-threads
-Section: libs
+Section: lisp
 Priority: optional
-Maintainer: Pierre THIERRY <nowhere.man@levallois.eu.org>
-Uploaders: Dimitri Fontaine <dim@tapoueh.org>
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Uploaders: Christoph Berg <myon@debian.org>
 Build-Depends: cdbs, debhelper (>= 5)
 Build-Depends-Indep: dh-lisp
 Standards-Version: 3.9.5
