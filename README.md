@@ -19,10 +19,20 @@ contains the list of currently most recent available releases in Quicklisp.
 ## Debian
 
 It's only possible to `ql-to-deb` on packages you've prepared before hand.
-Add the packaging in the `debian/` subdirectory of the project, then just
+Add the packaging in the `debian/` subdirectory of the project. A typical
+workflow would be:
 
-    $ ql-to-deb -v package
-    
+    $ ql-to-deb status [ package ]
+    $ ql-to-deb build [ package ]
+    $ ql-to-deb lint
+    $ ql-to-deb sign
+    $ ql-to-deb upload
+
+The `build` command stores the name of the debian *changes* files in
+`~/.ql-to-deb.changes` and will reuse that information in the other steps,
+so that it's possible to use the `lint`, `sign` and `upload` commands
+without any arguments meaning *work on what I just built please*.
+
 The application will parse the `debian/control` file to figure out the name
 of the debian source package, it is adviced to name the packaging directory
 the same as the source file for easier maintenance.
