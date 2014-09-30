@@ -1,3 +1,9 @@
+bordeaux-threads (0.8.3-3) unstable; urgency=medium
+
+  * Remove Christoph from the maintainers. 
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Tue, 30 Sep 2014 13:42:20 +0400
+
 bordeaux-threads (0.8.3-2) unstable; urgency=medium
 
   * Take over the package maintenance, as the current maintainer email
