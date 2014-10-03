@@ -1,3 +1,9 @@
+hunchentoot (1.2.27+dfsg-3) unstable; urgency=medium
+
+  * Remove doc/hunchentoot.gif (CC-BY-SA-2.0)
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Fri, 03 Oct 2014 11:51:55 +0400
+
 hunchentoot (1.2.27-2) unstable; urgency=medium
 
   * Fix dependencies for cl-md5.
