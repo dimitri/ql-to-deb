@@ -76,6 +76,11 @@
 
       (handler-case
           (progn
+            ;; add a debian changelog entry, unless when repackaging from
+            ;; Quicklisp with manually fixed packaging.
+            (unless *fix-bugs*
+              (update-changelog deb ql))
+
             ;; fetch the Quicklisp archive and turn it into an orig tarball
             (let ((debian-archive-pathname (prepare-orig-tarball deb ql)))
               ;; now unpack said archive at the place where we debuild it
@@ -83,11 +88,6 @@
 
             ;; rename the archive and add the debian directory in its directory
             (package-release deb ql)
-
-            ;; add a debian changelog entry, unless when repackaging from
-            ;; Quicklisp with manually fixed packaging.
-            (unless *fix-bugs*
-              (update-changelog deb ql))
 
             ;; now debuild the package
             (debuild deb)
@@ -114,9 +114,7 @@
   (ql-fetch-release release)
 
   (let* ((orig-filename
-          (format nil "~a_~a.orig.tar.gz"
-                  (deb-source deb)
-                  (ql-version release)))
+          (format nil "~a_~a.orig.tar.gz" (deb-source deb) (deb-version deb)))
          (debian-archive-pathname
           (merge-pathnames orig-filename *build-root*)))
 
