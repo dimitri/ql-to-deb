@@ -27,6 +27,11 @@ License: BSD-2-clause
  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  POSSIBILITY OF SUCH DAMAGE.
+ .
+ The source package contained the file doc/hunchentoot.git twice (the other
+ instance at www/hunchentoot.gif) under the "Creative Commons
+ Attribution-Share Alike 2.0 Germany License" which is not compatible with
+ the DFSG, and has thus been removed from the source package.
 
 Files: debian/*
 Copyright: 2014 Dimitri Fontaine
