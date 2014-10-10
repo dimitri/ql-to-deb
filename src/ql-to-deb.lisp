@@ -76,10 +76,9 @@
 
       (handler-case
           (progn
-            ;; add a debian changelog entry, unless when repackaging from
-            ;; Quicklisp with manually fixed packaging.
-            (unless *fix-bugs*
-              (update-changelog deb ql))
+            ;; Compute the next version number of our debian package, we
+            ;; need to know that to name the orig tarball properly.
+            (compute-next-version deb (ql-version ql))
 
             ;; fetch the Quicklisp archive and turn it into an orig tarball
             (let ((debian-archive-pathname (prepare-orig-tarball deb ql)))
@@ -88,6 +87,11 @@
 
             ;; rename the archive and add the debian directory in its directory
             (package-release deb ql)
+
+            ;; add a debian changelog entry, unless when repackaging from
+            ;; Quicklisp with manually fixed packaging.
+            (unless *fix-bugs*
+              (update-changelog deb ql))
 
             ;; now debuild the package
             (debuild deb)
@@ -114,7 +118,9 @@
   (ql-fetch-release release)
 
   (let* ((orig-filename
-          (format nil "~a_~a.orig.tar.gz" (deb-source deb) (deb-version deb)))
+          (format nil "~a_~a.orig.tar.gz"
+                  (deb-source deb)
+                  (version-and-epoch deb)))
          (debian-archive-pathname
           (merge-pathnames orig-filename *build-root*)))
 
@@ -167,9 +173,6 @@
   (let* ((pdir        (build-directory deb))
          (changelog   (build-changelog deb)))
 
-    ;; we might need to bump epoch here
-    (compute-next-version deb (ql-version ql))
-
     ;; now that we have a proper epoch, go on to calling dch.
     (let ((dch         `("dch"
                          ,@(unless (probe-file changelog) (list "--create"))
@@ -179,4 +182,5 @@
                          "Quicklisp release update.")))
 
       ;; run dch then update debian's package version string
-      (run-command dch pdir))))
+      (run-command dch pdir)
+      (set-version-from-changelog deb changelog))))

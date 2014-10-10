@@ -14,20 +14,25 @@
   (sid-version  nil :type (or null string)) ; sid version
   )
 
-(defmethod read-version ((deb debian-package))
+(defmethod set-version-from-changelog ((deb debian-package) &optional changelog)
   "Parse the debian/changelog for the current version of the package."
-  (let ((changelog (make-pathname :defaults (deb-dir deb)
-                                  :name "changelog")))
+  (let ((changelog (or changelog (make-pathname :defaults (deb-dir deb)
+                                                :name "changelog"))))
     (when (probe-file changelog)
       (let ((first-line (with-open-file (s changelog)
                           (read-line s))))
         (cl-ppcre:register-groups-bind (version revision)
             ("[^ ]+ \\(([^-]+)-([^\\)]+).*" first-line)
-          (values version revision))))))
+          (setf (values (deb-version deb) (deb-revision deb))
+                (values version revision)))))))
 
 (defmethod full-version ((deb debian-package))
   "Return the full text of the local-version of the DEB pacakge."
   (format nil "~a-~a" (deb-version deb) (deb-revision deb)))
+
+(defmethod full-version-no-epoch ((deb debian-package))
+  "Return the full text of the local-version of the DEB pacakge."
+  (format nil "~a-~a" (version-and-epoch deb) (deb-revision deb)))
 
 (defmethod read-source-name ((deb debian-package))
   "Parse debian/control first line for the name of the source package."
@@ -59,10 +64,7 @@
 
     ;; and now go fetch the current version in the debian/changelog file if
     ;; such does exists.
-    (multiple-value-bind (version revision)
-        (read-version deb)
-      (setf (deb-version deb) version
-            (deb-revision deb) revision))))
+    (set-version-from-changelog deb)))
 
 (defun find-debian-package (package-name)
   "Find PACKAGE-NAME in *DEBIAN-PACKAGES* directory."
@@ -112,7 +114,7 @@
 (defmethod package-changes-namestring ((deb debian-package) arch)
   "Return the pathname of the debian .changes file for DEB on ARCH."
   (let ((filename (format nil "~a_~a_~a.changes"
-                          (deb-source deb) (full-version deb) arch)))
+                          (deb-source deb) (full-version-no-epoch deb) arch)))
     (uiop:native-namestring (uiop:merge-pathnames* filename *build-root*))))
 
 
