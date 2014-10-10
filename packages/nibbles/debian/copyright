@@ -5,7 +5,7 @@ Source: http://method-combination.net/lisp/nibbles/
 
 Files: *
 Copyright: 2010, Nathan Froyd
-License:
+License: BSD-3-clause
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are met:
  .
@@ -36,7 +36,7 @@ License:
 Files: rt.lisp
 Copyright:
  Copyright 1990 by the Massachusetts Institute of Technology, Cambridge MA.
-License:
+License: MIT
  Permission  to  use,  copy, modify, and distribute this software  and  its
  documentation for any purpose  and without fee is hereby granted, provided
  that this copyright  and  permission  notice  appear  in  all  copies  and

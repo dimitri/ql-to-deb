@@ -1,3 +1,9 @@
+cl-drakma (1.3.10-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Fri, 10 Oct 2014 14:02:43 +0400
+
 cl-drakma (1.3.9-2) unstable; urgency=medium
 
   * Drakma depends on cl+ssl

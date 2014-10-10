@@ -5,7 +5,7 @@ Source: http://weitz.de/drakma/
 
 Files: *
 Copyright: 2014, Edi Weitz
-License:
+License: BSD-2-clause
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are met:
  .

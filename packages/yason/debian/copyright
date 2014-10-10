@@ -5,7 +5,7 @@ Source: http://common-lisp.net/project/yason/
 
 Files: *
 Copyright: 2008-2012 Hans Huebner and contributors
-License:
+License: BSD-3-clause
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are
  met:

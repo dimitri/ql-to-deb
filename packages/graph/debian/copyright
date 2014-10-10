@@ -6,7 +6,7 @@ Source: http://eschulte.github.io/graph/
 Files: *
 Copyright:
  Copyright (C) Eric Schulte and Thomas Dye 2012-2013
-License: GPLv3
+License: GPL-3+
  On Debian systems, the text of the GPLv3 is in
  /usr/share/common-licenses/GPL-3.
 

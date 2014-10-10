@@ -1,3 +1,9 @@
+cl-yason (0.6.7-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Fri, 10 Oct 2014 14:03:37 +0400
+
 cl-yason (0.6.6-1) unstable; urgency=medium
 
   * Quicklisp release update.
