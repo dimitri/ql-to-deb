@@ -102,7 +102,7 @@ $(QL_TO_DEB): $(MANIFEST) $(BUILDAPP) $(LISP_SRC)
                          --asdf-path .                           \
                          --load-system $(APP_NAME)               \
                          --entry ql-to-deb:main                  \
-                         --dynamic-space-size 4096               \
+                         --dynamic-space-size 512                \
                          $(COMPRESS_CORE_OPT)                    \
                          --output $@
 

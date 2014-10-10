@@ -12,13 +12,6 @@
 PKGVERS = $(shell dpkg-parsechangelog | awk -F '[:-]' '/^Version:/ { print substr($$2, 2) }')
 EXCLUDE = --exclude-vcs --exclude=./debian --exclude=build --exclude=.vagrant
 
-BITS = $(shell dpkg-architecture -qDEB_BUILD_ARCH_BITS)
-ifeq ($(BITS),32)
-SIZE=1024
-else
-SIZE=4096
-endif
-
 # buildd provides a build environment where $HOME is not writable, but the
 # CL compilers here will need to fill-in a per-user cache
 export HOME = $(CURDIR)/debian/home
@@ -40,7 +33,7 @@ override_dh_auto_build:
                  --load debian/settings.lisp                \
                  --load-system ql-to-deb               	    \
                  --entry ql-to-deb:main                     \
-                 --dynamic-space-size $(SIZE)               \
+                 --dynamic-space-size 512                   \
                  --compress-core                    	    \
                  --output build/bin/ql-to-deb
 
