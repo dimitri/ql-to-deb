@@ -52,6 +52,14 @@
                     :error-output :interactive
                     :ignore-error-status t))
 
+(defun dpkg-i (files.deb)
+  "Call `sudo dpkg -i` on given files.deb list."
+  (uiop:run-program `("sudo" "dpkg" "-i"
+                             ,@(mapcar #'uiop:native-namestring files.deb))
+                    :output :interactive
+                    :error-output :interactive
+                    :ignore-error-status t))
+
 (defun ensure-list (maybe-list)
   (typecase maybe-list
     (list maybe-list)

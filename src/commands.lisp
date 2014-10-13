@@ -151,3 +151,14 @@
              (when *verbose*
                (format t "dput ~s~%" change-filename))
              (dput change-filename)))))
+
+(defun install (&key packages)
+  "Call `sudo dpkg -i` on each package we just built."
+  (let* ((changes-list (if packages
+                           (list-packages-change-files packages)
+                           (just-built-package-changes-list)))
+         (deb-files
+          (loop :for change-filename :in changes-list
+             :append (parse-changes-files change-filename "\\.deb$"))))
+    (format t "sudo dpkg -i ~{~a~^ ~}~%" deb-files)
+    (dpkg-i deb-files)))

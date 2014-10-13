@@ -5,13 +5,14 @@
 (in-package #:ql-to-deb)
 
 (defparameter *commands*
-  '(("status" "Compare versions (debian sid, local, Quicklisp)" status)
-    ("check"  "List packages that need building"                check)
-    ("update" "Build either packages or all that need a build"  update)
-    ("build"  "Build either packages or all that need a build"  update)
-    ("lint"   "Run lintian on just built packages"              lint)
-    ("sign"   "Run debsin on just built packages"               sign)
-    ("upload" "Run dput on just built packages"                 upload))
+  '(("status"  "Compare versions (debian sid, local, Quicklisp)" status)
+    ("check"   "List packages that need building"                check)
+    ("update"  "Build either packages or all that need a build"  update)
+    ("build"   "Build either packages or all that need a build"  update)
+    ("lint"    "Run lintian on just built packages"              lint)
+    ("install" "Run dpkg -i on just built packages"              install)
+    ("sign"    "Run debsin on just built packages"               sign)
+    ("upload"  "Run dput on just built packages"                 upload))
   "Top level commands for the ql-to-deb command line")
 
 (defparameter *opt-spec*

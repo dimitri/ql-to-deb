@@ -121,6 +121,29 @@
 ;;;
 ;;; Using debian utilities
 ;;;
+(defun parse-changes-files (changes-filename &optional pattern)
+  "Parse a debian .changes file FILENAME `Files` section, and return the
+   list of files found, restricting it to file names that matches PATTERN
+   when given."
+  (with-open-file (s changes-filename :direction :input :external-format :utf-8)
+    (remove nil
+            (loop :with parsing
+               :for line := (read-line s nil nil)
+               :while line
+
+               :when parsing
+               :collect (destructuring-bind (md5 size section priority filename)
+                            (rest (split-sequence #\Space line))
+                          (declare (ignore md5 size section priority))
+                          (when (or (null pattern)
+                                    (cl-ppcre:scan pattern filename))
+                            (uiop:merge-pathnames*
+                             filename
+                             (directory-namestring changes-filename))))
+
+               :when (and (not parsing) (string= line "Files:"))
+               :do (setf parsing t)))))
+
 (defun parse-rmadison-output (output &key (suite-list '("sid" "debian/unstable/")))
   "Parse the rmadison output"
   (with-input-from-string (s output)
