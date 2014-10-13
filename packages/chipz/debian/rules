@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+
+pkg		:= chipz
+clc-source	:= usr/share/common-lisp/source
+clc-systems	:= usr/share/common-lisp/systems
+clc-files	:= $(clc-source)/$(pkg)
+
+%:
+	dh $@ --with lisp
+
+override_dh_install:
+	dh_install $(pkg).asd $(clc-files)
+	dh_install *.lisp $(clc-files)
+
+override_dh_link:
+	dh_link $(clc-files)/$(pkg).asd $(clc-systems)/$(pkg).asd
+
+override_dh_installdocs:
+	dh_installdocs NEWS TODO doc/*
