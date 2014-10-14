@@ -4,7 +4,7 @@ Upstream-Contact: Edward Marco Baringer
 Source: http://common-lisp.net/project/fiveam/
 
 Files: *
-Copyright: 2003-2006, 
+Copyright: 2003-2006, Edward Marco Baringer
 License: BSD-3-clause
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are
