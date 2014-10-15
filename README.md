@@ -82,7 +82,8 @@ And then:
     ql-to-deb version "0.7.0"
     compiled with SBCL 1.2.3.debian
 
-    $ ./build/bin/ql-to-deb [ option ... ] command [ package ...]
+    $ ./build/bin/ql-to-deb --help
+    ./build/bin/ql-to-deb [ option ... ] command [ package ...]
     
     Options:
       --help -h                       boolean  Show usage and exit. 
@@ -100,5 +101,6 @@ And then:
       update    Build either packages or all that need a build
       build     Build either packages or all that need a build
       lint      Run lintian on just built packages
+      install   Run dpkg -i on just built packages
       sign      Run debsin on just built packages
       upload    Run dput on just built packages
