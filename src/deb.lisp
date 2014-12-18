@@ -131,6 +131,9 @@
                :for line := (read-line s nil nil)
                :while line
 
+               :when (and parsing (string= line ""))
+               :do (setf parsing nil)
+
                :when parsing
                :collect (destructuring-bind (md5 size section priority filename)
                             (rest (split-sequence #\Space line))
