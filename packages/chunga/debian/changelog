@@ -1,3 +1,9 @@
+cl-chunga (1.1.6-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Thu, 18 Dec 2014 18:12:46 +0300
+
 cl-chunga (1.1.5-1) unstable; urgency=medium
 
   * Quicklisp release update.

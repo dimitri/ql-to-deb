@@ -1,3 +1,9 @@
+cl-unicode (0.1.5-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Thu, 18 Dec 2014 18:13:02 +0300
+
 cl-unicode (0.1.4-3) unstable; urgency=medium
 
   * Fix copyright to include build/data Unicode terms of use

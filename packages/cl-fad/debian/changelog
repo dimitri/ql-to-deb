@@ -1,3 +1,9 @@
+cl-fad (0.7.3-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Thu, 18 Dec 2014 18:12:54 +0300
+
 cl-fad (0.7.2-1) unstable; urgency=medium
 
   * Quicklisp release update.
