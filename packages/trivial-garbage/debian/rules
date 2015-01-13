@@ -10,10 +10,10 @@ clc-files	:= $(clc-source)/$(pkg)
 
 override_dh_install:
 	dh_install $(pkg).asd $(clc-files)
-	dh_install *.lisp $(clc-files)
+	dh_install {trivial-garbage,gendocs,tests}.lisp $(clc-files)
 
 override_dh_link:
 	dh_link $(clc-files)/$(pkg).asd $(clc-systems)/$(pkg).asd
 
 override_dh_installdocs:
-	dh_installdocs README
+	dh_installdocs README.md

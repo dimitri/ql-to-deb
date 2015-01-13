@@ -1,3 +1,9 @@
+cl-esrap (20150113-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Wed, 14 Jan 2015 00:57:05 +0300
+
 cl-esrap (20141217-1) unstable; urgency=medium
 
   * Quicklisp release update.
