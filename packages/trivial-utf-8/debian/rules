@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+
+pkg		:= trivial-utf-8
+clc-source	:= usr/share/common-lisp/source
+clc-systems	:= usr/share/common-lisp/systems
+clc-files	:= $(clc-source)/$(pkg)
+
+%:
+	dh $@ --with lisp
+
+override_dh_install:
+	dh_install $(pkg).asd $(clc-files)
+	dh_install *.lisp test.txt $(clc-files)
+
+override_dh_installdocs:
+	dh_installdocs doc/*

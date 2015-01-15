@@ -1,0 +1,26 @@
+Source: cl-trivial-utf-8
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.5
+Homepage: http://common-lisp.net/project/trivial-utf-8/
+
+Package: cl-trivial-utf-8
+Architecture: all
+Depends: ${misc:Depends}
+Description: small Common Lisp library for doing UTF-8-based in- and output
+ Trivial UTF-8 is a small library for doing UTF-8-based in- and output on a
+ Lisp implementation that already supports Unicode -- meaning char-code and
+ code-char deal with Unicode character codes.
+ .
+ The rationale for the existence of this library is that while
+ Unicode-enabled implementations usually do provide some kind of interface
+ to dealing with character encodings, these are typically not terribly
+ flexible or uniform.
+ .
+ The Babel library solves a similar problem while understanding more
+ encodings. Trivial UTF-8 was written before Babel existed, but for new
+ projects you might be better off going with Babel. The one plus that
+ Trivial UTF-8 has is that it doesn't depend on any other libraries.

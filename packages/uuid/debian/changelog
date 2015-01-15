@@ -1,0 +1,5 @@
+cl-uuid (20130813-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Thu, 15 Jan 2015 20:39:21 +0300

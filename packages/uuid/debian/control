@@ -1,0 +1,16 @@
+Source: cl-uuid
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.5
+Homepage: http://www.dardoria.net/software/uuid.html
+
+Package: cl-uuid
+Architecture: all
+Depends: ${misc:Depends}, cl-ironclad, cl-trivial-utf-8
+Description: Common Lisp librabry for generation of UUIDs as described by RFC 4122
+ UUID provides methods for the generation of uuids version 1 (time based), 3
+ (name based with MD5 hashing), 5 (name based with SHA1 hashing) and 4
+ (random uuids).

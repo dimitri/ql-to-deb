@@ -1,0 +1,5 @@
+cl-trivial-utf-8 (20111001-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Thu, 15 Jan 2015 20:47:15 +0300
