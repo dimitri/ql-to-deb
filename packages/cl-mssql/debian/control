@@ -1,0 +1,16 @@
+Source: cl-mssql
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 7)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 3.9.5
+Homepage: https://code.google.com/p/cl-mssql/
+Vcs-Git: https://github.com/archimag/cl-mssql.git
+Vcs-Browser: https://github.com/archimag/cl-mssql
+
+Package: cl-mssql
+Architecture: all
+Depends: ${misc:Depends}, cl-iterate, cl-cffi, cl-garbage-pools, freetds-dev
+Description: Common Lisp interface to MS SQL Server
+ A Common Lisp library for interacting with MS SQL Server databases.

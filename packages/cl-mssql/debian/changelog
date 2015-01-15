@@ -1,0 +1,5 @@
+cl-mssql (20131003-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Thu, 15 Jan 2015 19:59:07 +0300

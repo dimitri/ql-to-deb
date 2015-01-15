@@ -1,0 +1,5 @@
+cl-garbage-pools (20130720-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Thu, 15 Jan 2015 20:25:35 +0300
