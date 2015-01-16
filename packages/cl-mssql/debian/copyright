@@ -4,7 +4,7 @@ Source: https://github.com/archimag/cl-mssql
 
 Files: *
 Copyright: Copyright (c) 2009-2010 Moskvitin Andrey
-License: LGPL-2.1
+License: Lisp-LGPL-2.1
  Preamble to the Gnu Lesser General Public License
  .
  The concept of the GNU Lesser General Public License version 2.1
