@@ -7,7 +7,7 @@ Uploaders: Peter Van Eynde <pvaneynd@debian.org>,
  Dimitri Fontaine <dim@tapoueh.org>
 Build-Depends: debhelper (>= 7)
 Build-Depends-Indep: dh-lisp
-Standards-Version: 3.9.5
+Standards-Version: 3.9.6
 Homepage: http://common-lisp.net/project/alexandria/
 Vcs-Git: http://git.debian.org/git/pkg-common-lisp/cl-alexandria.git
 Vcs-Browser: http://git.debian.org/?p=pkg-common-lisp/cl-alexandria.git;a=summary

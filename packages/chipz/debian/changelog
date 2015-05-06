@@ -1,3 +1,9 @@
+cl-chipz (20150505-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Wed, 06 May 2015 20:35:45 +0300
+
 cl-chipz (20130128-1) unstable; urgency=medium
 
   * Quicklisp release update.
