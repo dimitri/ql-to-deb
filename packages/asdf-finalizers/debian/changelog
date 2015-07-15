@@ -1,3 +1,9 @@
+cl-asdf-finalizers (20150608-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Wed, 15 Jul 2015 16:43:44 +0300
+
 cl-asdf-finalizers (20140826-1) unstable; urgency=medium
 
   * Quicklisp release update.

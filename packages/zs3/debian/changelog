@@ -1,3 +1,9 @@
+cl-zs3 (1.2.7-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Wed, 15 Jul 2015 16:46:42 +0300
+
 cl-zs3 (1.2.5-1) unstable; urgency=medium
 
   * Quicklisp release update.

@@ -1,3 +1,9 @@
+hunchentoot (1.2.34-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Wed, 15 Jul 2015 16:45:04 +0300
+
 hunchentoot (1.2.31-1) unstable; urgency=medium
 
   * Quicklisp release update.
