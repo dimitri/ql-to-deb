@@ -1,3 +1,9 @@
+cl-unicode (0.1.5-3) unstable; urgency=medium
+
+  * Fix the previous fix.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Tue, 21 Jul 2015 12:38:02 +0300
+
 cl-unicode (0.1.5-2) unstable; urgency=medium
 
   * Fix build dependencies
