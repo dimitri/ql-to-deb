@@ -1,4 +1,4 @@
-# ql-to-deb(1) -- PostgreSQL data loader
+# ql-to-deb(1) -- Quicklisp release to debian package
 
 ## SYNOPSIS
 
