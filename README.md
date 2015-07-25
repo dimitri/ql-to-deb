@@ -102,5 +102,5 @@ And then:
       build     Build either packages or all that need a build
       lint      Run lintian on just built packages
       install   Run dpkg -i on just built packages
-      sign      Run debsin on just built packages
+      sign      Run debsign on just built packages
       upload    Run dput on just built packages
