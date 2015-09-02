@@ -1,0 +1,16 @@
+Source: cl-quri
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends-Indep: dh-lisp
+Build-Depends: debhelper (>= 7.0.0)
+Standards-Version: 3.9.6
+Homepage: https://github.com/fukamachi/quri
+Vcs-Browser: https://github.com/fukamachi/quri.git
+
+Package: cl-quri
+Architecture: all
+Depends: ${misc:Depends}
+Description: Yet another URI library for Common Lisp
+ QURI (pronounced "Q-ree") is yet another URI library for Common Lisp. It is
+ intended to be a replacement of PURI.

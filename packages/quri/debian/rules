@@ -1,0 +1,22 @@
+#!/usr/bin/make -f
+
+pkg		:= quri
+clc-source	:= usr/share/common-lisp/source
+clc-systems	:= usr/share/common-lisp/systems
+clc-files	:= $(clc-source)/$(pkg)
+
+%:
+	dh $@ --with lisp
+
+override_dh_install:
+	dh_install $(pkg).asd $(clc-files)
+	dh_install $(pkg)-test.asd $(clc-files)
+	dh_install data $(clc-files)
+	dh_install src $(clc-files)
+	dh_install t $(clc-files)
+
+override_dh_link:
+	dh_link $(clc-files)/$(pkg).asd $(clc-systems)/$(pkg).asd
+
+override_dh_installdocs:
+	dh_installdocs README.markdown
