@@ -1,3 +1,9 @@
+cl-containers (20150923-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 02 Nov 2015 20:33:29 +0300
+
 cl-containers (20140211-1) unstable; urgency=medium
 
   * Quicklisp release update.

@@ -5,7 +5,7 @@ Build-Depends: debhelper (>= 7)
 Build-Depends-Indep: dh-lisp, texinfo, a2ps, sbcl, texlive-extra-utils, texlive, texlive-generic-recommended
 Maintainer: Debian Common Lisp Team <pkg-common-lisp-devel@lists.alioth.debian.org>
 Uploaders: Peter Van Eynde <pvaneynd@debian.org>
-Standards-Version: 3.9.5
+Standards-Version: 3.9.6
 Homepage: http://common-lisp.net/project/cffi/
 Vcs-Darcs: http://darcs.debian.org/darcs/pkg-common-lisp/cffi
 

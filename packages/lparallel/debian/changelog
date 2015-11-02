@@ -1,3 +1,9 @@
+cl-lparallel (20150923-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 02 Nov 2015 20:34:02 +0300
+
 cl-lparallel (20150608-1) unstable; urgency=medium
 
   * Quicklisp release update.

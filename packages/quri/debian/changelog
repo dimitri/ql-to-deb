@@ -1,3 +1,9 @@
+cl-quri (20151031-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 02 Nov 2015 20:34:30 +0300
+
 cl-quri (20150804-1) unstable; urgency=medium
 
   * Quicklisp release update.
