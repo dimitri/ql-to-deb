@@ -179,26 +179,32 @@
 
 (defmethod compute-next-version ((deb debian-package) new-version)
   "We might need to increment the epoch, it is taken care of here."
-  (if (deb-version deb)
-      (multiple-value-bind (version epoch)
-          (version-and-epoch deb)
-       (let ((compare `("dpkg"
-                        "--compare-versions"
-                        ,new-version
-                        "gt"
-                        ,version)))
-         (if (= 0 (run-command compare (deb-dir deb) :ignore-error-status t))
-             (setf (deb-version deb)
-                   (if epoch (format nil "~a~a" epoch new-version)
-                       new-version))
+  (when (and *fix-bugs* (null (deb-version deb)))
+    (format t "Fatal: --fix-bugs used against an empty changelog! (no version)"))
 
-             ;; bump epoch!
-             (progn
-               (setf (deb-version deb)
-                     (format nil "~d:~a" (next-epoch deb) new-version))
-               (format t "Epoch bump needed, new version is ~s~%" (deb-version deb))))))
+  (unless *fix-bugs*
+    ;; when --fix-bugs is used, don't compute anything, just take the debian
+    ;; version number as parsed in the debian/changelog file.
+    (if (deb-version deb)
+        (multiple-value-bind (version epoch)
+            (version-and-epoch deb)
+          (let ((compare `("dpkg"
+                           "--compare-versions"
+                           ,new-version
+                           "gt"
+                           ,version)))
+            (if (= 0 (run-command compare (deb-dir deb) :ignore-error-status t))
+                (setf (deb-version deb)
+                      (if epoch (format nil "~a~a" epoch new-version)
+                          new-version))
 
-      ;; no pre-existing debian version, just take the Quicklisp version string
-      (setf (deb-version deb) new-version))
+                ;; bump epoch!
+                (progn
+                  (setf (deb-version deb)
+                        (format nil "~d:~a" (next-epoch deb) new-version))
+                  (format t "Epoch bump needed, new version is ~s~%" (deb-version deb))))))
+
+        ;; no pre-existing debian version, just take the Quicklisp version string
+        (setf (deb-version deb) new-version)))
   deb)
 
