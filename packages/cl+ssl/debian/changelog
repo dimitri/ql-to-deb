@@ -1,3 +1,9 @@
+cl-plus-ssl (20150608-2) unstable; urgency=medium
+
+  * Switch to depend on libssl1.0.2, (Closes: Bug#804324)
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 16 Nov 2015 00:20:57 +0300
+
 cl-plus-ssl (20150608-1) unstable; urgency=medium
 
   * Quicklisp release update.
