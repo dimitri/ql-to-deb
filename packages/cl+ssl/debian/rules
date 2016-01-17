@@ -12,7 +12,7 @@ LIBSSL		:= $(shell dpkg-query --showformat='$${Depends}' --show libssl-dev | gre
 
 override_dh_install:
 	dh_install $(pkg).asd $(clc-files)
-	dh_install *.lisp $(clc-files)
+	dh_install src/ $(clc-files)
 
 override_dh_link:
 	dh_link $(clc-files)/$(pkg).asd $(clc-systems)/$(pkg).asd

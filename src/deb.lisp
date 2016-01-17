@@ -147,7 +147,10 @@
                :when (and (not parsing) (string= line "Files:"))
                :do (setf parsing t)))))
 
-(defun parse-rmadison-output (output &key (suite-list '("sid" "debian/unstable/")))
+(defun parse-rmadison-output (output
+                              &key (suite-list '("sid"
+                                                 "debian/unstable/"
+                                                 "unstable")))
   "Parse the rmadison output"
   (with-input-from-string (s output)
     (remove
@@ -165,6 +168,8 @@
   "Run the `rmadison` command on given PACKAGE-LIST."
   (let* ((source-list  (mapcar #'deb-source package-list))
          (rmadison    `("rmadison" ,@source-list)))
+    (when *verbose*
+      (format t "~{~a~^ ~}~%" rmadison))
     (multiple-value-bind (output error code)
         (uiop:run-program rmadison :output :string :error-output :string)
       ;; now parse the output

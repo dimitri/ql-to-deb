@@ -1,3 +1,9 @@
+cl-plus-ssl (20151218-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Sun, 17 Jan 2016 19:31:19 +0300
+
 cl-plus-ssl (20150608-3) UNRELEASED; urgency=medium
 
   * Build-depend on libssl-dev and extract the libssl package name at

@@ -1,3 +1,9 @@
+cl-interpol (0.2.5-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Sun, 17 Jan 2016 19:31:28 +0300
+
 cl-interpol (0.2.1-2) unstable; urgency=medium
 
   * 0.2.1-1 was already present in Debian until 2009, reuploading to

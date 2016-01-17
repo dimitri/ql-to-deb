@@ -39,7 +39,7 @@ drakma http://beta.quicklisp.org/archive/drakma/2014-04-25/drakma-1.3.8.tgz 7098
 (defun ql-parse-version-string (project prefix)
   "Return the upstream version string given the release prefix"
   (cl-ppcre:register-groups-bind (version)
-      ((format nil "~a[-_.]([0-9.]+)(?:-.*)?"
+      ((format nil "~a[-_.]v?([0-9.]+)(?:-.*)?"
                (cl-ppcre:quote-meta-chars project)) prefix)
     version))
 
