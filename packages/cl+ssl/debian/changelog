@@ -1,3 +1,10 @@
+cl-plus-ssl (20150608-3) UNRELEASED; urgency=medium
+
+  * Build-depend on libssl-dev and extract the libssl package name at
+    build-time instead of hardcoding it.
+
+ -- Christoph Berg <myon@debian.org>  Sun, 17 Jan 2016 16:30:25 +0100
+
 cl-plus-ssl (20150608-2) unstable; urgency=medium
 
   * Switch to depend on libssl1.0.2, (Closes: Bug#804324)
