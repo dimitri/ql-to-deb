@@ -5,6 +5,8 @@ clc-source	:= usr/share/common-lisp/source
 clc-systems	:= usr/share/common-lisp/systems
 clc-files	:= $(clc-source)/$(pkg)
 
+LIBSSL		:= $(shell dpkg-query --showformat='$${Depends}' --show libssl-dev | grep -o 'libssl[^ ]*')
+
 %:
 	dh $@ --with lisp
 
@@ -17,3 +19,7 @@ override_dh_link:
 
 override_dh_installdocs:
 	dh_installdocs index.html index.css
+
+override_dh_gencontrol:
+	echo "ssl:Depends=$(LIBSSL)" >> debian/cl-plus-ssl.substvars
+	dh_gencontrol
