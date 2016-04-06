@@ -1,3 +1,9 @@
+hunchentoot (1.2.35-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Wed, 06 Apr 2016 21:49:30 +0300
+
 hunchentoot (1.2.34+dfsg-2) unstable; urgency=medium
 
   * Replaces the ancient version of hunchentoot (Closes: Bug#799266)

@@ -1,3 +1,9 @@
+cl-postmodern (20160208-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Wed, 06 Apr 2016 21:49:59 +0300
+
 cl-postmodern (20151031-1) unstable; urgency=medium
 
   * Quicklisp release update.

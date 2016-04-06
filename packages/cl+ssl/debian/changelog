@@ -1,3 +1,9 @@
+cl-plus-ssl (20160318-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Wed, 06 Apr 2016 21:49:08 +0300
+
 cl-plus-ssl (20151218-2) unstable; urgency=medium
 
   * Source files are now found in src/, bugfix
