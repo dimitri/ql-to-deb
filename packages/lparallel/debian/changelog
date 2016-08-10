@@ -1,3 +1,10 @@
+cl-lparallel (20160208-2) unstable; urgency=medium
+
+  * Team upload.
+  * Fix lisp files installation.  Closes: #820314.
+
+ -- Christoph Berg <christoph.berg@credativ.de>  Wed, 10 Aug 2016 14:42:50 +0200
+
 cl-lparallel (20160208-1) unstable; urgency=medium
 
   * Quicklisp release update.
