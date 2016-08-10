@@ -1,3 +1,10 @@
+cffi (1:0.17.1-2) unstable; urgency=medium
+
+  * Team upload.
+  * Fix makeinfo woes on wheezy and precise.
+
+ -- Christoph Berg <christoph.berg@credativ.de>  Wed, 10 Aug 2016 15:02:57 +0200
+
 cffi (1:0.17.1-1) unstable; urgency=medium
 
   * Quicklisp release update.

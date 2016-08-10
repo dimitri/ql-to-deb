@@ -24,7 +24,9 @@ binary-arch: build
 
 # Build architecture-independent files here.
 binary-indep: build
-	make -C doc 
+	# wheezy's and precise's makeinfo complains about bad crossreferences, disable the validation
+	# (once wheezy and precise are gone, the MAKEINFO variable can be dropped again)
+	MAKEINFO="makeinfo --no-validate" make -C doc
 	dh_testdir
 	dh_testroot
 	dh_prep
