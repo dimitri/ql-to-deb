@@ -1,3 +1,9 @@
+cl-iterate (20160825-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 29 Aug 2016 21:55:43 +0300
+
 cl-iterate (20140713-1) unstable; urgency=medium
 
   * Quicklisp release update.

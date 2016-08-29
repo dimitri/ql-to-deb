@@ -1,3 +1,9 @@
+cl-plus-ssl (20160421-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 29 Aug 2016 21:55:13 +0300
+
 cl-plus-ssl (20160318-1) unstable; urgency=medium
 
   * Quicklisp release update.

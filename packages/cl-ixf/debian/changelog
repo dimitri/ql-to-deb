@@ -1,3 +1,9 @@
+cl-ixf (20160829-1) unstable; urgency=medium
+
+  * Upstream release
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 29 Aug 2016 23:16:22 +0300
+
 cl-ixf (20140826-1) unstable; urgency=medium
 
   * Quicklisp release update.

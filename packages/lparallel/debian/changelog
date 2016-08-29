@@ -1,3 +1,9 @@
+cl-lparallel (20160825-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Mon, 29 Aug 2016 22:03:07 +0300
+
 cl-lparallel (20160208-2) unstable; urgency=medium
 
   * Team upload.
