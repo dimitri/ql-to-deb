@@ -1,3 +1,11 @@
+cl-ironclad (0.33.0-53-gf5d1699-1) unstable; urgency=medium
+
+  * Team upload.
+  * Update to git snapshot to fix FTBFS of pgloader on i386 and powerpc.
+    https://github.com/froydnj/ironclad
+
+ -- Christoph Berg <christoph.berg@credativ.de>  Thu, 01 Dec 2016 15:35:30 +0100
+
 cl-ironclad (0.33.0-1) unstable; urgency=medium
 
   * Quicklisp release update.
