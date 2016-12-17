@@ -1,3 +1,11 @@
+cl-postmodern (20161031-2) unstable; urgency=medium
+
+  * Team upload.
+  * Pull patch from upstream to fix compatibility with sbcl < 1.2.5.
+    Unbreaks pgloader compilation on jessie and before.
+
+ -- Christoph Berg <myon@debian.org>  Sat, 17 Dec 2016 23:29:57 +0100
+
 cl-postmodern (20161031-1) unstable; urgency=medium
 
   * Quicklisp release update.
