@@ -1,3 +1,9 @@
+cl-alexandria (20161031-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Sun, 20 Nov 2016 19:44:39 +0300
+
 cl-alexandria (20160825-1) unstable; urgency=medium
 
   * Quicklisp release update.
