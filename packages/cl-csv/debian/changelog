@@ -1,3 +1,15 @@
+cl-csv (20150608-1.1) unstable; urgency=medium
+
+  [ gregor herrmann ]
+  * Non-maintainer upload.
+  * Fix "broken symlink: /usr/share/common-lisp/systems/cl-csv-data-
+    table.asd -> ../source/cl-csv-data-table/cl-csv-data-table.asd":
+    debian/cl-csv-data-table.install: install into directory matching package
+    name.
+    (Closes: #858509)
+
+ -- Christoph Berg <christoph.berg@credativ.de>  Wed, 26 Apr 2017 13:04:22 +0200
+
 cl-csv (20150608-1) unstable; urgency=medium
 
   * Quicklisp release update.
