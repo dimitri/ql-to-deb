@@ -1,15 +1,9 @@
 --- a/src/ffi.lisp
 +++ b/src/ffi.lisp
-@@ -129,30 +129,6 @@ session-resume requests) would normally
- ;;
- ;; (cffi:defcfun ("SSLv2_client_method" ssl-v2-client-method)
- ;;     ssl-method)
--(cffi:defcfun ("SSLv23_client_method" ssl-v23-client-method)
--    ssl-method)
--(cffi:defcfun ("SSLv23_server_method" ssl-v23-server-method)
--    ssl-method)
--(cffi:defcfun ("SSLv23_method" ssl-v23-method)
--    ssl-method)
+@@ -135,30 +135,6 @@ session-resume requests) would normally
+     ssl-method)
+ (cffi:defcfun ("SSLv23_method" ssl-v23-method)
+     ssl-method)
 -(cffi:defcfun ("SSLv3_client_method" ssl-v3-client-method)
 -    ssl-method)
 -(cffi:defcfun ("SSLv3_server_method" ssl-v3-server-method)
@@ -28,6 +22,12 @@
 -    ssl-method)
 -(cffi:defcfun ("TLSv1_1_method" ssl-TLSv1-1-method)
 -    ssl-method)
- (cffi:defcfun ("TLSv1_2_client_method" ssl-TLSv1-2-client-method)
-     ssl-method)
- (cffi:defcfun ("TLSv1_2_server_method" ssl-TLSv1-2-server-method)
+-(cffi:defcfun ("TLSv1_2_client_method" ssl-TLSv1-2-client-method)
+-    ssl-method)
+-(cffi:defcfun ("TLSv1_2_server_method" ssl-TLSv1-2-server-method)
+-    ssl-method)
+-(cffi:defcfun ("TLSv1_2_method" ssl-TLSv1-2-method)
+-    ssl-method)
+ 
+ (cffi:defcfun ("SSL_CTX_new" ssl-ctx-new)
+     ssl-ctx

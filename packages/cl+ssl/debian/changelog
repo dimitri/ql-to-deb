@@ -1,8 +1,10 @@
 cl-plus-ssl (20160421-2) unstable; urgency=medium
 
   * Team upload.
-  * libssl1.0.2 removed SSLv3_client_method, force usage of
-    TLSv1_2_client_method instead. (Closes: #864363)
+  * libssl1.0.2 removed SSLv3_client_method, use the more sensible SSLv23_*
+    family instead. (Closes: #864363)
+  * Package does not support libssl1.1 (see src/reload.lisp), switch to
+    libssl1.0-dev.
 
  -- Christoph Berg <christoph.berg@credativ.de>  Wed, 07 Jun 2017 17:20:35 +0200
 
