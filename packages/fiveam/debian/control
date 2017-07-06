@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Dimitri Fontaine <dim@tapoueh.org>
 Build-Depends: debhelper (>= 7)
 Build-Depends-Indep: dh-lisp
-Standards-Version: 3.9.5
+Standards-Version: 3.9.6
 Homepage: http://common-lisp.net/project/fiveam/
 Vcs-Browser: https://github.com/froydnj/chipz
 

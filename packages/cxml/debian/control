@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Dimitri Fontaine <dim@tapoueh.org>
 Build-Depends: debhelper (>= 7)
 Build-Depends-Indep: dh-lisp
-Standards-Version: 3.9.5
+Standards-Version: 3.9.6
 Homepage: http://common-lisp.net/project/cxml/
 Vcs-Git: git://repo.or.cz/cxml.git
 Vcs-Browser: http://repo.or.cz/w/cxml.git

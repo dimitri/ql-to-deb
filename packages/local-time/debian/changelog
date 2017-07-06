@@ -1,3 +1,9 @@
+cl-local-time (20170630-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Thu, 06 Jul 2017 16:29:15 +0300
+
 cl-local-time (20160628-1) unstable; urgency=medium
 
   * Quicklisp release update.

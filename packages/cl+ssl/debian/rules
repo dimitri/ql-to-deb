@@ -5,7 +5,7 @@ clc-source	:= usr/share/common-lisp/source
 clc-systems	:= usr/share/common-lisp/systems
 clc-files	:= $(clc-source)/$(pkg)
 
-LIBSSL		:= $(shell dpkg-query --showformat='$${Depends}' --show libssl-dev libssl1.0-dev | grep -o 'libssl[^ ]*')
+LIBSSL		:= $(shell dpkg-query --showformat='$${Depends}' --show libssl-dev | grep -o 'libssl[^ ]*')
 
 %:
 	dh $@ --with lisp

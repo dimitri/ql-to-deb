@@ -3,7 +3,7 @@ Section: lisp
 Priority: optional
 Maintainer: Dimitri Fontaine <dim@tapoueh.org>
 Build-Depends: debhelper (>= 7)
-Build-Depends-Indep: dh-lisp, libssl1.0-dev | libssl-dev (<< 1.1)
+Build-Depends-Indep: dh-lisp, libssl-dev
 Standards-Version: 3.9.6
 Homepage: http://common-lisp.net/project/cl-plus-ssl/
 Vcs-Git: https://github.com/cl-plus-ssl/cl-plus-ssl.git

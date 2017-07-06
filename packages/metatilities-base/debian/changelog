@@ -1,3 +1,9 @@
+cl-metatilities-base (20170403-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Thu, 06 Jul 2017 16:29:34 +0300
+
 cl-metatilities-base (20120909-1) unstable; urgency=medium
 
   * Quicklisp release update.

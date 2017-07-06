@@ -1,3 +1,9 @@
+cffi (1:0.19.0-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Thu, 06 Jul 2017 16:27:30 +0300
+
 cffi (1:0.18.0-1) unstable; urgency=medium
 
   * Quicklisp release update.

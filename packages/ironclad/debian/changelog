@@ -1,3 +1,9 @@
+cl-ironclad (0.34-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Thu, 06 Jul 2017 16:29:06 +0300
+
 cl-ironclad (0.33.0-53-gf5d1699-1) unstable; urgency=medium
 
   * Team upload.

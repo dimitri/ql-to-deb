@@ -1,3 +1,9 @@
+cl-mssql (20170630-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Thu, 06 Jul 2017 16:28:34 +0300
+
 cl-mssql (20131003-1) unstable; urgency=medium
 
   * Quicklisp release update.

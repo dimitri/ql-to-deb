@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Dimitri Fontaine <dim@tapoueh.org>
 Build-Depends: cdbs, debhelper (>= 5)
 Build-Depends-Indep: dh-lisp
-Standards-Version: 3.9.5
+Standards-Version: 3.9.6
 
 Package: cl-bordeaux-threads
 Architecture: all

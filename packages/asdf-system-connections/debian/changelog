@@ -1,3 +1,9 @@
+cl-asdf-system-connections (20170124-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Thu, 06 Jul 2017 16:27:24 +0300
+
 cl-asdf-system-connections (20140211-1) unstable; urgency=medium
 
   * Quicklisp release update.

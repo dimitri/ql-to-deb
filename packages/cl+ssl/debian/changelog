@@ -1,12 +1,8 @@
-cl-plus-ssl (20160421-2) unstable; urgency=medium
+cl-plus-ssl (20170630-1) unstable; urgency=medium
 
-  * Team upload.
-  * libssl1.0.2 removed SSLv3_client_method, use the more sensible SSLv23_*
-    family instead. (Closes: #864363)
-  * Package does not support libssl1.1 (see src/reload.lisp), switch to
-    libssl1.0-dev.
+  * Quicklisp release update.
 
- -- Christoph Berg <christoph.berg@credativ.de>  Wed, 07 Jun 2017 17:20:35 +0200
+ -- Dimitri Fontaine <dim@tapoueh.org>  Thu, 06 Jul 2017 16:28:06 +0300
 
 cl-plus-ssl (20160421-1) unstable; urgency=medium
 
