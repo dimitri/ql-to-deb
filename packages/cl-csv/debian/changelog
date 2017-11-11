@@ -3,6 +3,8 @@ cl-csv (20170403-2) unstable; urgency=medium
   * Team upload.
   * Restore NMU changes from 20150608-1.1 lost in the 20170403-1 upload.
     (Closes: #858509)
+  * Update S-V to 4.1.1, update DH compat to 9, fix minor copyright syntax
+    issue.
 
  -- Christoph Berg <myon@debian.org>  Sat, 11 Nov 2017 11:44:04 +0100
 
