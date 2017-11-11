@@ -4,7 +4,7 @@ Upstream-Contact: Kan-Ru Chen (陳侃如) <kanru@kanru.info>
 Source: https://github.com/kanru/cl-mustache/
 
 Files: *
-Copyright: Copyright (C) 2014  Kan-Ru Chen (陳侃如)
+Copyright: Copyright (C) 2012-2015 Kan-Ru Chen (陳侃如)
 License: MIT/EXPAT
  Permission is hereby granted, free of charge, to any person obtaining a
  copy of this software and associated documentation files (the "Software"),
