@@ -1,4 +1,3 @@
-cl-mustache.asd usr/share/common-lisp/source/cl-mustache
-packages.lisp usr/share/common-lisp/source/cl-mustache
-mustache.lisp usr/share/common-lisp/source/cl-mustache
-version.lisp-expr usr/share/common-lisp/source/cl-mustache
+*.asd usr/share/common-lisp/source/cl-mustache
+*.lisp usr/share/common-lisp/source/cl-mustache
+*.lisp-expr usr/share/common-lisp/source/cl-mustache
