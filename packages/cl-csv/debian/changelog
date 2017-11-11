@@ -1,8 +1,28 @@
+cl-csv (20170403-2) unstable; urgency=medium
+
+  * Team upload.
+  * Restore NMU changes from 20150608-1.1 lost in the 20170403-1 upload.
+    (Closes: #858509)
+
+ -- Christoph Berg <myon@debian.org>  Sat, 11 Nov 2017 11:44:04 +0100
+
 cl-csv (20170403-1) unstable; urgency=medium
 
   * Quicklisp release update.
 
  -- Dimitri Fontaine <dim@tapoueh.org>  Thu, 06 Jul 2017 16:28:20 +0300
+
+cl-csv (20150608-1.1) unstable; urgency=medium
+
+  [ gregor herrmann ]
+  * Non-maintainer upload.
+  * Fix "broken symlink: /usr/share/common-lisp/systems/cl-csv-data-
+    table.asd -> ../source/cl-csv-data-table/cl-csv-data-table.asd":
+    debian/cl-csv-data-table.install: install into directory matching package
+    name.
+    (Closes: #858509)
+
+ -- Christoph Berg <christoph.berg@credativ.de>  Wed, 26 Apr 2017 13:04:22 +0200
 
 cl-csv (20150608-1) unstable; urgency=medium
 
