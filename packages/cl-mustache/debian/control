@@ -1,0 +1,20 @@
+Source: cl-mustache
+Section: lisp
+Priority: optional
+Maintainer: Dimitri Fontaine <dim@tapoueh.org>
+Build-Depends: debhelper (>= 9)
+Build-Depends-Indep: dh-lisp
+Standards-Version: 4.1.1
+Homepage: https://github.com/kanru/cl-mustache/
+
+Package: cl-mustache
+Architecture: all
+Depends: ${misc:Depends}
+Description: Common Lisp Mustache Template Renderer
+ Inspired by ctemplate and et, Mustache is a framework-agnostic way to render
+ logic-free views.
+ .
+ As ctemplates says, "It emphasizes separating logic from presentation: it is
+ impossible to embed application logic in this template language."
+ .
+ CL-MUSTACHE is a Common Lisp implementation of Mustache v1.1.2+λ.
