@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Dimitri Fontaine <dim@tapoueh.org>
 Build-Depends: debhelper (>= 7)
 Build-Depends-Indep: dh-lisp
-Standards-Version: 3.9.6
+Standards-Version: 4.1.3
 Homepage: http://weitz.de/drakma/
 Vcs-Git: https://github.com/edicl/drakma.git
 Vcs-Browser: https://github.com/edicl/drakma

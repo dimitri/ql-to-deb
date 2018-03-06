@@ -17,4 +17,4 @@ override_dh_link:
 	dh_link $(clc-files)/$(pkg).asd $(clc-systems)/$(pkg).asd
 
 override_dh_installdocs:
-	dh_installdocs README NEWS doc/*
+	dh_installdocs README.md NEWS doc/*

@@ -11,7 +11,7 @@ clc-files	:= $(clc-source)/$(pkg)
 override_dh_install:
 	dh_install $(pkg).asd $(clc-files)
 	dh_install *.lisp $(clc-files)
-	dh_install version.lisp-expr $(clc-files)
+	dh_install version.sexp $(clc-files)
 
 override_dh_link:
 	dh_link $(clc-files)/$(pkg).asd $(clc-systems)/$(pkg).asd
