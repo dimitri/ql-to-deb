@@ -27,11 +27,16 @@
     (("config" #\c) :type string :initial-value ,*config-filename*
      :documentation "configuration file.")
 
+    (("changes" #\C) :type string :initial-value ,*changes-filename*
+     :documentation "ql-to-deb changes file.")
+
     (("dir" #\D) :type string :initial-value ,*build-root*
      :documentation "where to build packages.")
 
     (("logs" #\L) :type string :initial-value ,*logs-root*
      :documentation "where to write detailed logs.")
+
+    (("on-error-stop" #\E) :type boolean :documentation "Stop at first error.")
 
     (("quicklisp" #\Q) :type string :initial-value ,*ql-props-url*
      :documentation "URL to use to fetch quicklisp.txt main file")))
@@ -62,59 +67,79 @@
 
   (when quit (uiop:quit)))
 
+(defun process-command-line (&key arguments
+                               config changes
+                               verbose fix-bugs
+                               dir logs quicklisp on-error-stop)
+  (setf *verbose* verbose)
+  (setf *on-error-stop* on-error-stop)
+  (setf *ql-props-url* quicklisp)
+  (setf *fix-bugs* fix-bugs)
+  (setf *config-filename* config)
+  (setf *changes-filename* (uiop:parse-native-namestring changes))
+
+  (let ((dir-truename (probe-file dir)))
+    (if dir-truename
+        (setf *build-root* (directory-namestring dir-truename))
+        (setf *build-root* (pathname (mkdir-or-die dir)))))
+
+  (let ((logs-truename (probe-file logs)))
+    (if logs-truename
+        (setf *logs-root* (directory-namestring logs-truename))
+        (setf *logs-root* (mkdir-or-die logs))))
+
+  (when verbose
+    (format t "       config: ~s~%" *config-filename*)
+    (format t "      changes: ~s~%" *changes-filename*)
+    (format t "     fix-bugs: ~:[false~;true~]~%" *fix-bugs*)
+    (format t "on-error-stop: ~:[false~;true~]~%" *on-error-stop*)
+    (format t "   build-root: ~a~%" *build-root*)
+    (format t "    logs-root: ~a~%" *logs-root*))
+
+  (handler-case
+      (destructuring-bind (command &rest packages) arguments
+        (let ((cmd (assoc command *commands* :test #'string=)))
+          (if cmd
+              (destructuring-bind (name help fn) cmd
+                (declare (ignore name help))
+                (funcall fn :packages packages))
+              (error "Unknown command ~s" command))))
+    (condition (c)
+      (format t "Fatal: ~a~%" c)
+      (uiop:quit 1)))
+
+  (uiop:quit))
+
 (defun main (argv)
-  (let ((args (rest argv)))
-    (multiple-value-bind (options arguments)
-	(handler-case
+  (handler-case
+      (let ((args (rest argv)))
+        (multiple-value-bind (options arguments)
             (command-line-arguments:process-command-line-options *opt-spec* args)
-          (condition (e)
-            ;; print out the usage, whatever happens here
-            (declare (ignore e))
-            (usage argv :quit t)))
+          (destructuring-bind (&key help version verbose fix-bugs
+                                    config changes
+                                    dir logs quicklisp on-error-stop)
+              options
+            (when version
+              (format t "ql-to-deb version ~s~%" *version-string*)
+              (format t "compiled with ~a ~a~%"
+                      (lisp-implementation-type)
+                      (lisp-implementation-version)))
 
-      (destructuring-bind (&key help version verbose fix-bugs
-                                config dir logs quicklisp)
-	  options
+            (when help (usage argv))
 
-        (when version
-	  (format t "ql-to-deb version ~s~%" *version-string*)
-          (format t "compiled with ~a ~a~%"
-                  (lisp-implementation-type)
-                  (lisp-implementation-version)))
+            (when (or help version) (uiop:quit))
 
-	(when help (usage argv))
+            (process-command-line :arguments arguments
+                                  :config config
+                                  :changes changes
+                                  :verbose verbose
+                                  :fix-bugs fix-bugs
+                                  :dir dir
+                                  :logs logs
+                                  :quicklisp quicklisp
+                                  :on-error-stop on-error-stop))))
 
-        (when (or help version) (uiop:quit))
-
-        (setf *verbose* verbose)
-        (setf *ql-props-url* quicklisp)
-        (setf *fix-bugs* fix-bugs)
-        (setf *config-filename* config)
-
-        ;; the .changes value needs to be set at runtime
-        (setf *changes-pathname*
-              (uiop:merge-pathnames* *changes-filename* (user-homedir-pathname)))
-
-        (let ((dir-truename (probe-file dir)))
-          (if dir-truename
-              (setf *build-root* (directory-namestring dir-truename))
-              (setf *build-root* (pathname (mkdir-or-die dir)))))
-
-        (let ((logs-truename (probe-file logs)))
-          (if logs-truename
-              (setf *logs-root* (directory-namestring logs-truename))
-              (setf *logs-root* (mkdir-or-die logs))))
-
-        (handler-case
-            (destructuring-bind (command &rest packages) arguments
-              (let ((cmd (assoc command *commands* :test #'string=)))
-                (if cmd
-                    (destructuring-bind (name help fn) cmd
-                      (declare (ignore name help))
-                      (funcall fn :packages packages))
-                    (error "Unknown command ~s" command))))
-          (condition (c)
-            (format t "Fatal: ~a~%" c)
-            (uiop:quit 1)))
-
-        (uiop:quit)))))
+    ;; print out the usage, whatever happens here
+    (condition (e)
+      (declare (ignore e))
+      (usage argv :quit t))))

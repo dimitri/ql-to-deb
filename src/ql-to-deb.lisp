@@ -69,12 +69,11 @@
 
     (format t "     see logs in ~s~%" (namestring log-pathname))
 
-    (with-open-file (*log-stream* log-pathname
-                                  :direction :output
-                                  :if-exists :supersede
-                                  :if-does-not-exist :create)
-
-      (handler-case
+    (handler-case
+        (with-open-file (*log-stream* log-pathname
+                                      :direction :output
+                                      :if-exists :supersede
+                                      :if-does-not-exist :create)
           (progn
             ;; Compute the next version number of our debian package, we
             ;; need to know that to name the orig tarball properly.
@@ -94,18 +93,24 @@
               (update-changelog deb ql))
 
             ;; now debuild the package
-            (debuild deb)
+            (handler-case
+                (debuild deb)
+              (condition (c)
+                ;; complete the log file and re-signal
+                (format *log-stream* "Fatal: ~a~%" c)
+                (error c)))
 
             ;; copy the new changelog file to our debian packaging source
             (unless *fix-bugs*
               (let ((cp `("cp" ,(namestring (build-changelog deb))
                                ,(namestring (source-changelog deb)))))
-                (run-command cp (deb-dir deb)))))
+                (run-command cp (deb-dir deb))))))
 
-        ;; just ensure we keep the log file when something happens
-        (condition (c)
-          (format *log-stream* "Fatal: ~a~%" c)
-          (format t "Fatal: ~a~%" c))))))
+      ;; just ensure we keep the log file when something happens
+      (system-error (c)
+        ;; it's been logged already
+        (when *on-error-stop*
+          (uiop:quit (system-error-code c)))))))
 
 
 ;;;

@@ -160,5 +160,5 @@
          (deb-files
           (loop :for change-filename :in changes-list
              :append (parse-changes-files change-filename "\\.deb$"))))
-    (format t "sudo dpkg -i ~{~a~^ ~}~%" deb-files)
+    (format t "apt install --fix-broken ~{~a~^ ~}~%" deb-files)
     (dpkg-i deb-files)))

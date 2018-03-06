@@ -65,6 +65,15 @@
     (list maybe-list)
     (t    (list maybe-list))))
 
+(define-condition system-error (error)
+  ((command    :initarg :command :reader system-error-command)
+   (error-code :initarg :error-code :reader system-error-code))
+  (:report (lambda (err stream)
+             (format stream
+                     "Command ~s failed with status ~a."
+                     (system-error-command err)
+                     (system-error-code err)))))
+
 (defun run-command (command cwd
                     &key
                       ignore-error-status
@@ -80,7 +89,8 @@
       (format-command t command))
     (format-command log-stream command)
 
-    (let* ((out    (make-broadcast-stream log-stream))
+    (let* ((outstr (make-string-output-stream))
+           (out    (make-broadcast-stream log-stream outstr))
            (errors (make-string-output-stream))
            (err    (make-broadcast-stream log-stream errors)))
       (uiop:with-current-directory (cwd)
@@ -94,12 +104,11 @@
             (unless (= 0 code)
               (format t "~%Command:  ~a" (format-command nil command))
               (format t "Status: ~a~%" code)
-              (format t "Error: ~a: ~a~%"
-                      (car (ensure-list command))
-                      (get-output-stream-string errors))
-              (error "Command ~s failed with status ~a."
-                     (car (ensure-list command))
-                     code)))
+              (format t "~a~%" (get-output-stream-string outstr))
+              (format t "~a~%" (get-output-stream-string errors))
+              (error (make-condition 'system-error
+                                     :command (format-command nil command)
+                                     :error-code code))))
 
           ;; return the error code, as we don't have output/error anymore
           code)))))

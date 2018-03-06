@@ -10,6 +10,9 @@
 (defparameter *verbose* nil
   "Be verbose.")
 
+(defparameter *on-error-stop* nil
+  "As soon as a build fails, stop.")
+
 (defvar *config-filename*
   (asdf:system-relative-pathname :ql-to-deb "ql-to-deb.ini")
   "Configuration file with per-package hooks.")
