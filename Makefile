@@ -122,3 +122,14 @@ swank:
 
 status: $(QL_TO_DEB)
 	$(QL_TO_DEB) --status
+
+packages:
+	docker build -t qldeb .
+
+sign:
+	docker run -it qldeb /bin/bash
+
+secring:
+	docker cp ~/.gnupg/secring.gpg $(shell docker ps --filter "ancestor=qldeb" --format "{{.Names}}"):/home/dim/.gnupg/secring.gpg
+
+.PHONY: packages sign secring

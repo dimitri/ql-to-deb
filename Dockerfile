@@ -7,7 +7,7 @@ RUN apt-get install -y --no-install-recommends          \
                     cdbs a2ps liburi-perl fakeroot      \
                     lintian build-essential quilt       \
                     dh-lisp gnupg gnupg-agent dput      \
-                    libssl-dev pinentry-curses sudo     \
+                    libssl-dev pinentry-tty sudo        \
                     cl-asdf cl-flexi-streams cl-ppcre   \
                     wget curl make git bzip2 time       \
                     ca-certificates                     \
@@ -15,10 +15,11 @@ RUN apt-get install -y --no-install-recommends          \
                     patch unzip libsqlite3-dev gawk     \
                     freetds-dev sbcl
 
-RUN useradd --user-group --create-home --home /home/dim --shell /bin/bash --groups sudo dim
+RUN useradd --user-group --create-home --home /home/dim --shell /bin/bash --groups tty,sudo dim
 
 RUN install -o dim -m 0700 -d /home/dim/.gnupg
-ADD conf/bashrc.sh /home/dim/.bashrc
+ADD conf/prepare.sh     /root/prepare.sh
+ADD conf/bashrc.sh      /home/dim/.bashrc
 ADD conf/gpg-agent.conf /home/dim/.gnupg/gpg-agent.conf
 ADD conf/devscripts     /home/dim/.gnupg/.devscripts
 ADD conf/gpg.conf       /home/dim/.gnupg/gpg.conf
