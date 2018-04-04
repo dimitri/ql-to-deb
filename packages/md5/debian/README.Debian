@@ -1,6 +1,0 @@
-Installing md5 into your CL implementation that uses
-Debian's Common Lisp Controller is easy. Just enter
-
-(clc:clc-require 'md5)
-
-and a precompiled version of md5 should be loaded.
