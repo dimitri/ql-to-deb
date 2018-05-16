@@ -1,3 +1,19 @@
+cl-utilities (1.2.4-3.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Bump the version number to avoid collisions with other versions
+    of cl-utilities that were historically in the Debian archive before
+    removal.
+  * Switch to source format 3.0 (quilt) so that the package can use an
+    orig.tar.xz instead of orig.tar.gz, because the orig.tar.gz that was
+    used when reintroduced also doesn't match the one previously in Debian,
+    which violates one of the constraints that filenames are always unique
+    in a package pool - which will cause problems for release archival
+    down the line.
+  * Closes: #805798.
+
+ -- Steve Langasek <vorlon@debian.org>  Tue, 29 Mar 2016 01:27:57 +0000
+
 cl-utilities (1.2.4-1) unstable; urgency=medium
 
   * Quicklisp release update.
