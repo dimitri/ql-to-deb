@@ -21,7 +21,7 @@ RUN install -o dim -m 0700 -d /home/dim/.gnupg
 ADD conf/prepare.sh     /root/prepare.sh
 ADD conf/bashrc.sh      /home/dim/.bashrc
 ADD conf/gpg-agent.conf /home/dim/.gnupg/gpg-agent.conf
-ADD conf/devscripts     /home/dim/.gnupg/.devscripts
+ADD conf/devscripts     /home/dim/.devscripts
 ADD conf/gpg.conf       /home/dim/.gnupg/gpg.conf
 ADD conf/dput.cf        /home/dim/.dput.cf
 ADD conf/ql-to-deb.conf /home/dim/.config/common-lisp/source-registry.conf.d/ql-to-deb.conf
