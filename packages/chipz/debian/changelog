@@ -1,3 +1,9 @@
+cl-chipz (20180328-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Wed, 16 May 2018 09:47:00 +0000
+
 cl-chipz (20160318-1) unstable; urgency=medium
 
   * Quicklisp release update.

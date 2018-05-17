@@ -1,3 +1,9 @@
+cl-unicode (20180328-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Wed, 16 May 2018 09:47:57 +0000
+
 cl-unicode (0.1.5-3) unstable; urgency=medium
 
   * Fix the previous fix.

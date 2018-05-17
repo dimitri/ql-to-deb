@@ -1,3 +1,9 @@
+cl-chunga (20180131-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Wed, 16 May 2018 09:47:07 +0000
+
 cl-chunga (1.1.6-1) unstable; urgency=medium
 
   * Quicklisp release update.

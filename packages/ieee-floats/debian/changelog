@@ -1,3 +1,9 @@
+cl-ieee-floats (20170830-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Wed, 16 May 2018 09:48:56 +0000
+
 cl-ieee-floats (20160318-1) unstable; urgency=medium
 
   * Quicklisp release update.

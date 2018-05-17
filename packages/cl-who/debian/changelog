@@ -1,3 +1,9 @@
+cl-who (20171130-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Wed, 16 May 2018 09:48:09 +0000
+
 cl-who (1.1.4-1) unstable; urgency=medium
 
   * Quicklisp release update.

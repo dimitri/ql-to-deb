@@ -1,3 +1,9 @@
+cl-graph (20180131-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Wed, 16 May 2018 09:48:43 +0000
+
 cl-graph (20161031-1) unstable; urgency=medium
 
   * Quicklisp release update.

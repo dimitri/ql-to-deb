@@ -1,3 +1,9 @@
+cl-nibbles (20180430-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Wed, 16 May 2018 09:49:32 +0000
+
 cl-nibbles (20170403-1) unstable; urgency=medium
 
   * Quicklisp release update.

@@ -1,3 +1,9 @@
+cl-drakma (2.0.4-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Wed, 16 May 2018 09:48:21 +0000
+
 cl-drakma (2.0.3-1) unstable; urgency=medium
 
   * Quicklisp release update.

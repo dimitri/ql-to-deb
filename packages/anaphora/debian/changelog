@@ -1,3 +1,9 @@
+cl-anaphora (20180228-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Wed, 16 May 2018 09:46:53 +0000
+
 cl-anaphora (20170227-1) unstable; urgency=medium
 
   * Quicklisp release update.

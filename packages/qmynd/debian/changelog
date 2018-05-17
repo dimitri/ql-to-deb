@@ -1,3 +1,9 @@
+cl-qmynd (20180131-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Wed, 16 May 2018 09:50:04 +0000
+
 cl-qmynd (20170630-1) unstable; urgency=medium
 
   * Quicklisp release update.

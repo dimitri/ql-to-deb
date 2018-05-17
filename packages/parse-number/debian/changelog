@@ -1,3 +1,9 @@
+cl-parse-number (1.7-1) unstable; urgency=medium
+
+  * Quicklisp release update.
+
+ -- Dimitri Fontaine <dim@tapoueh.org>  Wed, 16 May 2018 09:49:38 +0000
+
 cl-parse-number (1.4-1) unstable; urgency=medium
 
   * Quicklisp release update.
