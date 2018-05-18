@@ -6,6 +6,8 @@ Build-Depends: debhelper (>= 7)
 Build-Depends-Indep: dh-lisp
 Standards-Version: 3.9.6
 Homepage: http://common-lisp.net/project/rfc2388/
+Vcs-Git: https://github.com/dimitri/ql-to-deb [packages/rfc2388]
+Vcs-Browser: https://github.com/dimitri/ql-to-deb/tree/master/packages/rfc2388
 
 Package: cl-rfc2388
 Architecture: all

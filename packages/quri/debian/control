@@ -6,7 +6,8 @@ Build-Depends-Indep: dh-lisp
 Build-Depends: debhelper (>= 7.0.0)
 Standards-Version: 3.9.6
 Homepage: https://github.com/fukamachi/quri
-Vcs-Browser: https://github.com/fukamachi/quri.git
+Vcs-Git: https://github.com/dimitri/ql-to-deb [packages/quri]
+Vcs-Browser: https://github.com/dimitri/ql-to-deb/tree/master/packages/quri
 
 Package: cl-quri
 Architecture: all

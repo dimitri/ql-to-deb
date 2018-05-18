@@ -6,6 +6,8 @@ Build-Depends: debhelper (>= 7), cl-ppcre, cl-flexi-streams, sbcl (>= 2:1.2.4)
 Build-Depends-Indep: dh-lisp
 Standards-Version: 4.1.3
 Homepage: http://weitz.de/cl-unicode/
+Vcs-Git: https://github.com/dimitri/ql-to-deb [packages/cl-unicode]
+Vcs-Browser: https://github.com/dimitri/ql-to-deb/tree/master/packages/cl-unicode
 
 Package: cl-unicode
 Architecture: all

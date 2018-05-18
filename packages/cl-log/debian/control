@@ -6,6 +6,8 @@ Build-Depends: debhelper (>= 7)
 Build-Depends-Indep: dh-lisp
 Standards-Version: 3.9.6
 Homepage: http://www.nicklevine.org/cl-log/
+Vcs-Git: https://github.com/dimitri/ql-to-deb [packages/cl-log]
+Vcs-Browser: https://github.com/dimitri/ql-to-deb/tree/master/packages/cl-log
 
 Package: cl-log
 Architecture: all

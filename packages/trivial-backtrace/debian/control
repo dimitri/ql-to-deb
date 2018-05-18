@@ -6,7 +6,8 @@ Build-Depends: debhelper (>= 7)
 Build-Depends-Indep: dh-lisp
 Standards-Version: 3.9.6
 Homepage: http://common-lisp.net/project/trivial-backtrace/
-Vcs-Git: http://common-lisp.net/project/trivial-backtrace/trivial-backtrace.git
+Vcs-Git: https://github.com/dimitri/ql-to-deb [packages/trivial-backtrace]
+Vcs-Browser: https://github.com/dimitri/ql-to-deb/tree/master/packages/trivial-backtrace
 
 Package: cl-trivial-backtrace
 Architecture: all

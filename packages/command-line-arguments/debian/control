@@ -6,8 +6,8 @@ Build-Depends: debhelper (>= 7)
 Build-Depends-Indep: dh-lisp
 Standards-Version: 3.9.6
 Homepage: http://common-lisp.net/project/qitab/
-Vcs-Git: git://common-lisp.net/projects/qitab/command-line-arguments.git
-Vcs-Browser: http://common-lisp.net/gitweb?p=projects/qitab/command-line-arguments.git
+Vcs-Git: https://github.com/dimitri/ql-to-deb [packages/command-line-arguments]
+Vcs-Browser: https://github.com/dimitri/ql-to-deb/tree/master/packages/command-line-arguments
 
 Package: cl-command-line-arguments
 Architecture: all

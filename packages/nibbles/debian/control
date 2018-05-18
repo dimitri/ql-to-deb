@@ -6,8 +6,8 @@ Build-Depends: debhelper (>= 7)
 Build-Depends-Indep: dh-lisp
 Standards-Version: 4.1.3
 Homepage: http://method-combination.net/lisp/nibbles/
-Vcs-Git: https://github.com/froydnj/nibbles.git
-Vcs-Browser: https://github.com/froydnj/nibbles
+Vcs-Git: https://github.com/dimitri/ql-to-deb [packages/nibbles]
+Vcs-Browser: https://github.com/dimitri/ql-to-deb/tree/master/packages/nibbles
 
 Package: cl-nibbles
 Architecture: all

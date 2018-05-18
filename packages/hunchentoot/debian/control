@@ -6,8 +6,8 @@ Build-Depends: debhelper (>= 7)
 Build-Depends-Indep: dh-lisp
 Standards-Version: 3.9.6
 Homepage: http://weitz.de/hunchentoot/
-Vcs-Git: https://github.com/edicl/hunchentoot.git
-Vcs-Browser: https://github.com/edicl/hunchentoot
+Vcs-Git: https://github.com/dimitri/ql-to-deb [packages/hunchentoot]
+Vcs-Browser: https://github.com/dimitri/ql-to-deb/tree/master/packages/hunchentoot
 
 Package: cl-hunchentoot
 Architecture: all

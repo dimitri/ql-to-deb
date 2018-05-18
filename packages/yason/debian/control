@@ -6,8 +6,8 @@ Build-Depends: debhelper (>= 7)
 Build-Depends-Indep: dh-lisp
 Standards-Version: 3.9.6
 Homepage: http://common-lisp.net/project/yason/
-Vcs-Git: https://github.com/hanshuebner/yason.git
-Vcs-Browser: https://github.com/hanshuebner/yason
+Vcs-Git: https://github.com/dimitri/ql-to-deb [packages/yason]
+Vcs-Browser: https://github.com/dimitri/ql-to-deb/tree/master/packages/yason
 
 Package: cl-yason
 Architecture: all

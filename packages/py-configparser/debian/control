@@ -6,7 +6,8 @@ Build-Depends: debhelper (>= 7)
 Build-Depends-Indep: dh-lisp
 Standards-Version: 4.1.3
 Homepage: http://common-lisp.net/project/py-configparser/
-Vcs-Browser: http://common-lisp.net/websvn/listing.php?repname=py-configparser
+Vcs-Git: https://github.com/dimitri/ql-to-deb [packages/py-configparser]
+Vcs-Browser: https://github.com/dimitri/ql-to-deb/tree/master/packages/py-configparser
 
 Package: cl-py-configparser
 Architecture: all

@@ -6,8 +6,8 @@ Build-Depends: debhelper (>= 7)
 Build-Depends-Indep: dh-lisp
 Standards-Version: 3.9.6
 Homepage: http://common-lisp.net/project/cxml/
-Vcs-Git: git://repo.or.cz/closure-common.git
-Vcs-Browser: http://repo.or.cz/w/closure-common.git
+Vcs-Git: https://github.com/dimitri/ql-to-deb [packages/closure-common]
+Vcs-Browser: https://github.com/dimitri/ql-to-deb/tree/master/packages/closure-common
 
 Package: cl-closure-common
 Architecture: all

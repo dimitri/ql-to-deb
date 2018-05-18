@@ -6,8 +6,8 @@ Build-Depends: debhelper (>= 7)
 Build-Depends-Indep: dh-lisp
 Standards-Version: 3.9.6
 Homepage: http://common-lisp.net/project/metatilities-base/
-Vcs-Git: git://github.com/gwkkwg/metatilities-base
-Vcs-Browser: https://github.com/gwkkwg/metatilities-base
+Vcs-Git: https://github.com/dimitri/ql-to-deb [packages/metatilities-base]
+Vcs-Browser: https://github.com/dimitri/ql-to-deb/tree/master/packages/metatilities-base
 
 Package: cl-metatilities-base
 Architecture: all

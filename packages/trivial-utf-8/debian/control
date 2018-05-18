@@ -6,6 +6,8 @@ Build-Depends: debhelper (>= 7)
 Build-Depends-Indep: dh-lisp
 Standards-Version: 3.9.6
 Homepage: http://common-lisp.net/project/trivial-utf-8/
+Vcs-Git: https://github.com/dimitri/ql-to-deb [packages/trivial-utf-8]
+Vcs-Browser: https://github.com/dimitri/ql-to-deb/tree/master/packages/trivial-utf-8
 
 Package: cl-trivial-utf-8
 Architecture: all

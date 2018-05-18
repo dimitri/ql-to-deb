@@ -6,8 +6,8 @@ Build-Depends: debhelper (>= 7)
 Build-Depends-Indep: dh-lisp
 Standards-Version: 4.1.3
 Homepage: http://xach.com/lisp/zs3/
-Vcs-Git: https://github.com/xach/zs3.git
-Vcs-Browser: https://github.com/xach/zs3
+Vcs-Git: https://github.com/dimitri/ql-to-deb [packages/zs3]
+Vcs-Browser: https://github.com/dimitri/ql-to-deb/tree/master/packages/zs3
 
 Package: cl-zs3
 Architecture: all

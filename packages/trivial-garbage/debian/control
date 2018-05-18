@@ -6,8 +6,8 @@ Build-Depends: debhelper (>= 7)
 Build-Depends-Indep: dh-lisp
 Standards-Version: 3.9.6
 Homepage: http://common-lisp.net/project/trivial-garbage/
-Vcs-Git: https://github.com/trivial-garbage/trivial-garbage.git
-Vcs-Browser: https://github.com/trivial-garbage/trivial-garbage
+Vcs-Git: https://github.com/dimitri/ql-to-deb [packages/trivial-garbage]
+Vcs-Browser: https://github.com/dimitri/ql-to-deb/tree/master/packages/trivial-garbage
 
 Package: cl-trivial-garbage
 Architecture: all

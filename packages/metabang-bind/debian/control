@@ -6,8 +6,8 @@ Build-Depends: debhelper (>= 7)
 Build-Depends-Indep: dh-lisp
 Standards-Version: 4.1.3
 Homepage: http://common-lisp.net/project/metabang-bind/
-Vcs-Git: git://github.com/gwkkwg/metabang-bind
-Vcs-Browser: https://github.com/gwkkwg/metabang-bind
+Vcs-Git: https://github.com/dimitri/ql-to-deb [packages/metabang-bind]
+Vcs-Browser: https://github.com/dimitri/ql-to-deb/tree/master/packages/metabang-bind
 
 Package: cl-metabang-bind
 Architecture: all
