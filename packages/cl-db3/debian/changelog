@@ -1,3 +1,11 @@
+cl-db3 (20200212-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream version.
+  * DH 13; bump S-V.
+
+ -- Christoph Berg <myon@debian.org>  Wed, 10 Jun 2020 15:07:34 +0200
+
 cl-db3 (20150302-1) unstable; urgency=medium
 
   * Quicklisp release update.
