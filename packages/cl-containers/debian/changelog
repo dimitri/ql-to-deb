@@ -1,3 +1,10 @@
+cl-containers (20170403-2) UNRELEASED; urgency=medium
+
+  * Remove constraints unnecessary since stretch:
+    + Build-Depends: Drop versioned constraint on debhelper.
+
+ -- Debian Janitor <janitor@jelmer.uk>  Mon, 16 Nov 2020 10:39:14 -0000
+
 cl-containers (20170403-1) unstable; urgency=medium
 
   * Quicklisp release update.
