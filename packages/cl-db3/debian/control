@@ -12,5 +12,6 @@ Vcs-Browser: https://github.com/dimitri/ql-to-deb/tree/master/packages/cl-db3
 Package: cl-db3
 Architecture: all
 Depends: ${misc:Depends}
+Multi-Arch: foreign
 Description: Common Lisp lib to read dbf files version 3
  Allows processing data found in dbf and db3 files.
