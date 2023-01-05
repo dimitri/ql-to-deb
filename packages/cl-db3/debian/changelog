@@ -1,6 +1,7 @@
 cl-db3 (20200212-2) UNRELEASED; urgency=medium
 
   * Use secure copyright file specification URI.
+  * Set upstream metadata fields: Repository-Browse.
 
  -- Debian Janitor <janitor@jelmer.uk>  Thu, 05 Jan 2023 06:38:01 -0000
 
