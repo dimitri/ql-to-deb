@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Dimitri Fontaine <dim@tapoueh.org>
 Build-Depends: debhelper-compat (= 13)
 Build-Depends-Indep: dh-lisp
-Standards-Version: 4.5.0
+Standards-Version: 4.6.2
 Homepage: https://github.com/dimitri/cl-db3
 Vcs-Git: https://github.com/dimitri/ql-to-deb.git [packages/cl-db3]
 Vcs-Browser: https://github.com/dimitri/ql-to-deb/tree/master/packages/cl-db3
