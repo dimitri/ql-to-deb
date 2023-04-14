@@ -1,5 +1,5 @@
 FROM debian:unstable
-MAINTAINER Dimitri Fontaine <dim@tapoueh.org>
+LABEL maintainer="Dimitri Fontaine <dim@tapoueh.org>"
 
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends          \
